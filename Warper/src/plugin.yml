@@ -1,0 +1,6 @@
+name: Warper
+main: minecraft.bukkit.plugins.tobsa.warper.Warper
+version: 1.0
+commands:
+    warper:
+        aliases: [wa,wp,wap]
