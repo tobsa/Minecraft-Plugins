@@ -1,0 +1,6 @@
+name: MinePillars
+main: minepillars.MinePillars
+version: 1.0;
+commands: 
+    minepillars:
+        aliases: [mi,mp]
