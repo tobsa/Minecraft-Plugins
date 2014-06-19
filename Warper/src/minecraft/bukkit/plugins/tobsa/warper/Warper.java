@@ -28,7 +28,7 @@ public class Warper extends JavaPlugin implements Listener {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.RED + "To few arguments.");
+            onHelpCommand(player, args);
             return true;
         }
 
@@ -53,7 +53,7 @@ public class Warper extends JavaPlugin implements Listener {
     }
 
     private void onHelpCommand(Player player, String[] args) {
-        if (args.length != 1) {
+        if (args.length > 1) {
             player.sendMessage(ChatColor.RED + "Arguments are not correct.");
             return;
         }
