@@ -1,4 +1,4 @@
-package minecraft.bukkit.plugins.tobsa.warper;
+package warper;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

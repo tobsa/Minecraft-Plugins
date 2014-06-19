@@ -1,5 +1,5 @@
 name: Warper
-main: minecraft.bukkit.plugins.tobsa.warper.Warper
+main: warper.Warper
 version: 1.0
 commands:
     warper:
