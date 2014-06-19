@@ -1,0 +1,6 @@
+name: ToggleBlocks
+main: toggleblocks.ToggleBlocks
+version: 1.0
+commands:
+    toggleblocks:
+        aliases: [tb,to]
