@@ -1,0 +1,3 @@
+name: PuzzlePack
+main: puzzlepack.PuzzlePack
+version: 1.0
