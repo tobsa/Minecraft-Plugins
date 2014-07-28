@@ -1,3 +1,44 @@
 name: PuzzlePack
 main: puzzlepack.PuzzlePack
 version: 1.0
+depend: [WorldEdit]
+commands:
+    secretroom:
+            description: Creates a secret room
+            aliases: [sroom]
+            usage: /secretroom
+            
+    secretroomlist:
+            description: Display a list of all secret rooms
+            aliases: [sroomlist, srooml]
+            usage: /secretroomlist
+            
+    secretroomdelete:
+            description: Delete a secret room
+            aliases: [sroomdelete, sroomdel, sroomd]
+            usage: /secretroomdelete
+            
+    secretroomselection:
+            description: Selects a secret room
+            aliases: [sroomselection, sroomsel, srooms]
+            usage: /secretroomselection
+            
+    teleportroom:
+            description: Creates a teleport room
+            aliases: [tproom]
+            usage: /teleportroom
+            
+    teleportroomlist:
+            description: List all teleport rooms
+            aliases: [tproomlist, tprooml]
+            usage: /teleportroomlist
+    
+    teleportroomdelete:
+            description: Delete a teleport room
+            aliases: [tproomdelete, tproomdel, tproomd]
+            usage: /teleportroomlist
+    
+    teleportroomselection:
+            description: Selects a teleport room
+            aliases: [tproomselection, tproomsel, tprooms]
+            usage: /teleportroomlist
