@@ -1,4 +1,4 @@
-package puzzlepack;
+package itemrestrict;
 
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
@@ -9,10 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-public class OnBlockPlaceEvent implements Listener {
+public class OnBlockPlaceItemRestrict implements Listener {
     @EventHandler
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
-        // For easier access
         Player player = event.getPlayer();
         Block block1 = event.getBlock();
         Block block2 = event.getBlockAgainst();

@@ -1,21 +1,17 @@
-package puzzlepack.executors;
+package area.clearinventoryarea;
 
-import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.AreaTeleportRoom;
 import puzzlepack.PuzzlePack;
 
-public class TeleportRoomDeleteExecutor implements CommandExecutor {
-    private List<AreaTeleportRoom> teleportRooms;
+public class ClearInventoryAreaDeleteExecutor implements CommandExecutor {
     private PuzzlePack plugin;
 
-    public TeleportRoomDeleteExecutor(PuzzlePack plugin) {
+    public ClearInventoryAreaDeleteExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
-        this.teleportRooms = plugin.getAreaManager().getTeleportRooms();
     }
 
     @Override
@@ -27,20 +23,18 @@ public class TeleportRoomDeleteExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         if(args.length != 1) {
-            player.sendMessage(ChatColor.RED + "Invald arguments. Usage: /teleportroomdelete <AreaName>");
+            player.sendMessage(ChatColor.RED + "Invald arguments. Usage: /clearinvdelete <AreaName>");
             return true;
         }
         
-        AreaTeleportRoom area = plugin.getAreaManager().getTeleportRoom(player.getPlayerListName(), args[0]);
+        ClearInventoryArea area = plugin.getAreaManager().getClearInventoryArea(player.getPlayerListName(), args[0]);
         if(area == null) {
             player.sendMessage(ChatColor.RED + "'" + args[0] + "' doesn't exist!");
             return true;
         }     
         
-        teleportRooms.remove(area);
+        plugin.getAreaManager().removeClearInventoryArea(area);
         player.sendMessage("'" + args[0] + "' has been removed!");
-        plugin.getConfig().set("teleportrooms." + area.getName(), null);
-        plugin.saveConfig();
         
         return true;
     }

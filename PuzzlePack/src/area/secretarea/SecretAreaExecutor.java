@@ -1,4 +1,4 @@
-package puzzlepack.executors;
+package area.secretarea;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,11 +11,11 @@ import com.sk89q.worldedit.bukkit.selections.Selection;
 import org.bukkit.block.Block;
 import puzzlepack.PuzzlePack;
 
-public class SecretRoomExecutor implements CommandExecutor {
+public class SecretAreaExecutor implements CommandExecutor {
     private PuzzlePack plugin;
     private WorldEditPlugin we;
 
-    public SecretRoomExecutor(PuzzlePack plugin) {
+    public SecretAreaExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
         we = plugin.getWorldEdit();
     }
@@ -41,7 +41,7 @@ public class SecretRoomExecutor implements CommandExecutor {
             return true;
         }
         
-        if(plugin.getAreaManager().getSecretRoom(player.getPlayerListName(), args[0]) != null) {
+        if(plugin.getAreaManager().getSecretArea(player.getPlayerListName(), args[0]) != null) {
             player.sendMessage(ChatColor.RED + "'" + args[0] + "' already exists!");
             return true;
         }
@@ -49,9 +49,9 @@ public class SecretRoomExecutor implements CommandExecutor {
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
         
-        plugin.getAreaManager().addSecretRoom(player.getPlayerListName(), args[0], block1, block2);
+        plugin.getAreaManager().addSecretArea(player.getPlayerListName(), args[0], block1, block2);
 
-        player.sendMessage(ChatColor.LIGHT_PURPLE + "Secret area created.");
+        player.sendMessage(ChatColor.LIGHT_PURPLE + "Secret room '" + args[0] + "' was created.");
 
         return true;
     }

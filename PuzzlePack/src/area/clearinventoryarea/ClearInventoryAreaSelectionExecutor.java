@@ -1,21 +1,21 @@
-package puzzlepack.executors;
+package area.clearinventoryarea;
 
-import java.util.List;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.AreaSecretRoom;
 import puzzlepack.PuzzlePack;
 
-public class SecretRoomDeleteExecutor implements CommandExecutor {
-    private List<AreaSecretRoom> areas;
+public class ClearInventoryAreaSelectionExecutor implements CommandExecutor {
     private PuzzlePack plugin;
+    private WorldEditPlugin we;
 
-    public SecretRoomDeleteExecutor(PuzzlePack plugin) {
+    public ClearInventoryAreaSelectionExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
-        this.areas = plugin.getAreaManager().getSecretRooms();
+        this.we = plugin.getWorldEdit();
     }
 
     @Override
@@ -25,22 +25,19 @@ public class SecretRoomDeleteExecutor implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        
+                
         if(args.length != 1) {
-            player.sendMessage(ChatColor.RED + "Invald arguments. Usage: /secretroomdelete <AreaName>");
+            player.sendMessage(ChatColor.RED + "Invalid arguments. Usage: /clearinvroomselection <AreaName>");
             return true;
         }
         
-        AreaSecretRoom area = plugin.getAreaManager().getSecretRoom(player.getPlayerListName(), args[0]);
+        ClearInventoryArea area = plugin.getAreaManager().getClearInventoryArea(player.getPlayerListName(), args[0]);
         if(area == null) {
             player.sendMessage(ChatColor.RED + "'" + args[0] + "' doesn't exist!");
             return true;
-        }     
+        }
         
-        areas.remove(area);
-        player.sendMessage("'" + args[0] + "' has been removed!");
-        plugin.getConfig().set("secretrooms." + area.getName(), null);
-        plugin.saveConfig();
+        we.setSelection(player, new CuboidSelection(plugin.getServer().getWorld("world"), area.getBlock1().getLocation(), area.getBlock2().getLocation()));
         
         return true;
     }

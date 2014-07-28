@@ -1,4 +1,4 @@
-package puzzlepack;
+package blazeblock;
 
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -12,12 +12,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import puzzlepack.PuzzlePack;
 
-public class OnBlazeRodInteractEvent implements Listener {
-
+public class OnPlayerInteractBlockBlaze implements Listener {
     private PuzzlePack plugin;
 
-    public OnBlazeRodInteractEvent(PuzzlePack plugin) {
+    public OnPlayerInteractBlockBlaze(PuzzlePack plugin) {
         this.plugin = plugin;
     }
 

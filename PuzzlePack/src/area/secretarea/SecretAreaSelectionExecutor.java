@@ -1,4 +1,4 @@
-package puzzlepack.executors;
+package area.secretarea;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
@@ -7,14 +7,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.AreaSecretRoom;
 import puzzlepack.PuzzlePack;
 
-public class SecretRoomSelectionExecutor implements CommandExecutor {
+public class SecretAreaSelectionExecutor implements CommandExecutor {
     private PuzzlePack plugin;
     private WorldEditPlugin we;
 
-    public SecretRoomSelectionExecutor(PuzzlePack plugin) {
+    public SecretAreaSelectionExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
         this.we = plugin.getWorldEdit();
     }
@@ -32,7 +31,7 @@ public class SecretRoomSelectionExecutor implements CommandExecutor {
             return true;
         }
         
-        AreaSecretRoom area = plugin.getAreaManager().getSecretRoom(player.getPlayerListName(), args[0]);
+        SecretArea area = plugin.getAreaManager().getSecretArea(player.getPlayerListName(), args[0]);
         if(area == null) {
             player.sendMessage(ChatColor.RED + "'" + args[0] + "' doesn't exist!");
             return true;

@@ -3,42 +3,42 @@ main: puzzlepack.PuzzlePack
 version: 1.0
 depend: [WorldEdit]
 commands:
-    secretroom:
-            description: Creates a secret room
-            aliases: [sroom]
-            usage: /secretroom
+    secretarea:
+            aliases: [secarea, sarea]
             
-    secretroomlist:
-            description: Display a list of all secret rooms
-            aliases: [sroomlist, srooml]
-            usage: /secretroomlist
+    secretarealist:
+            aliases: [secarealist, secareal, sarealist, sareal]
             
-    secretroomdelete:
-            description: Delete a secret room
-            aliases: [sroomdelete, sroomdel, sroomd]
-            usage: /secretroomdelete
+    secretareadelete:
+            aliases: [secareadelete, secareadel, secaread, sareadelete, sareadel, saread]
             
-    secretroomselection:
-            description: Selects a secret room
-            aliases: [sroomselection, sroomsel, srooms]
-            usage: /secretroomselection
+    secretareaselection:
+            aliases: [secareaselection, secareasel, secareas, sareaselection, sareasel, sareas]
             
-    teleportroom:
-            description: Creates a teleport room
-            aliases: [tproom]
-            usage: /teleportroom
+    teleportarea:
+            aliases: [tparea]
             
-    teleportroomlist:
-            description: List all teleport rooms
-            aliases: [tproomlist, tprooml]
-            usage: /teleportroomlist
+    teleportarealist:
+            aliases: [tparealist, tpareal]
     
-    teleportroomdelete:
-            description: Delete a teleport room
-            aliases: [tproomdelete, tproomdel, tproomd]
-            usage: /teleportroomlist
+    teleportareadelete:
+            aliases: [tpareadelete, tpareadel, tparead]
     
-    teleportroomselection:
-            description: Selects a teleport room
-            aliases: [tproomselection, tproomsel, tprooms]
-            usage: /teleportroomlist
+    teleportareaselection:
+            aliases: [tpareaselection, tpareasel, tpareas]
+    
+    clearinvarea:
+            aliases: [cinarea]
+            
+    clearinvarealist:
+            aliases: [cinarealist, cinareal]
+    
+    clearinvareadelete:
+            aliases: [cinareadelete, cinareadel, cinaread]
+    
+    clearinvareaselection:
+            aliases: [cinareaselection, cinareasel, cinareas]
+            
+    bounceblock:
+            aliases: [bblock]
+            

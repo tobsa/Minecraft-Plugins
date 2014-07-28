@@ -1,4 +1,4 @@
-package puzzlepack.executors;
+package area.teleportarea;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,11 +11,11 @@ import com.sk89q.worldedit.bukkit.selections.Selection;
 import org.bukkit.block.Block;
 import puzzlepack.PuzzlePack;
 
-public class TeleportRoomExecutor implements CommandExecutor {
+public class TeleportAreaExecutor implements CommandExecutor {
     private PuzzlePack plugin;
     private WorldEditPlugin we;
 
-    public TeleportRoomExecutor(PuzzlePack plugin) {
+    public TeleportAreaExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
         we = plugin.getWorldEdit();
     }
@@ -35,16 +35,33 @@ public class TeleportRoomExecutor implements CommandExecutor {
             return true;
         }
         
-        if(args.length != 1) {
-            player.sendMessage(ChatColor.RED + "Invalid arguments. Usage: /teleportroom <AreaName>");
+        if(args.length == 0) {
+            player.sendMessage(ChatColor.RED + "Invalid arguments. Usage: /teleportroom <AreaName> [Message]");
+            return true;
+        }
+                
+        if(plugin.getAreaManager().getTeleportArea(player.getPlayerListName(), args[0]) != null) {
+            player.sendMessage(ChatColor.RED + "'" + args[0] + "' already exists!");
             return true;
         }
         
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
         
-        plugin.getAreaManager().addTeleportRoom(player.getPlayerListName(), args[0], block1, block2, player.getLocation(), player.getLocation().getPitch(), player.getLocation().getYaw());
-
+        float pitch = player.getLocation().getPitch();
+        float yaw   = player.getLocation().getYaw();
+        
+        if(args.length == 1)
+            plugin.getAreaManager().addTeleportArea(player.getPlayerListName(), args[0], "", block1, block2, player.getLocation(), pitch, yaw);
+        else {
+            String message = "";
+            for(String arg : args)
+                message += arg + " ";
+            message = message.substring(message.indexOf(' ') + 1);
+                
+            plugin.getAreaManager().addTeleportArea(player.getPlayerListName(), args[0], message, block1, block2, player.getLocation(), pitch, yaw);
+        }
+        
         player.sendMessage(ChatColor.LIGHT_PURPLE + "Teleport room '" + args[0] + "' was created.");
 
         return true;

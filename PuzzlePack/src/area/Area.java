@@ -1,4 +1,4 @@
-package puzzlepack;
+package area;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -8,10 +8,19 @@ public abstract class Area {
     private String name;
     private Block block1;
     private Block block2;
+    private String message = "";
     
     public Area(String playerName, String name, Block block1, Block block2) {
         this.playerName = playerName;
         this.name = name;
+        this.block1 = block1;
+        this.block2 = block2;
+    }
+    
+    public Area(String playerName, String name, String message, Block block1, Block block2) {
+        this.playerName = playerName;
+        this.name = name;
+        this.message = message;
         this.block1 = block1;
         this.block2 = block2;
     }
@@ -22,7 +31,7 @@ public abstract class Area {
                 block.getZ() >= block1.getZ() && block.getZ() <= block2.getZ();
     }
     
-    abstract boolean isInside(Player player, Block block);
+    public abstract boolean isInside(Player player, Block block);
     
     public String getPlayerName() {
         return playerName;
@@ -38,5 +47,13 @@ public abstract class Area {
     
     public Block getBlock2() {
         return block2;
+    }
+    
+    public boolean hasMessage() {
+        return !message.isEmpty();
+    }
+    
+    public String getMessage() {
+        return message;
     }
 }

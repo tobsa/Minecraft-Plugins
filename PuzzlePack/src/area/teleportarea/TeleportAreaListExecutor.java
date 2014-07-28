@@ -1,17 +1,17 @@
-package puzzlepack.executors;
+package area.teleportarea;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.Area;
+import area.Area;
 import puzzlepack.PuzzlePack;
 
-public class TeleportRoomListExecutor implements CommandExecutor {
+public class TeleportAreaListExecutor implements CommandExecutor {
     private PuzzlePack plugin;
 
-    public TeleportRoomListExecutor(PuzzlePack plugin) {
+    public TeleportAreaListExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
     }
 
@@ -23,7 +23,7 @@ public class TeleportRoomListExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         player.sendMessage(ChatColor.LIGHT_PURPLE + "======= Teleport Rooms =======");
-        for(Area area : plugin.getAreaManager().getTeleportRooms())
+        for(Area area : plugin.getAreaManager().getTeleportAreas())
             if(area.getPlayerName().equalsIgnoreCase(player.getPlayerListName()))
                 player.sendMessage(area.getName());
 

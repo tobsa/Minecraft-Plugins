@@ -1,4 +1,4 @@
-package puzzlepack.executors;
+package area.teleportarea;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
@@ -7,14 +7,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.AreaTeleportRoom;
 import puzzlepack.PuzzlePack;
 
-public class TeleportRoomSelectionExecutor implements CommandExecutor {
+public class TeleportAreaSelectionExecutor implements CommandExecutor {
     private PuzzlePack plugin;
     private WorldEditPlugin we;
 
-    public TeleportRoomSelectionExecutor(PuzzlePack plugin) {
+    public TeleportAreaSelectionExecutor(PuzzlePack plugin) {
         this.plugin = plugin;
         this.we = plugin.getWorldEdit();
     }
@@ -32,7 +31,7 @@ public class TeleportRoomSelectionExecutor implements CommandExecutor {
             return true;
         }
         
-        AreaTeleportRoom area = plugin.getAreaManager().getTeleportRoom(player.getPlayerListName(), args[0]);
+        TeleportArea area = plugin.getAreaManager().getTeleportArea(player.getPlayerListName(), args[0]);
         if(area == null) {
             player.sendMessage(ChatColor.RED + "'" + args[0] + "' doesn't exist!");
             return true;
