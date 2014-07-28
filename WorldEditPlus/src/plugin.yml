@@ -1,0 +1,17 @@
+name: WorldEditPlus
+main: worldeditplus.WorldEditPlus
+version: 0.1
+depend: [WorldEdit]
+commands:
+    floor:
+        description: Set the floor of a selection
+        aliases: [/floor]
+        usage: /floor [-w] <material>
+    roof:
+        description: Set the roof of a selection
+        aliases: [/roof]
+        usage: /roof [-w] <material>
+    corner:
+        description: Set the corners of a selection
+        aliases: [/corner, /corners, corners]
+        usage: /corner [-c] <material>
