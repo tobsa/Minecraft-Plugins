@@ -32,6 +32,14 @@ import pushblocks.OnBlockPushBackward;
 import pushblocks.OnBlockPushDown;
 import pushblocks.OnBlockPushForward;
 import pushblocks.OnBlockPushUp;
+import telepad.OnBlockBreakTelepad;
+import telepad.OnPlayerMoveTelepad;
+import telepad.TelepadDeleteExecutor;
+import telepad.TelepadExecutor;
+import telepad.TelepadFromExecutor;
+import telepad.TelepadListExecutor;
+import telepad.TelepadManager;
+import telepad.TelepadToExecutor;
 
 /*
 ===== Block Usages =====
@@ -63,34 +71,39 @@ Black:          Push block sideways with feather/bone
 
 */
 
-
 public class PuzzlePack extends JavaPlugin {
     private WorldEditPlugin we;
     private AreaManager areaManager;
     private BounceBlockManager bounceBlockManager;
+    private TelepadManager telepadManager;
     
     @Override
     public void onEnable() {
         we = (WorldEditPlugin) getServer().getPluginManager().getPlugin("WorldEdit");
         areaManager = new AreaManager(this);
         bounceBlockManager = new BounceBlockManager(this);
+        telepadManager = new TelepadManager(this);
+        
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveClearInventoryArea(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveSecretArea(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveTeleportArea(this), this);
+        
+        getServer().getPluginManager().registerEvents(new OnPlayerInteractBlockBlaze(this), this);
+        
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveBounceBlock(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerBounceBlockBreak(this), this);
         
         getServer().getPluginManager().registerEvents(new OnBlockPlaceItemRestrict(), this);
-        getServer().getPluginManager().registerEvents(new OnFallDamageEvent(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerInteractBlockBlaze(this), this);
         
         getServer().getPluginManager().registerEvents(new OnBlockPushBackward(this), this);
         getServer().getPluginManager().registerEvents(new OnBlockPushDown(this), this);
         getServer().getPluginManager().registerEvents(new OnBlockPushForward(this), this);
         getServer().getPluginManager().registerEvents(new OnBlockPushUp(this), this);
         
-        getServer().getPluginManager().registerEvents(new OnPlayerMoveBounceBlock(this), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerBounceBlockBreak(this), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerMoveClearInventoryArea(this), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerMoveSecretArea(this), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerMoveTeleportArea(this), this);
+        getServer().getPluginManager().registerEvents(new OnFallDamageEvent(), this);
         
-        getCommand("bounceblock").setExecutor(new BounceBlockExecutor(this));
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveTelepad(this), this);
+        getServer().getPluginManager().registerEvents(new OnBlockBreakTelepad(this), this);
         
         getCommand("secretarea").setExecutor(new SecretAreaExecutor(this));
         getCommand("secretarealist").setExecutor(new SecretAreaListExecutor(this));
@@ -106,6 +119,14 @@ public class PuzzlePack extends JavaPlugin {
         getCommand("clearinvarealist").setExecutor(new ClearInventoryAreaListExecutor(this));
         getCommand("clearinvareadelete").setExecutor(new ClearInventoryAreaDeleteExecutor(this));
         getCommand("clearinvareaselection").setExecutor(new ClearInventoryAreaSelectionExecutor(this));
+        
+        getCommand("bounceblock").setExecutor(new BounceBlockExecutor(this));
+
+        getCommand("telepad").setExecutor(new TelepadExecutor(this));
+        getCommand("telepadfrom").setExecutor(new TelepadFromExecutor(this));
+        getCommand("telepadto").setExecutor(new TelepadToExecutor(this));
+        getCommand("telepadlist").setExecutor(new TelepadListExecutor(this));
+        getCommand("telepaddelete").setExecutor(new TelepadDeleteExecutor(this));
     }
 
     @Override
@@ -122,6 +143,10 @@ public class PuzzlePack extends JavaPlugin {
     
     public BounceBlockManager getBounceBlockManager() {
         return bounceBlockManager;
+    }
+    
+    public TelepadManager getTelepadManager() {
+        return telepadManager;
     }
         
     public boolean isToClose(Player player, Block block, double minDistance) {
