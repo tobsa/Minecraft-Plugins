@@ -2,5 +2,20 @@ name: ToggleBlocks
 main: toggleblocks.ToggleBlocks
 version: 1.0
 commands:
+    
     toggleblocks:
-        aliases: [tb,to]
+        aliases: [tblock, tb]
+    toggleblockson:
+        aliases: [tblockon, tbon]
+    toggleblocksoff:
+        aliases: [tblockoff, tboff]
+    toggleblocksedit:
+        aliases: [tblockedit, tbedit]
+    toggleblockslink:
+        aliases: [tblocklink, tblink]
+    toggleblocksdelink:
+        aliases: [tblockdelink, tbdelink]
+    toggleblockslist:
+        aliases: [tblocklist, tblist]
+    toggleblocksdelete:
+        aliases: [tblockdelete, tblockdel, tblockd, tbdelete, tbdel]

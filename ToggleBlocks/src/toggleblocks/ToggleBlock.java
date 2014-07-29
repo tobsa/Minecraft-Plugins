@@ -7,8 +7,9 @@ public class ToggleBlock {
     private Block block;
     private Material material;
     
-    public ToggleBlock() {
-        
+    public ToggleBlock(Block block) {
+        this.block = block;
+        this.material = block.getType();
     }
     
     public ToggleBlock(Block block, Material material) {
@@ -22,6 +23,13 @@ public class ToggleBlock {
     
     public Material getMaterial() {
         return material;
+    }
+    
+    public void toggle() {
+        if(block.getType() == Material.AIR)
+            toggleOn();
+        else
+            toggleOff();
     }
     
     public void toggleOn() {
