@@ -10,7 +10,7 @@ public class Region {
     private String playerName;
     private String name;
     private List<ToggleBlock> toggleBlocks = new ArrayList();
-    private Block linkBlock;   
+    private LinkBlock linkBlock;   
     
     public Region(ToggleBlocks plugin, String playerName, String name) {
         this.playerName = playerName;
@@ -54,26 +54,24 @@ public class Region {
             }
         }
         
-        
-        
         return false;
     }
     
-    public void setLinkBlock(Block linkBlock) {
+    public void setLinkBlock(LinkBlock linkBlock) {
         this.linkBlock = linkBlock;
     }
-    
-    public Block getLinkBlock() {
+        
+    public LinkBlock getLinkBlock() {
         return linkBlock;
     }
-    
+        
     public boolean isLinkBlock(Block block) {
         if(linkBlock == null)
             return false;
         
-        return linkBlock.equals(block);
+        return linkBlock.getBlock().equals(block);
     }
-    
+            
     public void toggle() {
         for(ToggleBlock block : toggleBlocks)
             block.toggle();

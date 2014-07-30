@@ -2,7 +2,6 @@ name: ToggleBlocks
 main: toggleblocks.ToggleBlocks
 version: 1.0
 commands:
-    
     toggleblocks:
         aliases: [tblock, tb]
     toggleblockson:
@@ -13,6 +12,8 @@ commands:
         aliases: [tblockedit, tbedit]
     toggleblockslink:
         aliases: [tblocklink, tblink]
+    toggleblocksrlink:
+        aliases: [tblockrlink, tbrlink]
     toggleblocksdelink:
         aliases: [tblockdelink, tbdelink]
     toggleblockslist:

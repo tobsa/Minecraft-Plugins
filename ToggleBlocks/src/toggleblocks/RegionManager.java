@@ -40,10 +40,11 @@ public class RegionManager {
                     int x = plugin.getConfig().getInt("toggleblocks." + name + ".link.x");
                     int y = plugin.getConfig().getInt("toggleblocks." + name + ".link.y");
                     int z = plugin.getConfig().getInt("toggleblocks." + name + ".link.z");
+                    LinkType linkType = LinkType.valueOf(plugin.getConfig().getString("toggleblocks." + name + ".link.type"));
                     
                     Location location = new Location(plugin.getServer().getWorld("world"), x, y, z);
                     
-                    region.setLinkBlock(location.getBlock());
+                    region.setLinkBlock(new LinkBlock(location.getBlock(), linkType));
                 }
             }
         }
@@ -75,6 +76,10 @@ public class RegionManager {
         }
         
         return list;
+    }
+    
+    public List<Region> getAllRegions() {
+        return new ArrayList(regions.values());
     }
     
     public void removeRegion(Region region) {

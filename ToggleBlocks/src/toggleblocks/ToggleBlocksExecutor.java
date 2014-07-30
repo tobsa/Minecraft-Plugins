@@ -23,6 +23,9 @@ public class ToggleBlocksExecutor implements CommandExecutor {
             player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocks <name>");
             return true;
         }
+        
+        plugin.DERP = player.getTargetBlock(null, 10);
+        player.sendMessage("Block set!");
            
         RegionManager regionManager = plugin.getRegionManager();
         

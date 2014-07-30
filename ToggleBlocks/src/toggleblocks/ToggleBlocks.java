@@ -1,6 +1,7 @@
 package toggleblocks;
 
 import org.bukkit.ChatColor;
+import org.bukkit.block.Block;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ToggleBlocks extends JavaPlugin {
@@ -11,6 +12,8 @@ public class ToggleBlocks extends JavaPlugin {
     
     private RegionManager regionManager;
     
+    public Block DERP;
+    
     @Override
     public void onEnable() {
         regionManager = new RegionManager(this);
@@ -18,12 +21,14 @@ public class ToggleBlocks extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnBlockPlace(this), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreak(this), this);
         getServer().getPluginManager().registerEvents(new OnPlayerInteract(this), this);
+        getServer().getPluginManager().registerEvents(new OnBlockRedstoneEvent(this), this);
         
         getCommand("toggleblocks").setExecutor(new ToggleBlocksExecutor(this));
         getCommand("toggleblockson").setExecutor(new ToggleOnExecutor(this));
         getCommand("toggleblocksoff").setExecutor(new ToggleOffExecutor(this));
         getCommand("toggleblocksedit").setExecutor(new EditExecutor(this));
         getCommand("toggleblockslink").setExecutor(new LinkExecutor(this));
+        getCommand("toggleblocksrlink").setExecutor(new RedstoneLinkExecutor(this));
         getCommand("toggleblocksdelink").setExecutor(new DelinkExecutor(this));
         getCommand("toggleblockslist").setExecutor(new ListExecutor(this));
         getCommand("toggleblocksdelete").setExecutor(new ToggleBlocksDeleteExecutor(this));

@@ -1,6 +1,7 @@
 package toggleblocks;
 
 import java.util.List;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,8 +24,10 @@ public class OnPlayerInteract implements Listener {
             List<Region> regions = regionManager.getRegions(event.getPlayer().getPlayerListName());
             
             for(Region region : regions) {
-                if(region.isLinkBlock(block))
+                if(region.isLinkBlock(block)) {
                     region.toggle();
+                    block.getWorld().playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
+                }
             }            
         }
     }
