@@ -36,9 +36,7 @@ public class AreaSelectExecutor implements CommandExecutor {
             return true;
         }
         
-        worldEdit.setSelection(player, new CuboidSelection(Bukkit.getWorld("world"), area.getMinimumBlock().getLocation(), area.getMaximumBlock().getLocation()));
-        player.sendMessage("test");
-        
+        worldEdit.setSelection(player, new CuboidSelection(Bukkit.getWorld("world"), area.getMinimumBlock().getLocation(), area.getMaximumBlock().getLocation()));        
         return true;
     }
 }

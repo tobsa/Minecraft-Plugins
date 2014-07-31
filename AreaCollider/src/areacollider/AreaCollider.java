@@ -9,6 +9,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import areasecret.AreaSecretExecutor;
 import areateleport.AreaTeleportExecutor;
+import clearinventory.AreaClearInventoryExecutor;
 import org.bukkit.Sound;
 
 public class AreaCollider extends JavaPlugin { 
@@ -28,6 +29,7 @@ public class AreaCollider extends JavaPlugin {
         getCommand("arealist").setExecutor(new AreaListExecutor(areaManager));
         getCommand("areaselect").setExecutor(new AreaSelectExecutor(areaManager, worldEdit));
         getCommand("areadelete").setExecutor(new AreaDeleteExecutor(areaManager));
+        getCommand("areaclearinventory").setExecutor(new AreaClearInventoryExecutor(areaManager, worldEdit));
     }
     
     @Override

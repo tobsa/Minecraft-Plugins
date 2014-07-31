@@ -4,6 +4,7 @@ import area.Area;
 import area.AreaResponse;
 import areasecret.AreaSecretResponse;
 import areateleport.AreaTeleportResponse;
+import clearinventory.ClearInventoryResponse;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.bukkit.Bukkit;
@@ -49,6 +50,9 @@ public class FileManager {
             plugin.getConfig().set("area." + area.getName() + ".response.yaw", response.getYaw());
             plugin.getConfig().set("area." + area.getName() + ".response.pitch", response.getPitch());
         }
+        else if(area.getResponse() instanceof ClearInventoryResponse) {
+            plugin.getConfig().set("area." + area.getName() + ".response.type", ClearInventoryResponse.class.toString());
+        }
         
         plugin.saveConfig();
     }
@@ -92,6 +96,8 @@ public class FileManager {
                                 
                 areas.put(name, new Area(playerName, name, minimumBlock, maximumBlock, new AreaTeleportResponse(new Location(Bukkit.getWorld("world"), x, y, z, yaw, pitch), message)));
             }
+            else if(responseType.equals(ClearInventoryResponse.class.toString()))
+                areas.put(name, new Area(playerName, name, minimumBlock, maximumBlock, new ClearInventoryResponse()));
         }
         
         return areas;

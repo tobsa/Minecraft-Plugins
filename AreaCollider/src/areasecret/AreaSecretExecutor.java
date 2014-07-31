@@ -28,7 +28,6 @@ public class AreaSecretExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         Selection selection = worldEdit.getSelection(player);
-
         if (selection == null) {
             player.sendMessage(PlayerMessage.getMissingRegionSelection());
             return true;

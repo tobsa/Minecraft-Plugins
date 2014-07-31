@@ -23,3 +23,7 @@ commands:
     areadelete:
         aliases: [areadel]
         usage: /areadelete <name>
+        
+    areaclearinventory:
+        aliases: [areacinv]
+        usage: /areaclearinventory <name>

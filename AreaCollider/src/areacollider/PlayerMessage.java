@@ -43,4 +43,8 @@ public class PlayerMessage {
     public static String getAreaDeleted(String name) {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' was deleted!";
     }
+    
+    public static String getInventoryCleared() {
+        return NORMAL + "Your inventory has been cleared!";
+    }
 }

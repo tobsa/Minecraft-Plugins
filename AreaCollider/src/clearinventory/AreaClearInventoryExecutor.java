@@ -1,21 +1,21 @@
-package area;
+package clearinventory;
 
-import areacollider.AreaCollider;
+import area.Area;
+import area.AreaManager;
 import areacollider.PlayerMessage;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaExecutor implements CommandExecutor {
+public class AreaClearInventoryExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private WorldEditPlugin worldEdit;
     
-    public AreaExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public AreaClearInventoryExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
         this.worldEdit = worldEdit;
     }
@@ -33,7 +33,7 @@ public class AreaExecutor implements CommandExecutor {
             return true;
         }
         
-        if(args.length < 2) {
+        if(args.length != 1) {
             player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
@@ -42,18 +42,13 @@ public class AreaExecutor implements CommandExecutor {
             player.sendMessage(PlayerMessage.getAreaExists(args[0]));
             return true;
         }
-        
-        Sound sound = AreaCollider.getSound(args[1]);
-        if(sound == null) {
-            player.sendMessage(PlayerMessage.getInvalidSound(args[1]));
-            return true;
-        }
 
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
-        
-        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new AreaResponse(AreaCollider.combineArguments(args, 2), sound)));
+                
+        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new ClearInventoryResponse()));
         player.sendMessage(PlayerMessage.getAreaCreated(args[0]));
+        
         return true;
     }
 }
