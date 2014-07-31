@@ -1,0 +1,25 @@
+name: AreaCollider
+main: areacollider.AreaCollider
+version: 1.0
+commands:
+    area:
+        usage: /area <name> <sound> [message]
+        
+    areasecret:
+        aliases: [areasec]
+        usage: /areasecret <name>
+        
+    areateleport:
+        aliases: [areatel]
+        usage: /areateleport <name> [message]
+
+    arealist:
+        usage: /arealist
+        
+    areaselect:
+        aliases: [areasel]
+        usage: /areaselect <name>
+        
+    areadelete:
+        aliases: [areadel]
+        usage: /areadelete <name>
