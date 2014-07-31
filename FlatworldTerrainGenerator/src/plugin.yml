@@ -1,0 +1,4 @@
+name: FlatWorldTerrainGenerator
+main: flatworldterraingenerator.FlatWorldTerrainGenerator
+version: 1.0
+load: startup
