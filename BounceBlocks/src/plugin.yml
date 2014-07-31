@@ -1,0 +1,7 @@
+name: BounceBlocks
+main: bounceblocks.BounceBlocks
+version: 1.0
+commands:
+    bounceblock:
+        aliases: [bblock]
+        usage: /bounceblock <jumpStrength>
