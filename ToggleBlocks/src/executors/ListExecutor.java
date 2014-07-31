@@ -1,9 +1,13 @@
-package toggleblocks;
+package executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.PlayerMessage;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
+import toggleblocks.ToggleBlocks;
 
 public class ListExecutor implements CommandExecutor {
     private ToggleBlocks plugin;
@@ -20,14 +24,16 @@ public class ListExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 0) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocklist");
+            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
         
-        player.sendMessage(ToggleBlocks.CHAT_HEADER + "======= Regions =======");
+        player.sendMessage(PlayerMessage.getListHeader());
         RegionManager regionManager = plugin.getRegionManager();
+        
+        int number = 1;
         for(Region region : regionManager.getRegions(player.getPlayerListName()))
-            player.sendMessage(ToggleBlocks.CHAT_HIGHLIGHT + region.getName());
+            player.sendMessage((number++) + ". " + region.getName());
         
         return true;
     }

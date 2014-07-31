@@ -1,19 +1,21 @@
 package toggleblocks;
 
+import executors.EditExecutor;
+import executors.DelinkExecutor;
+import executors.ToggleOffExecutor;
+import executors.RedstoneLinkExecutor;
+import executors.ToggleOnExecutor;
+import executors.LinkExecutor;
+import executors.ListExecutor;
+import executors.ToggleBlocksExecutor;
+import executors.ToggleBlocksDeleteExecutor;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ToggleBlocks extends JavaPlugin {
-    public static final ChatColor CHAT_HEADER = ChatColor.LIGHT_PURPLE;
-    public static final ChatColor CHAT_NORMAL = ChatColor.AQUA;
-    public static final ChatColor CHAT_ERROR  = ChatColor.RED;
-    public static final ChatColor CHAT_HIGHLIGHT = ChatColor.YELLOW;
-    
+public class ToggleBlocks extends JavaPlugin {    
     private RegionManager regionManager;
-    
-    public Block DERP;
-    
+        
     @Override
     public void onEnable() {
         regionManager = new RegionManager(this);

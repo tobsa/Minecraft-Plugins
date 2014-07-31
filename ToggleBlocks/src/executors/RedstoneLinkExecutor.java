@@ -1,9 +1,15 @@
-package toggleblocks;
+package executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.LinkBlock;
+import toggleblocks.LinkType;
+import toggleblocks.PlayerMessage;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
+import toggleblocks.ToggleBlocks;
 
 public class RedstoneLinkExecutor implements CommandExecutor {
     private ToggleBlocks plugin;
@@ -20,20 +26,20 @@ public class RedstoneLinkExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocksrlink <name>");
+            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
         
         RegionManager regionManager = plugin.getRegionManager();
         Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
         if(region == null) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_ERROR + "' doesn't exists!");
+            player.sendMessage(PlayerMessage.getMissingRegion(args[0]));
             return true;
         }
         
         LinkBlock linkBlock = new LinkBlock(player.getTargetBlock(null, 10), LinkType.Redstone);
         region.setLinkBlock(linkBlock);
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "A redstone link for region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_NORMAL + "' has been set!");
+        player.sendMessage(PlayerMessage.getRLinkSet(region.getName()));
         
         plugin.getConfig().set("toggleblocks." + region.getName() + ".link.x", linkBlock.getBlock().getX());
         plugin.getConfig().set("toggleblocks." + region.getName() + ".link.y", linkBlock.getBlock().getY());

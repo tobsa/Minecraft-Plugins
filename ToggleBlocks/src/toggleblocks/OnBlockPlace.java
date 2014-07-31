@@ -22,7 +22,7 @@ public class OnBlockPlace implements Listener {
             return;
         
         region.addToggleBlock(new ToggleBlock(event.getBlock()));
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "A block was added to region '" + ToggleBlocks.CHAT_HIGHLIGHT + region.getName() + ToggleBlocks.CHAT_NORMAL + "'!");
+        player.sendMessage(PlayerMessage.getBlockPlaced(region.getName()));
     }
     
 }

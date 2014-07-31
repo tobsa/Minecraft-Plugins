@@ -22,7 +22,7 @@ public class OnBlockBreak implements Listener {
             return;
         
         if(region.removeBlock(event.getBlock()))
-            player.sendMessage(ToggleBlocks.CHAT_NORMAL + "A block was removed from region '" + ToggleBlocks.CHAT_HIGHLIGHT + region.getName() + ToggleBlocks.CHAT_NORMAL + "'!");
+            player.sendMessage(PlayerMessage.getBlockRemoved(region.getName()));
     }
     
 }

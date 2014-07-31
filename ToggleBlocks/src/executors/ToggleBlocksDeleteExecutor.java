@@ -1,14 +1,18 @@
-package toggleblocks;
+package executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.PlayerMessage;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
+import toggleblocks.ToggleBlocks;
 
-public class DelinkExecutor implements CommandExecutor {
+public class ToggleBlocksDeleteExecutor implements CommandExecutor {
     private ToggleBlocks plugin;
     
-    public DelinkExecutor(ToggleBlocks plugin) {
+    public ToggleBlocksDeleteExecutor(ToggleBlocks plugin) {
         this.plugin = plugin;
     }
     
@@ -20,23 +24,20 @@ public class DelinkExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocksdelink <name>");
+            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
         
         RegionManager regionManager = plugin.getRegionManager();
         Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
         if(region == null) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_ERROR + "' doesn't exists!");
+            player.sendMessage(PlayerMessage.getMissingRegion(args[0]));
             return true;
         }
         
-        region.setLinkBlock(null);
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Removed link for region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_NORMAL + "'!");
-        
-        plugin.getConfig().set("toggleblocks." + region.getName() + ".link", null);
-        plugin.saveConfig();
-        
+        regionManager.removeRegion(region);
+        player.sendMessage(PlayerMessage.getRegionDeleted(region.getName()));
+
         return true;
     }
     

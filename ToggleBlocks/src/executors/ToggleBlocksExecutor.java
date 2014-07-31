@@ -1,9 +1,13 @@
-package toggleblocks;
+package executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.PlayerMessage;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
+import toggleblocks.ToggleBlocks;
 
 public class ToggleBlocksExecutor implements CommandExecutor {
     private ToggleBlocks plugin;
@@ -20,29 +24,25 @@ public class ToggleBlocksExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocks <name>");
+            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
-        
-        plugin.DERP = player.getTargetBlock(null, 10);
-        player.sendMessage("Block set!");
-           
+                   
         RegionManager regionManager = plugin.getRegionManager();
-        
         if(regionManager.getRegion(player.getPlayerListName(), args[0]) != null) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_ERROR + "' already exists!");
+            player.sendMessage(PlayerMessage.getRegionExists(args[0]));
             return true;
         }
         
         Region region = new Region(plugin, player.getPlayerListName(), args[0]);
         regionManager.addRegion(region);
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_NORMAL + "' was created!");
+        player.sendMessage(PlayerMessage.getRegionCreated(args[0]));
         
         if(regionManager.getEditRegion(player) != null)
-            player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + regionManager.getEditRegion(player).getName() + ToggleBlocks.CHAT_NORMAL  + "' is no longer in edit mode!");
+            player.sendMessage(PlayerMessage.getNoEditMode(regionManager.getEditRegion(player).getName()));
         
         regionManager.setEditRegion(player, region);
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_NORMAL + "' is now in edit mode!");
+        player.sendMessage(PlayerMessage.getYesEditMode(args[0]));
 
         return true;
     }

@@ -3,20 +3,37 @@ main: toggleblocks.ToggleBlocks
 version: 1.0
 commands:
     toggleblocks:
-        aliases: [tblock, tb]
+        aliases: [tb]
+        usage: /toggleblocks <name>
+        
     toggleblockson:
-        aliases: [tblockon, tbon]
+        aliases: [tbon]
+        usage: /toggleblockson <name>
+        
     toggleblocksoff:
-        aliases: [tblockoff, tboff]
+        aliases: [tboff]
+        usage: /toggleblocksoff <name>
+        
     toggleblocksedit:
-        aliases: [tblockedit, tbedit]
+        aliases: [tbedit]
+        usage: /toggleblocksedit <name>
+        
     toggleblockslink:
-        aliases: [tblocklink, tblink]
+        aliases: [tblink]
+        usage: /toggleblockslink <name>
+        
     toggleblocksrlink:
-        aliases: [tblockrlink, tbrlink]
+        aliases: [tbrlink]
+        usage: /toggleblocksrlink <name>
+        
     toggleblocksdelink:
-        aliases: [tblockdelink, tbdelink]
+        aliases: [tbdelink]
+        usage: /toggleblocksdelink <name>
+        
     toggleblockslist:
-        aliases: [tblocklist, tblist]
+        aliases: [tblist]
+        usage: /toggleblockslist
+        
     toggleblocksdelete:
-        aliases: [tblockdelete, tblockdel, tblockd, tbdelete, tbdel]
+        aliases: [tbdelete, tbdel]
+        usage: /toggleblocksdelete <name>

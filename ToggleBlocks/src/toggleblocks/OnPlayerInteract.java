@@ -24,7 +24,7 @@ public class OnPlayerInteract implements Listener {
             List<Region> regions = regionManager.getRegions(event.getPlayer().getPlayerListName());
             
             for(Region region : regions) {
-                if(region.isLinkBlock(block)) {
+                if(region.isLinkBlock(block) && region.getLinkBlock().getLinkType() == LinkType.Interact) {
                     region.toggle();
                     block.getWorld().playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
                 }

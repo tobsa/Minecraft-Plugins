@@ -1,9 +1,13 @@
-package toggleblocks;
+package executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.PlayerMessage;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
+import toggleblocks.ToggleBlocks;
 
 public class EditExecutor implements CommandExecutor {
     private ToggleBlocks plugin;
@@ -20,20 +24,20 @@ public class EditExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Invalid arguments. Usage: /toggleblocksedit <name>");
+            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }
         
         RegionManager regionManager = plugin.getRegionManager();
         Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
         if(region == null) {
-            player.sendMessage(ToggleBlocks.CHAT_ERROR + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_ERROR + "' doesn't exists!");
+            player.sendMessage(PlayerMessage.getMissingRegion(args[0]));
             return true;
         }
         
         Region editRegion = regionManager.getEditRegion(player);
         if(editRegion != null)
-            player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + editRegion.getName() + ToggleBlocks.CHAT_NORMAL  + "' is no longer in edit mode!");
+            player.sendMessage(PlayerMessage.getNoEditMode(editRegion.getName()));
         
         if(region == editRegion) {
             regionManager.setEditRegion(player, null);
@@ -41,7 +45,7 @@ public class EditExecutor implements CommandExecutor {
         }
         
         regionManager.setEditRegion(player, region);
-        player.sendMessage(ToggleBlocks.CHAT_NORMAL + "Region '" + ToggleBlocks.CHAT_HIGHLIGHT + args[0] + ToggleBlocks.CHAT_NORMAL + "' is now in edit mode!");
+        player.sendMessage(PlayerMessage.getYesEditMode(args[0]));
         
         return true;
     }
