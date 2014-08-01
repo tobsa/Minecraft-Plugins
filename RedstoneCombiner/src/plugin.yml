@@ -1,0 +1,24 @@
+name: RedstoneCombiner
+main: redstonecombiner.RedstoneCombiner
+version: 1.0
+commands:
+    
+    redcombiner:
+        aliases: [rc]
+        usage: /redcombiner <name>
+    
+    redcombinerlink:
+        aliases: [rclink]
+        usage: /redcombinerlink <name>
+        
+    redcombinerdelink:
+        aliases: [rcdelink]
+        usage: /redcombinerdelink <name>
+        
+    redcombinerlist:
+        aliases: [rclist]
+        usage: /redcombinerlist
+        
+    redcombinerdelete:
+        aliases: [rcdelete, rcdel]
+        usage: /redcombinerdelete <name>
