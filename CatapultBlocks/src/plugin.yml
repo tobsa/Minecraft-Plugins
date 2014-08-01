@@ -1,0 +1,7 @@
+name: CatapultBlocks
+main: catapultblocks.CatapultBlocks
+version: 1.0
+commands:
+    catapultblock:
+        aliases: [cata, cblock, cb]
+        usage: /catapultblock <north|east|south|west> <forwardVelocity> <upwardVelocity>
