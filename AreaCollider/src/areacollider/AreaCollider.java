@@ -4,6 +4,7 @@ import area.AreaDeleteExecutor;
 import area.AreaManager;
 import area.AreaListExecutor;
 import area.AreaExecutor;
+import area.AreaRenameExecutor;
 import area.AreaSelectExecutor;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,7 @@ public class AreaCollider extends JavaPlugin {
         getCommand("areaselect").setExecutor(new AreaSelectExecutor(areaManager, worldEdit));
         getCommand("areadelete").setExecutor(new AreaDeleteExecutor(areaManager));
         getCommand("areaclearinventory").setExecutor(new AreaClearInventoryExecutor(areaManager, worldEdit));
+        getCommand("arearename").setExecutor(new AreaRenameExecutor(areaManager));
     }
     
     @Override

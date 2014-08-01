@@ -32,6 +32,12 @@ public class AreaManager {
         return new ArrayList(areas.values());
     }
     
+    public void renameArea(Area area, String newName) {
+        Area newArea = new Area(area.getPlayerName(), newName, area.getMinimumBlock(), area.getMaximumBlock(), area.getResponse());
+        removeArea(area.getName());
+        addArea(newArea);      
+    }
+    
     public void removeArea(String name) {
         areas.remove(name);
         FileManager.removeArea(name);

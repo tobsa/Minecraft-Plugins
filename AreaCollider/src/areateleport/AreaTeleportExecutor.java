@@ -35,7 +35,7 @@ public class AreaTeleportExecutor implements CommandExecutor {
             return true;
         }
         
-        if(args.length < 2) {
+        if(args.length < 1) {
             player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
             return true;
         }

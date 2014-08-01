@@ -47,4 +47,8 @@ public class PlayerMessage {
     public static String getInventoryCleared() {
         return NORMAL + "Your inventory has been cleared!";
     }
+
+    public static String getAreaRenamed(String originalName, String newName) {
+        return NORMAL + "Area '" + HIGHLIGHT + originalName + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "' ";
+    }
 }
