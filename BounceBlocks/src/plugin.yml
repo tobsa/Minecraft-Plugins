@@ -3,5 +3,5 @@ main: bounceblocks.BounceBlocks
 version: 1.0
 commands:
     bounceblock:
-        aliases: [bblock]
+        aliases: [bblock, bb]
         usage: /bounceblock <jumpStrength>
