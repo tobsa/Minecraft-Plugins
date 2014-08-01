@@ -22,3 +22,7 @@ commands:
     redcombinerdelete:
         aliases: [rcdelete, rcdel]
         usage: /redcombinerdelete <name>
+        
+    redcombinerrename:
+        aliases: [rcrename]
+        usage: /redcombinerrename <originalName> <newName>

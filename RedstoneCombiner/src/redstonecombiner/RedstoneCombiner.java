@@ -18,6 +18,7 @@ public class RedstoneCombiner extends JavaPlugin {
         getCommand("redcombinerdelink").setExecutor(new RedstoneCombinerDelinkExecutor(combinerManager));
         getCommand("redcombinerlist").setExecutor(new RedstoneCombinerListExecutor(combinerManager));
         getCommand("redcombinerdelete").setExecutor(new RedstoneCombinerDeleteExecutor(combinerManager));
+        getCommand("redcombinerrename").setExecutor(new RedstoneCombinerRenameExecutor(combinerManager));
     }
     
     @Override

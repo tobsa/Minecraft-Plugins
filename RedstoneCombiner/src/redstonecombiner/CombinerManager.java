@@ -13,9 +13,8 @@ public class CombinerManager {
         combiners = FileManager.load();
     }
     
-    public void addCombiner(String playerName, String name, Block switchBlock) {
-        Combiner combiner = new Combiner(playerName, name, switchBlock);
-        combiners.put(name, combiner);
+    public void addCombiner(Combiner combiner) {
+        combiners.put(combiner.getName(), combiner);
         FileManager.saveCombiner(combiner);        
     }
     
@@ -28,6 +27,17 @@ public class CombinerManager {
             return combiner;
         
         return null;
+    }
+    
+    public void renameCombiner(Combiner combiner, String newName) {
+        Combiner newCombiner = new Combiner(combiner.getPlayerName(), newName, combiner.getToggleBlock());
+        for(Block link : combiner.getLinks()) {
+            newCombiner.addLink(link);
+            FileManager.saveLink(newName, link);
+        }
+        
+        removeCombiner(combiner);
+        addCombiner(newCombiner);
     }
     
     public List<Combiner> getCombiners() {

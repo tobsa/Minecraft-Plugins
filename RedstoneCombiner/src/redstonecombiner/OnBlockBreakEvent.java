@@ -34,6 +34,7 @@ public class OnBlockBreakEvent implements Listener {
             for(Block link : combiner.getLinks()) {
                 if(block.equals(link)) {
                     combiner.removeLink(link);
+                    FileManager.removeLink(combiner.getName(), link);
                     player.sendMessage(PlayerMessage.getLinkRemoved(combiner.getName()));
                     break;
                 }

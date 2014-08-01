@@ -39,6 +39,7 @@ public class RedstoneCombinerLinkExecutor implements CommandExecutor {
         }
                 
         combiner.addLink(block);
+        FileManager.saveLink(combiner.getName(), block);
         player.sendMessage(PlayerMessage.getCombinerAddLink(args[0]));
         
         return true;

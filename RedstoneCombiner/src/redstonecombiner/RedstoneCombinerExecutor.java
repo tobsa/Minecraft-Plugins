@@ -26,8 +26,7 @@ public class RedstoneCombinerExecutor implements CommandExecutor {
             return true;
         }
         
-        Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
-        if(combiner != null) {
+        if(combinerManager.getCombiner(player.getName(), args[0]) != null) {
             player.sendMessage(PlayerMessage.getCombinerExists(args[0]));
             return true;
         }
@@ -38,7 +37,8 @@ public class RedstoneCombinerExecutor implements CommandExecutor {
             return true;
         }
         
-        combinerManager.addCombiner(player.getName(), args[0], block);
+        Combiner combiner = new Combiner(player.getName(), args[0], block);
+        combinerManager.addCombiner(combiner);
         player.sendMessage(PlayerMessage.getCombinerCreated(args[0]));
         
         return true;

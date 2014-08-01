@@ -27,15 +27,10 @@ public class Combiner {
     
     public void addLink(Block link) {
         links.add(link);
-        FileManager.saveLink(name, link);
     }
     
-    public boolean removeLink(Block link) {
-        boolean removed = links.remove(link);
-        if(removed)
-            FileManager.removeLink(name, link);
-        
-        return removed;
+    public boolean removeLink(Block link) {        
+        return links.remove(link);
     }
     
     public List<Block> getLinks() {

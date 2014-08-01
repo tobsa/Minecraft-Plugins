@@ -47,4 +47,8 @@ public class PlayerMessage {
     public static String getInvalidBlock() {
         return ERROR + "You must look at a sign when creating a combiner or link!";
     }
+
+    public static String getCombinerRenamed(String originalName, String newName) {
+        return NORMAL + "Redstone combiner '" + HIGHLIGHT + originalName + NORMAL + "' was renamed to '" + HIGHLIGHT + newName + NORMAL + "'!"; 
+    }
 }
