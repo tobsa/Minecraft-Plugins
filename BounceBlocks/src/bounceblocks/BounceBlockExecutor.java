@@ -1,10 +1,8 @@
 package bounceblocks;
 
-import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +29,6 @@ public class BounceBlockExecutor implements CommandExecutor {
         }
         
         try {   
-//            Block block = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
             Block block = player.getTargetBlock(null, 6);
             double jumpStrength = Double.valueOf(args[0]);
             
@@ -45,6 +42,9 @@ public class BounceBlockExecutor implements CommandExecutor {
 
                 bounceBlockManager.addBounceBlock(block, jumpStrength);
                 player.sendMessage(PlayerMessage.getBounceBlockCreated(jumpStrength));
+            } else {
+                bounceBlockManager.setJumpStrength(bounceBlock, jumpStrength);
+                player.sendMessage(PlayerMessage.getBounceBlockUpdated(jumpStrength));
             }
         } catch(NumberFormatException ex) {
             player.sendMessage(PlayerMessage.getNumberCheck(args[0]));

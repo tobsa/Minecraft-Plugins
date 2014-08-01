@@ -53,6 +53,17 @@ public class BounceBlockManager {
         return bounceBlocks;
     }
     
+    public void setJumpStrength(BounceBlock block, double jumpStrength) {
+        block.setJumpStrength(jumpStrength);
+        
+        int x = block.getBlock().getX();
+        int y = block.getBlock().getY();
+        int z = block.getBlock().getZ();
+        
+        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".jumpStrength", block.getJumpStrength());
+        plugin.saveConfig();        
+    }
+    
     public boolean removeBlock(Block block) {
         for(BounceBlock bounceBlock : bounceBlocks)
             if(block.equals(bounceBlock.getBlock())) {

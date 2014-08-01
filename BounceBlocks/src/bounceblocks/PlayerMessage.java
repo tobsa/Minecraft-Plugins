@@ -19,6 +19,10 @@ public class PlayerMessage {
         return NORMAL + "A bounce block with jump strength '" + HIGHLIGHT + jumpStrength + NORMAL + "' was created";
     }
     
+    public static String getBounceBlockUpdated(double jumpStrength) {
+        return NORMAL + "A bounce block was updated with jump strength '" + HIGHLIGHT + jumpStrength + NORMAL + "'";
+    }
+    
     public static String getNumberCheck(String arg) {
         return ERROR + "Argument '" + HIGHLIGHT + arg + ERROR + "' must be a number!";
     }
