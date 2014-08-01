@@ -23,11 +23,9 @@ public class OnBlockRedstoneEvent implements Listener {
                 Block block = linkBlock.getBlock();
                 if(block.isBlockPowered() || block.isBlockIndirectlyPowered()) {
                     region.toggleOff();
-                    block.getWorld().playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
                 }
                 else {
                     region.toggleOn();
-                    block.getWorld().playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
                 }
             }
         }

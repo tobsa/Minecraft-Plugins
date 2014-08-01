@@ -36,6 +36,7 @@ public class ToggleOffExecutor implements CommandExecutor {
         }
         
         region.toggleOff();
+        player.sendMessage(PlayerMessage.getToggleOff(args[0]));
         
         return true;
     }

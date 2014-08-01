@@ -59,4 +59,12 @@ public class PlayerMessage {
     public static String getLinkDeleted(String name) {
         return NORMAL + "A link for region '" + HIGHLIGHT + name + NORMAL + "' was deleted!";
     }
+
+    public static String getToggleOff(String name) {
+        return NORMAL + "Region '" + HIGHLIGHT + name + NORMAL + "' has been toggled off!";
+    }
+
+    public static String getToggleOn(String name) {
+        return NORMAL + "Region '" + HIGHLIGHT + name + NORMAL + "' has been toggled on!";
+    }
 }

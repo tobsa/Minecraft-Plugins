@@ -36,6 +36,7 @@ public class ToggleBlocksDeleteExecutor implements CommandExecutor {
         }
         
         regionManager.removeRegion(region);
+        regionManager.setEditRegion(player, null);
         player.sendMessage(PlayerMessage.getRegionDeleted(region.getName()));
 
         return true;
