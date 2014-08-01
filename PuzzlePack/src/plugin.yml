@@ -2,45 +2,6 @@ name: PuzzlePack
 main: puzzlepack.PuzzlePack
 version: 1.0
 depend: [WorldEdit]
-commands:
-    secretarea:
-            aliases: [secarea, sarea]
-    secretarealist:
-            aliases: [secarealist, secareal, sarealist, sareal]
-    secretareadelete:
-            aliases: [secareadelete, secareadel, secaread, sareadelete, sareadel, saread]
-    secretareaselection:
-            aliases: [secareaselection, secareasel, secareas, sareaselection, sareasel, sareas]
             
-    teleportarea:
-            aliases: [tparea]
-    teleportarealist:
-            aliases: [tparealist, tpareal]
-    teleportareadelete:
-            aliases: [tpareadelete, tpareadel, tparead]
-    teleportareaselection:
-            aliases: [tpareaselection, tpareasel, tpareas]
     
-    clearinvarea:
-            aliases: [cinarea]  
-    clearinvarealist:
-            aliases: [cinarealist, cinareal]
-    clearinvareadelete:
-            aliases: [cinareadelete, cinareadel, cinaread]
-    clearinvareaselection:
-            aliases: [cinareaselection, cinareasel, cinareas]
-            
-    bounceblock:
-            aliases: [bblock]
-            
-    telepad:
-            aliases: [tpad]
-    telepadfrom:
-            aliases: [tpadfrom]
-    telepadto:
-            aliases: [tpadto]
-    telepadlist:
-            aliases: [tpadlist, tpadl]
-    telepaddelete:
-            aliases: [tpaddelete, tpaddel, tpadd]
             
