@@ -37,3 +37,7 @@ commands:
     toggleblocksdelete:
         aliases: [tbdelete, tbdel]
         usage: /toggleblocksdelete <name>
+        
+    toggleblockshelp:
+        aliases: [tbhelp]
+        usage: /toggleblockshelp

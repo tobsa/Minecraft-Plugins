@@ -67,4 +67,8 @@ public class PlayerMessage {
     public static String getToggleOn(String name) {
         return NORMAL + "Region '" + HIGHLIGHT + name + NORMAL + "' has been toggled on!";
     }
+    
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
 }
