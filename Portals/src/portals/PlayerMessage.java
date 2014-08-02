@@ -43,4 +43,8 @@ public class PlayerMessage {
     public static String portalRenamed(String originalName, String newName) {
         return NORMAL + "Portal '" + HIGHLIGHT + originalName + NORMAL + "' was renamed to '" + HIGHLIGHT + newName + NORMAL + "'!";
     }
+    
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
 }

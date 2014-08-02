@@ -3,16 +3,23 @@ main: portals.Portals
 version: 1.0
 commands:
     portal: 
+        aliases: [po]
         usage: /portal <name>
     portalto:
+        aliases: [poto]
         usage: /portalto <name>
     portallist:
+        aliases: [polist]
         usage: /portallist
     portaldelete:
-        aliases: [portaldel]
+        aliases: [portaldel, podelete, podel]
         usage: /portaldelete <name>
     portalselect:
-        aliases: [portalsel]
+        aliases: [portalsel, poselect, posel]
         usage: /portalselect <name>
     portalrename:
+        aliases: [porename]
         usage: /portalrename <originalName> <newName>
+    portalhelp:
+        aliases: [pohelp]
+        usage: /portalhelp
