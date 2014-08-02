@@ -1,43 +1,40 @@
 name: ToggleBlocks
 main: toggleblocks.ToggleBlocks
 version: 1.0
+depend: [PuzzlePack]
 commands:
     toggleblocks:
         aliases: [tb]
-        usage: /toggleblocks <name>
+        usage: /tb <name>
         
     toggleblockson:
         aliases: [tbon]
-        usage: /toggleblockson <name>
+        usage: /tbon <name>
         
     toggleblocksoff:
         aliases: [tboff]
-        usage: /toggleblocksoff <name>
-        
-    toggleblocksedit:
-        aliases: [tbedit]
-        usage: /toggleblocksedit <name>
-        
+        usage: /tboff <name>
+                
     toggleblockslink:
         aliases: [tblink]
-        usage: /toggleblockslink <name>
+        usage: /tblink <name>
         
     toggleblocksrlink:
         aliases: [tbrlink]
-        usage: /toggleblocksrlink <name>
+        usage: /tbrlink <name>
         
     toggleblocksdelink:
         aliases: [tbdelink]
-        usage: /toggleblocksdelink <name>
+        usage: /tbdelink <name>
         
     toggleblockslist:
         aliases: [tblist]
-        usage: /toggleblockslist
+        usage: /tblist
         
     toggleblocksdelete:
         aliases: [tbdelete, tbdel]
-        usage: /toggleblocksdelete <name>
+        usage: /tbdelete <name>
         
     toggleblockshelp:
         aliases: [tbhelp]
-        usage: /toggleblockshelp
+        usage: /tbhelp

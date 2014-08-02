@@ -1,25 +1,26 @@
 name: Portals
 main: portals.Portals
 version: 1.0
+depend: [PuzzlePack]
 commands:
     portal: 
         aliases: [po]
-        usage: /portal <name>
+        usage: /po <name>
     portalto:
         aliases: [poto]
-        usage: /portalto <name>
+        usage: /poto <name>
     portallist:
         aliases: [polist]
-        usage: /portallist
+        usage: /polist
     portaldelete:
         aliases: [portaldel, podelete, podel]
-        usage: /portaldelete <name>
+        usage: /podelete <name>
     portalselect:
         aliases: [portalsel, poselect, posel]
-        usage: /portalselect <name>
+        usage: /poselect <name>
     portalrename:
         aliases: [porename]
-        usage: /portalrename <originalName> <newName>
+        usage: /porename <originalName> <newName>
     portalhelp:
         aliases: [pohelp]
-        usage: /portalhelp
+        usage: /pohelp

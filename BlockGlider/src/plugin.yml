@@ -1,0 +1,6 @@
+name: BlockGlider
+main: blockglider.BlockGlider
+version: 1.0;
+commands: 
+    glidepath:
+        aliases: [gpath, gp]

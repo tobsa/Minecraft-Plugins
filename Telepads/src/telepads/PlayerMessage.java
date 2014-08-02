@@ -1,12 +1,13 @@
 package telepads;
 
 import org.bukkit.ChatColor;
+import puzzlepack.CommandColor;
 
 public class PlayerMessage {
-    private static final ChatColor HEADER = ChatColor.GREEN;
-    private static final ChatColor NORMAL = ChatColor.WHITE;
-    private static final ChatColor ERROR = ChatColor.RED;
-    private static final ChatColor HIGHLIGHT = ChatColor.GREEN;
+    private static final ChatColor HEADER    = CommandColor.HEADER;
+    private static final ChatColor NORMAL    = CommandColor.NORMAL;
+    private static final ChatColor ERROR     = CommandColor.ERROR;
+    private static final ChatColor HIGHLIGHT = CommandColor.HIGHLIGHT;
     
     public static String getFromBlockDestroyed(String name) {
         return NORMAL + "Telepad '" + HIGHLIGHT + name + NORMAL + "' from-block was removed!";

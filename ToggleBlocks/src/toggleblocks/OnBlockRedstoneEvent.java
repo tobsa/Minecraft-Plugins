@@ -1,5 +1,6 @@
 package toggleblocks;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -26,6 +27,10 @@ public class OnBlockRedstoneEvent implements Listener {
                 }
                 else {
                     region.toggleOn();
+                }
+                
+                if(block.equals(event.getBlock())) {
+                    Bukkit.getWorld("world").playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
                 }
             }
         }

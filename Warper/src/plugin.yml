@@ -1,6 +1,28 @@
 name: Warper
 main: warper.Warper
 version: 1.0
+depend: [PuzzlePack]
 commands:
-    warper:
-        aliases: [wa,wp,wap]
+    warpersave:
+        aliases: [wasave]
+        usage: /wasave <name>
+        
+    warperload:
+        aliases: [waload]
+        usage: /waload <name>
+
+    warperdelete:
+        aliases: [wadelete]
+        usage: /wadelete <name>
+        
+    warperlist:
+        aliases: [walist]
+        usage: /walist
+                
+    warperdelete:
+        aliases: [wadelete]
+        usage: /wadelete <name>
+        
+    warperhelp:
+        aliases: [wahelp]
+        usage: /wahelp

@@ -5,3 +5,7 @@ commands:
     catapultblock:
         aliases: [cata, cblock, cb]
         usage: /catapultblock <north|east|south|west> <forwardVelocity> <upwardVelocity>
+        
+    catapultblockhelp:
+        aliases: [catahelp, cblockhelp, cbhelp]
+        usage: /catapultblockhelp 

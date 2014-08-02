@@ -1,11 +1,12 @@
 name: MinePillars
 main: minepillars.MinePillars
 version: 1.0;
+depend: [PuzzlePack]
 commands: 
     minepillars:
         aliases: [mp]
-        usage: /minepillars <length>
+        usage: /mp <length>
         
     minepillarshelp:
         aliases: [mphelp]
-        usage: /minepillarshelp
+        usage: /mphelp

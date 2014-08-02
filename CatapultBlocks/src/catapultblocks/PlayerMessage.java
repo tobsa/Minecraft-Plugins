@@ -37,4 +37,8 @@ public class PlayerMessage {
                                              + HIGHLIGHT + upwardVelocity + NORMAL + ") was removed!";
     }
     
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
+    
 }

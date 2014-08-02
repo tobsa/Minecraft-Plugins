@@ -1,32 +1,33 @@
 name: RedstoneCombiner
 main: redstonecombiner.RedstoneCombiner
 version: 1.0
+depend: [PuzzlePack]
 commands:
     
     redcombiner:
         aliases: [rc]
-        usage: /redcombiner <name>
+        usage: /rc <name>
     
     redcombinerlink:
         aliases: [rclink]
-        usage: /redcombinerlink <name>
+        usage: /rclink <name>
         
     redcombinerdelink:
         aliases: [rcdelink]
-        usage: /redcombinerdelink <name>
+        usage: /rcdelink <name>
         
     redcombinerlist:
         aliases: [rclist]
-        usage: /redcombinerlist
+        usage: /rclist
         
     redcombinerdelete:
         aliases: [rcdelete, rcdel]
-        usage: /redcombinerdelete <name>
+        usage: /rcdelete <name>
         
     redcombinerrename:
         aliases: [rcrename]
-        usage: /redcombinerrename <originalName> <newName>
+        usage: /rcrename <originalName> <newName>
         
     redcombinerhelp:
         aliases: [rchelp]
-        usage: /redcombinerhelp
+        usage: /rchelp

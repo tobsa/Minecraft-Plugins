@@ -1,11 +1,12 @@
 name: BounceBlocks
 main: bounceblocks.BounceBlocks
 version: 1.0
+depend: [PuzzlePack]
 commands:
     bounceblock:
         aliases: [bblock, bb]
-        usage: /bounceblock <jumpStrength>
+        usage: /bb <jumpStrength>
     
     bounceblockhelp:
         aliases: [bblockhelp, bbhelp]
-        usage: /bounceblockhelp
+        usage: /bbhelp

@@ -1,27 +1,28 @@
 name: Telepads
 main: telepads.Telepads
 version: 1.0
+depend: [PuzzlePack]
 commands:
     telepad:
         aliases: [tpad]
-        usage: /telepad <name>
+        usage: /tpad <name>
         
     telepadfrom:
         aliases: [tpadfrom]
-        usage: /telepadfrom <name>
+        usage: /tpadfrom <name>
         
     telepadto:
         aliases: [tpadto]
-        usage: /telepadto <name>
+        usage: /tpadto <name>
         
     telepadlist:
         aliases: [tpadlist]
-        usage: /telepadlist
+        usage: /tpadlist
         
     telepaddelete:
         aliases: [tpaddelete, tpaddel]
-        usage: /telepaddelete <name>
+        usage: /tpaddelete <name>
         
     telepadhelp:
         aliases: [tpadhelp]
-        usage: /telepadhelp
+        usage: /tpadhelp

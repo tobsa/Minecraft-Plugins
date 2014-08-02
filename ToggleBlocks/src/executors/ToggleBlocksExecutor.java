@@ -29,19 +29,36 @@ public class ToggleBlocksExecutor implements CommandExecutor {
         }
                    
         RegionManager regionManager = plugin.getRegionManager();
-        if(regionManager.getRegion(player.getPlayerListName(), args[0]) != null) {
-            player.sendMessage(PlayerMessage.getRegionExists(args[0]));
+        Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
+        if(region != null) {
+            Region editRegion = regionManager.getEditRegion(player);
+            if(editRegion == null) {
+                regionManager.setEditRegion(player, region);
+                player.sendMessage(PlayerMessage.getYesEditMode(region.getName()));
+            }
+            else {
+                if(region == editRegion) {
+                    regionManager.setEditRegion(player, null);
+                    player.sendMessage(PlayerMessage.getNoEditMode(region.getName()));
+                } 
+                else {
+                    player.sendMessage(PlayerMessage.getNoEditMode(editRegion.getName()));
+                    regionManager.setEditRegion(player, region);
+                    player.sendMessage(PlayerMessage.getYesEditMode(region.getName()));
+                }
+            }
+            
             return true;
         }
         
-        Region region = new Region(plugin, player.getPlayerListName(), args[0]);
-        regionManager.addRegion(region);
+        Region newRegion = new Region(plugin, player.getPlayerListName(), args[0]);
+        regionManager.addRegion(newRegion);
         player.sendMessage(PlayerMessage.getRegionCreated(args[0]));
         
         if(regionManager.getEditRegion(player) != null)
             player.sendMessage(PlayerMessage.getNoEditMode(regionManager.getEditRegion(player).getName()));
         
-        regionManager.setEditRegion(player, region);
+        regionManager.setEditRegion(player, newRegion);
         player.sendMessage(PlayerMessage.getYesEditMode(args[0]));
 
         return true;

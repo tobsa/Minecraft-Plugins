@@ -1,38 +1,39 @@
 name: AreaCollider
 main: areacollider.AreaCollider
 version: 1.0
+depend: [PuzzlePack]
 commands:
     area:
         aliases: [ac]
-        usage: /area <name> <sound> [message]
+        usage: /ac <name> <sound> [message]
         
     areasecret:
-        aliases: [areasec, acsecret acsec]
-        usage: /areasecret <name>
+        aliases: [areasec, acsecret, acsec]
+        usage: /acsecret <name>
         
     areateleport:
         aliases: [areatel, acteleport, actel]
-        usage: /areateleport <name> [message]
+        usage: /acteleport <name> [message]
 
     arealist:
         aliases: [aclist]
-        usage: /arealist
+        usage: /aclist
         
     areaselect:
         aliases: [areasel, acselect, acsel]
-        usage: /areaselect <name>
+        usage: /acselect <name>
         
     areadelete:
         aliases: [areadel, acdelete, acdel]
-        usage: /areadelete <name>
+        usage: /acdelete <name>
         
     areaclearinventory:
         aliases: [areacinv, accinv]
-        usage: /areaclearinventory <name>
+        usage: /accinv <name>
         
     arearename:
         aliases: [acrename]
-        usage: /arearename <originalName> <newName>
+        usage: /acrename <originalName> <newName>
         
     areahelp:
         aliases: [achelp]

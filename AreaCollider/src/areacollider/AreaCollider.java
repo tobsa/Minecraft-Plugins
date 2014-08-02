@@ -11,10 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import areasecret.AreaSecretExecutor;
 import areateleport.AreaTeleportExecutor;
 import clearinventory.AreaClearInventoryExecutor;
-import java.util.ArrayList;
-import java.util.List;
 import org.bukkit.Sound;
-import org.bukkit.command.PluginCommand;
+import puzzlepack.CommandRegister;
 
 public class AreaCollider extends JavaPlugin { 
     
@@ -27,36 +25,16 @@ public class AreaCollider extends JavaPlugin {
         
         getServer().getPluginManager().registerEvents(new OnPlayerMove(areaManager), this);
         
-        PluginCommand area                  = getCommand("area");
-        PluginCommand areasecret            = getCommand("areasecret");
-        PluginCommand areateleport          = getCommand("areateleport");
-        PluginCommand arealist              = getCommand("arealist");
-        PluginCommand areaselect            = getCommand("areaselect");
-        PluginCommand areadelete            = getCommand("areadelete");
-        PluginCommand areaclearinventory    = getCommand("areaclearinventory");
-        PluginCommand arearename            = getCommand("arearename");
-        PluginCommand areahelp              = getCommand("areahelp");
-                
-        List<PluginCommand> commands = new ArrayList();  
-        commands.add(area);
-        commands.add(areasecret);
-        commands.add(areateleport);
-        commands.add(arealist);
-        commands.add(areaselect);
-        commands.add(areadelete);
-        commands.add(areaclearinventory);
-        commands.add(arearename);
-        commands.add(areahelp);
-        
-        area.setExecutor(new AreaExecutor(areaManager, worldEdit));
-        areasecret.setExecutor(new AreaSecretExecutor(areaManager, worldEdit));
-        areateleport.setExecutor(new AreaTeleportExecutor(areaManager, worldEdit));
-        arealist.setExecutor(new AreaListExecutor(areaManager));
-        areaselect.setExecutor(new AreaSelectExecutor(areaManager, worldEdit));
-        areadelete.setExecutor(new AreaDeleteExecutor(areaManager));
-        areaclearinventory.setExecutor(new AreaClearInventoryExecutor(areaManager, worldEdit));
-        arearename.setExecutor(new AreaRenameExecutor(areaManager));
-        areahelp.setExecutor(new HelpExecutor(commands));
+        CommandRegister commandRegister = new CommandRegister();
+        commandRegister.register(getCommand("area"),                new AreaExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("areasecret"),          new AreaSecretExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("areateleport"),        new AreaTeleportExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("arealist"),            new AreaListExecutor(areaManager));
+        commandRegister.register(getCommand("areaselect"),          new AreaSelectExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("areadelete"),          new AreaDeleteExecutor(areaManager));
+        commandRegister.register(getCommand("areaclearinventory"),  new AreaClearInventoryExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("arearename"),          new AreaRenameExecutor(areaManager));
+        commandRegister.register(getCommand("areahelp"),            new HelpExecutor(commandRegister.getCommands()));
     }
         
     public static String combineArguments(String[] args, int arg) {

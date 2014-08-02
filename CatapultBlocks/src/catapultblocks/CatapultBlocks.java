@@ -1,5 +1,8 @@
 package catapultblocks;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CatapultBlocks extends JavaPlugin {
@@ -12,7 +15,15 @@ public class CatapultBlocks extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnPlayerMove(catapultManager), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreak(catapultManager), this);
         
-        getCommand("catapultblock").setExecutor(new CatapultBlockExecutor(catapultManager));
+        PluginCommand catapultblock = getCommand("catapultblock");
+        PluginCommand catapultblockHelp = getCommand("catapultblockhelp");
+        
+        List<PluginCommand> commands = new ArrayList();
+        commands.add(catapultblock);
+        commands.add(catapultblockHelp);
+        
+        catapultblock.setExecutor(new CatapultBlockExecutor(catapultManager));
+        catapultblockHelp.setExecutor(new HelpExecutor(commands));
     }
     
     @Override
