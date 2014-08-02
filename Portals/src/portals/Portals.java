@@ -5,7 +5,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Portals extends JavaPlugin {
     
-    
     @Override
     public void onEnable() {
         FileManager.setPlugin(this);
@@ -17,6 +16,10 @@ public class Portals extends JavaPlugin {
         
         getCommand("portal").setExecutor(new PortalExecutor(portalManager, worldEdit));
         getCommand("portallist").setExecutor(new PortalListExecutor(portalManager));
+        getCommand("portalto").setExecutor(new PortalToExecutor(portalManager));
+        getCommand("portaldelete").setExecutor(new PortalDeleteExecutor(portalManager));
+        getCommand("portalrename").setExecutor(new PortalRenameExecutor(portalManager));
+        getCommand("portalselect").setExecutor(new PortalSelectExecutor(portalManager, worldEdit));
     }
 
 }

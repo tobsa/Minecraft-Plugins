@@ -27,4 +27,20 @@ public class PlayerMessage {
     public static String listHeader() {
         return HIGHLIGHT + "========== Portals ==========";
     }
+
+    public static String missingPortal(String name) {
+        return ERROR + "Portal '" + HIGHLIGHT + name + ERROR + "' doesn't exist!"; 
+    }
+
+    public static String teleportLocationUpdated(String name) {
+        return NORMAL + "Portal '" + HIGHLIGHT + name + NORMAL + "' was updated with a new teleportation location!";
+    }
+
+    public static String portalRemoved(String name) {
+        return NORMAL + "Portal '" + HIGHLIGHT + name + NORMAL + "' was removed!";
+    }
+
+    public static String portalRenamed(String originalName, String newName) {
+        return NORMAL + "Portal '" + HIGHLIGHT + originalName + NORMAL + "' was renamed to '" + HIGHLIGHT + newName + NORMAL + "'!";
+    }
 }

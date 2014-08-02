@@ -19,7 +19,7 @@ public class OnPlayerPortalEvent implements Listener {
         
         for(Portal portal : portalManager.getPortals()) {
             if(portal.intersects(player.getLocation().getBlock())) {
-                player.teleport(portal.getTeleportBlock());
+                player.teleport(portal.getTeleportLocation());
             }
         }
     }

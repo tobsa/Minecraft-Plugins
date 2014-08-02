@@ -57,11 +57,25 @@ public class FileManager {
         plugin.getConfig().set("portals." + portal.getName() + ".maxY", portal.getMaximumBlock().getY());
         plugin.getConfig().set("portals." + portal.getName() + ".maxZ", portal.getMaximumBlock().getZ());
         
-        plugin.getConfig().set("portals." + portal.getName() + ".teleportX", portal.getTeleportBlock().getX());
-        plugin.getConfig().set("portals." + portal.getName() + ".teleportY", portal.getTeleportBlock().getY());
-        plugin.getConfig().set("portals." + portal.getName() + ".teleportZ", portal.getTeleportBlock().getZ());
-        plugin.getConfig().set("portals." + portal.getName() + ".teleportYaw", portal.getTeleportBlock().getYaw());
-        plugin.getConfig().set("portals." + portal.getName() + ".teleportPitch", portal.getTeleportBlock().getPitch());
+        plugin.getConfig().set("portals." + portal.getName() + ".teleportX", portal.getTeleportLocation().getX());
+        plugin.getConfig().set("portals." + portal.getName() + ".teleportY", portal.getTeleportLocation().getY());
+        plugin.getConfig().set("portals." + portal.getName() + ".teleportZ", portal.getTeleportLocation().getZ());
+        plugin.getConfig().set("portals." + portal.getName() + ".teleportYaw", portal.getTeleportLocation().getYaw());
+        plugin.getConfig().set("portals." + portal.getName() + ".teleportPitch", portal.getTeleportLocation().getPitch());
+        plugin.saveConfig();
+    }
+
+    public static void saveTeleportLocation(String name, Location location) {
+        plugin.getConfig().set("portals." + name + ".teleportX", location.getX());
+        plugin.getConfig().set("portals." + name + ".teleportY", location.getY());
+        plugin.getConfig().set("portals." + name + ".teleportZ", location.getZ());
+        plugin.getConfig().set("portals." + name + ".teleportYaw", location.getYaw());
+        plugin.getConfig().set("portals." + name + ".teleportPitch", location.getPitch());
+        plugin.saveConfig();
+    }
+
+    public static void removePortal(Portal portal) {
+        plugin.getConfig().set("portals." + portal.getName(), null);
         plugin.saveConfig();
     }
 }

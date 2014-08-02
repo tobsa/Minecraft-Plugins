@@ -35,11 +35,15 @@ public class Portal {
         return maximumBlock;
     }
     
-    public Location getTeleportBlock() {
+    public Location getTeleportLocation() {
         return teleportLocation;
     }
     
-    public void setTeleportBlock(Location teleportLocation) {
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setTeleportLocation(Location teleportLocation) {
         this.teleportLocation = teleportLocation;
     }
     
