@@ -14,6 +14,7 @@ public class MinePillars extends JavaPlugin {
         
         List<PluginCommand> commands = new ArrayList();  
         commands.add(minepillars);
+        commands.add(minepillarshelp);
         
         minepillars.setExecutor(new MinePillarsExecutor());
         minepillarshelp.setExecutor(new HelpExecutor(commands));
