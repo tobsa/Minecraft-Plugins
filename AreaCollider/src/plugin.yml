@@ -3,30 +3,37 @@ main: areacollider.AreaCollider
 version: 1.0
 commands:
     area:
+        aliases: [ac]
         usage: /area <name> <sound> [message]
         
     areasecret:
-        aliases: [areasec]
+        aliases: [areasec, acsecret acsec]
         usage: /areasecret <name>
         
     areateleport:
-        aliases: [areatel]
+        aliases: [areatel, acteleport, actel]
         usage: /areateleport <name> [message]
 
     arealist:
+        aliases: [aclist]
         usage: /arealist
         
     areaselect:
-        aliases: [areasel]
+        aliases: [areasel, acselect, acsel]
         usage: /areaselect <name>
         
     areadelete:
-        aliases: [areadel]
+        aliases: [areadel, acdelete, acdel]
         usage: /areadelete <name>
         
     areaclearinventory:
-        aliases: [areacinv]
+        aliases: [areacinv, accinv]
         usage: /areaclearinventory <name>
         
     arearename:
+        aliases: [acrename]
         usage: /arearename <originalName> <newName>
+        
+    areahelp:
+        aliases: [achelp]
+        usage: /areahelp

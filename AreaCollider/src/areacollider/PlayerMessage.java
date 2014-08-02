@@ -51,4 +51,8 @@ public class PlayerMessage {
     public static String getAreaRenamed(String originalName, String newName) {
         return NORMAL + "Area '" + HIGHLIGHT + originalName + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "' ";
     }
+
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
 }
