@@ -1,37 +1,29 @@
 package toggleblocks;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockRedstoneEvent;
 
 public class OnBlockRedstoneEvent implements Listener {
-    private ToggleBlocks plugin;
-
-    public OnBlockRedstoneEvent(ToggleBlocks plugin) {
-        this.plugin = plugin;
+    private RegionManager regionManager;
+    
+    public OnBlockRedstoneEvent(RegionManager regionManager) {
+        this.regionManager = regionManager;
     }
 
     @EventHandler
     public void onBlockRedstoneEvent(BlockRedstoneEvent event) {
-        RegionManager regionManager = plugin.getRegionManager();
-                
-        for(Region region : regionManager.getAllRegions()) {
+
+        for(Region region : regionManager.getRegions()) {
             LinkBlock linkBlock = region.getLinkBlock();
+            
             if(linkBlock != null && linkBlock.getLinkType() == LinkType.Redstone) {
                 Block block = linkBlock.getBlock();
-                if(block.isBlockPowered() || block.isBlockIndirectlyPowered()) {
+                if(block.isBlockPowered() || block.isBlockIndirectlyPowered())
                     region.toggleOff();
-                }
-                else {
+                else
                     region.toggleOn();
-                }
-                
-                if(block.equals(event.getBlock())) {
-                    Bukkit.getWorld("world").playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
-                }
             }
         }
     }

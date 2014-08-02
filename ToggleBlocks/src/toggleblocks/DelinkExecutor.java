@@ -1,19 +1,15 @@
-package executors;
+package toggleblocks;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import toggleblocks.PlayerMessage;
-import toggleblocks.Region;
-import toggleblocks.RegionManager;
-import toggleblocks.ToggleBlocks;
 
 public class DelinkExecutor implements CommandExecutor {
-    private ToggleBlocks plugin;
+    private RegionManager regionManager;
     
-    public DelinkExecutor(ToggleBlocks plugin) {
-        this.plugin = plugin;
+    public DelinkExecutor(RegionManager regionManager) {
+        this.regionManager = regionManager;
     }
     
     @Override
@@ -24,23 +20,20 @@ public class DelinkExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
-        RegionManager regionManager = plugin.getRegionManager();
         Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
         if(region == null) {
-            player.sendMessage(PlayerMessage.getMissingRegion(args[0]));
+            player.sendMessage(PlayerMessage.missingRegion(args[0]));
             return true;
         }
         
         region.setLinkBlock(null);
+        FileManager.save(regionManager);
         player.sendMessage(PlayerMessage.getLinkDeleted(region.getName()));
-        
-        plugin.getConfig().set("toggleblocks." + region.getName() + ".link", null);
-        plugin.saveConfig();
-        
+                
         return true;
     }
     

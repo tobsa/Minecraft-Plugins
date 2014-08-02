@@ -1,42 +1,28 @@
 package toggleblocks;
 
-import executors.DelinkExecutor;
-import executors.HelpExecutor;
-import executors.ToggleOffExecutor;
-import executors.RedstoneLinkExecutor;
-import executors.ToggleOnExecutor;
-import executors.LinkExecutor;
-import executors.ListExecutor;
-import executors.ToggleBlocksExecutor;
-import executors.ToggleBlocksDeleteExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import puzzlepack.CommandRegister;
 
 public class ToggleBlocks extends JavaPlugin {    
-    private RegionManager regionManager;
         
     @Override
     public void onEnable() {
-        regionManager = new RegionManager(this);
+        RegionManager regionManager = FileManager.load();
         
-        getServer().getPluginManager().registerEvents(new OnBlockPlace(this), this);
-        getServer().getPluginManager().registerEvents(new OnBlockBreak(this), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerInteract(this), this);
-        getServer().getPluginManager().registerEvents(new OnBlockRedstoneEvent(this), this);
+        getServer().getPluginManager().registerEvents(new OnBlockPlacedEvent(regionManager), this);
+        getServer().getPluginManager().registerEvents(new OnBlockBreakEvent(regionManager), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerInteractEvent(regionManager), this);
+        getServer().getPluginManager().registerEvents(new OnBlockRedstoneEvent(regionManager), this);
         
         CommandRegister commandRegister = new CommandRegister();
-        commandRegister.register(getCommand("toggleblocks"),       new ToggleBlocksExecutor(this));
-        commandRegister.register(getCommand("toggleblockson"),     new ToggleOnExecutor(this));
-        commandRegister.register(getCommand("toggleblocksoff"),    new ToggleOffExecutor(this));
-        commandRegister.register(getCommand("toggleblockslink"),   new LinkExecutor(this));
-        commandRegister.register(getCommand("toggleblocksrlink"),  new RedstoneLinkExecutor(this));
-        commandRegister.register(getCommand("toggleblocksdelink"), new DelinkExecutor(this));
-        commandRegister.register(getCommand("toggleblockslist"),   new ListExecutor(this));
-        commandRegister.register(getCommand("toggleblocksdelete"), new ToggleBlocksDeleteExecutor(this));
+        commandRegister.register(getCommand("toggleblocks"),       new ToggleBlocksExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblockson"),     new ToggleOnExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksoff"),    new ToggleOffExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblockslink"),   new LinkExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksrlink"),  new RedstoneLinkExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksdelink"), new DelinkExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblockslist"),   new ListExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksdelete"), new DeleteExecutor(regionManager));
         commandRegister.register(getCommand("toggleblockshelp"),   new HelpExecutor(commandRegister.getCommands()));
-    }
-        
-    public RegionManager getRegionManager() {
-        return regionManager;
     }
 }

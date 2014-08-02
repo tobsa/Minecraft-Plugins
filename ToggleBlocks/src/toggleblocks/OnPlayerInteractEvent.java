@@ -8,23 +8,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class OnPlayerInteract implements Listener {
-    private ToggleBlocks plugin;
+public class OnPlayerInteractEvent implements Listener {
+    private RegionManager regionManager;
     
-    public OnPlayerInteract(ToggleBlocks plugin) {
-        this.plugin = plugin;
+    public OnPlayerInteractEvent(RegionManager regionManager) {
+        this.regionManager = regionManager;
     }
     
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event) {
+    public void onPlayerInteractEvent(PlayerInteractEvent event) {
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
             
-            RegionManager regionManager = plugin.getRegionManager();
-            List<Region> regions = regionManager.getRegions(event.getPlayer().getPlayerListName());
-            
+            List<Region> regions = regionManager.getRegions(event.getPlayer().getName());
             for(Region region : regions) {
-                if(region.isLinkBlock(block) && region.getLinkBlock().getLinkType() == LinkType.Interact) {
+                if(region.isLinkBlock(block) && region.getLinkBlock().getLinkType() == LinkType.Interact ) {
                     region.toggle();
                     block.getWorld().playSound(block.getLocation(), Sound.PISTON_EXTEND, 1, 1);
                 }

@@ -1,4 +1,4 @@
-package executors;
+package toggleblocks;
 
 import java.util.List;
 import org.bukkit.command.Command;
@@ -6,7 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
-import toggleblocks.PlayerMessage;
 
 public class HelpExecutor implements CommandExecutor {
     private List<PluginCommand> commands;
