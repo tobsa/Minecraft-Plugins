@@ -1,5 +1,8 @@
 package telepads;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Telepads extends JavaPlugin {
@@ -13,10 +16,26 @@ public class Telepads extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnPlayerMoveTelepad(telepadManager), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreakTelepad(telepadManager), this);
         
-        getCommand("telepad").setExecutor(new TelepadExecutor(telepadManager));
-        getCommand("telepadfrom").setExecutor(new TelepadFromExecutor(telepadManager));
-        getCommand("telepadto").setExecutor(new TelepadToExecutor(telepadManager));
-        getCommand("telepadlist").setExecutor(new TelepadListExecutor(telepadManager));
-        getCommand("telepaddelete").setExecutor(new TelepadDeleteExecutor(telepadManager));
+        PluginCommand telepad       = getCommand("telepad");
+        PluginCommand telepadfrom   = getCommand("telepadfrom");
+        PluginCommand telepadto     = getCommand("telepadto");
+        PluginCommand telepadlist   = getCommand("telepadlist");
+        PluginCommand telepaddelete = getCommand("telepaddelete");
+        PluginCommand telepadhelp   = getCommand("telepadhelp");
+        
+        List<PluginCommand> commands = new ArrayList();
+        commands.add(telepad);
+        commands.add(telepadfrom);
+        commands.add(telepadto);
+        commands.add(telepadlist);
+        commands.add(telepaddelete);
+        commands.add(telepadhelp);
+        
+        telepad.setExecutor(new TelepadExecutor(telepadManager));
+        telepadfrom.setExecutor(new TelepadFromExecutor(telepadManager));
+        telepadto.setExecutor(new TelepadToExecutor(telepadManager));
+        telepadlist.setExecutor(new TelepadListExecutor(telepadManager));
+        telepaddelete.setExecutor(new TelepadDeleteExecutor(telepadManager));
+        telepadhelp.setExecutor(new HelpExecutor(commands));
     }
 }

@@ -48,6 +48,8 @@ public class PlayerMessage {
         return HIGHLIGHT + "========== Telepads ==========";
     }
     
-    
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
     
 }

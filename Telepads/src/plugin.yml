@@ -5,15 +5,23 @@ commands:
     telepad:
         aliases: [tpad]
         usage: /telepad <name>
+        
     telepadfrom:
         aliases: [tpadfrom]
         usage: /telepadfrom <name>
+        
     telepadto:
         aliases: [tpadto]
         usage: /telepadto <name>
+        
     telepadlist:
         aliases: [tpadlist]
         usage: /telepadlist
+        
     telepaddelete:
         aliases: [tpaddelete, tpaddel]
         usage: /telepaddelete <name>
+        
+    telepadhelp:
+        aliases: [tpadhelp]
+        usage: /telepadhelp
