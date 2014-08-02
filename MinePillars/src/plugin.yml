@@ -3,4 +3,9 @@ main: minepillars.MinePillars
 version: 1.0;
 commands: 
     minepillars:
-        aliases: [mi,mp]
+        aliases: [mp]
+        usage: /minepillars <length>
+        
+    minepillarshelp:
+        aliases: [mphelp]
+        usage: /minepillarshelp
