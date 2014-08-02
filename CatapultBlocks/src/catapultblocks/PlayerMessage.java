@@ -1,40 +1,41 @@
 package catapultblocks;
 
-import org.bukkit.ChatColor;
+import org.bukkit.util.Vector;
+import puzzlepack.CommandColor;
 
-public class PlayerMessage {
-    private static final ChatColor NORMAL = ChatColor.WHITE;
-    private static final ChatColor ERROR = ChatColor.RED;
-    private static final ChatColor HIGHLIGHT = ChatColor.GREEN;    
+public class PlayerMessage extends CommandColor {
     
-    public static String getInvalidArguments(String usage) {
+    public static String invalidArguments(String usage) {
         return ERROR + "Invalid arguments. Usage: " + usage;
     }
 
-    public static String getInvalidDirection(String direction) {
+    public static String invalidDirection(String direction) {
         return ERROR + "Direction '" + HIGHLIGHT + direction + ERROR + "' is invalid! <north|east|south|west>";
     }
 
-    public static String getInvalidNumber(String number) {
+    public static String invalidNumber(String number) {
         return ERROR + "'" + HIGHLIGHT + number + NORMAL + "' must be a number!";
     }
 
-    public static String getCatapultBlockCreated(Direction direction, Double forwardVelocity, Double upwardVelocity) {
+    public static String catapultBlockCreated(Direction direction, Vector velocity) {
         return NORMAL + "A catapult block (" + HIGHLIGHT + direction.toString() + NORMAL + ", " 
-                                             + HIGHLIGHT + forwardVelocity + NORMAL + ", " 
-                                             + HIGHLIGHT + upwardVelocity + NORMAL + ") has been created!";
+                                             + HIGHLIGHT + velocity.getBlockX() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockY() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockZ() + NORMAL + ") has been created!";
     }
     
-    public static String getCatapultBlockUpdated(Direction direction, Double forwardVelocity, Double upwardVelocity) {
+    public static String catapultBlockUpdated(Direction direction, Vector velocity) {
         return NORMAL + "A catapult block (" + HIGHLIGHT + direction.toString() + NORMAL + ", " 
-                                             + HIGHLIGHT + forwardVelocity + NORMAL + ", " 
-                                             + HIGHLIGHT + upwardVelocity + NORMAL + ") was updated!";
+                                             + HIGHLIGHT + velocity.getBlockX() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockY() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockZ() + NORMAL + ") has been updated!";
     }
 
-    public static String getBlockRemoved(Direction direction, Double forwardVelocity, Double upwardVelocity) {
+    public static String blockRemoved(Direction direction, Vector velocity) {
         return NORMAL + "A catapult block (" + HIGHLIGHT + direction.toString() + NORMAL + ", " 
-                                             + HIGHLIGHT + forwardVelocity + NORMAL + ", " 
-                                             + HIGHLIGHT + upwardVelocity + NORMAL + ") was removed!";
+                                             + HIGHLIGHT + velocity.getBlockX() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockY() + NORMAL + ", " 
+                                             + HIGHLIGHT + velocity.getBlockZ() + NORMAL + ") has been removed!";
     }
     
     public static String help() {

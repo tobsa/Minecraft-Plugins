@@ -1,19 +1,17 @@
 package catapultblocks;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.block.Block;
 
 public class CatapultManager {
-    private List<CatapultBlock> catapultBlocks = new ArrayList();
+    private List<CatapultBlock> catapultBlocks;
     
-    public CatapultManager() {
-        catapultBlocks = FileManager.load();
+    public CatapultManager(List<CatapultBlock> catapultBlocks) {
+        this.catapultBlocks = catapultBlocks;
     }
     
     public void addCatapultBlock(CatapultBlock catapultBlock) {
         catapultBlocks.add(catapultBlock);
-        FileManager.save(catapultBlock);
     }
         
     public CatapultBlock getCatapultBlock(Block block) {
@@ -30,6 +28,5 @@ public class CatapultManager {
     
     public void removeCatapultBlock(CatapultBlock catapultBlock) {
         catapultBlocks.remove(catapultBlock);
-        FileManager.remove(catapultBlock);
     }
 }

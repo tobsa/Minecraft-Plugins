@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 public class CatapultBlockExecutor implements CommandExecutor {
     private CatapultManager catapultManager;
@@ -20,40 +21,49 @@ public class CatapultBlockExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
         
-        if(args.length != 3) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+        if(args.length != 4) {
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Direction direction = getDirection(args[0]);
         if(direction == null) {
-            player.sendMessage(PlayerMessage.getInvalidDirection(args[0]));
+            player.sendMessage(PlayerMessage.invalidDirection(args[0]));
             return true;
         }
         
-        Double forwardVelocity = getDouble(args[1]);
-        if(forwardVelocity == null) {
-            player.sendMessage(PlayerMessage.getInvalidNumber(args[1]));
+        Double velocityX = getDouble(args[1]);
+        if(velocityX == null) {
+            player.sendMessage(PlayerMessage.invalidNumber(args[1]));
             return true;
         }
         
-        Double upwardVelocity = getDouble(args[2]);
-        if(upwardVelocity == null) {
-            player.sendMessage(PlayerMessage.getInvalidNumber(args[1]));
+        Double velocityY = getDouble(args[2]);
+        if(velocityY == null) {
+            player.sendMessage(PlayerMessage.invalidNumber(args[2]));
+            return true;
+        }
+        
+        Double velocityZ = getDouble(args[3]);
+        if(velocityZ == null) {
+            player.sendMessage(PlayerMessage.invalidNumber(args[3]));
             return true;
         }
         
         Block block = player.getTargetBlock(null, 6);
         CatapultBlock catapultBlock = catapultManager.getCatapultBlock(block);
         
+        Vector velocity = new Vector(velocityX, velocityY, velocityZ);
         if(catapultBlock == null) {
-            catapultManager.addCatapultBlock(new CatapultBlock(block, direction, forwardVelocity, upwardVelocity));
-            player.sendMessage(PlayerMessage.getCatapultBlockCreated(direction, forwardVelocity, upwardVelocity));
+            CatapultBlock newCatapultBlock = new CatapultBlock(block, direction, velocity);
+            catapultManager.addCatapultBlock(newCatapultBlock);
+            FileManager.saveCatapultBlock(newCatapultBlock);
+            player.sendMessage(PlayerMessage.catapultBlockCreated(direction, velocity));
         } else {
             catapultBlock.setDirection(direction);
-            catapultBlock.setForwardVelocity(forwardVelocity);
-            catapultBlock.setUpwardVelocity(upwardVelocity);
-            player.sendMessage(PlayerMessage.getCatapultBlockUpdated(direction, forwardVelocity, upwardVelocity));
+            catapultBlock.setVelocity(velocity);
+            FileManager.saveCatapultBlock(catapultBlock);
+            player.sendMessage(PlayerMessage.catapultBlockUpdated(direction, velocity));
         }
                 
         return true;

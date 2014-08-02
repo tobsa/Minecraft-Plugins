@@ -21,7 +21,8 @@ public class OnBlockBreak implements Listener {
         for(CatapultBlock catapultBlock : catapultManager.getCapultBlocks()) {
             if(catapultBlock.getBlock().equals(block)) {
                 catapultManager.removeCatapultBlock(catapultBlock);
-                player.sendMessage(PlayerMessage.getBlockRemoved(catapultBlock.getDirection(), catapultBlock.getForwardVelocity(), catapultBlock.getUpwardVelocity()));
+                player.sendMessage(PlayerMessage.blockRemoved(catapultBlock.getDirection(), catapultBlock.getVelocity()));
+                FileManager.removeCatapultBlock(catapultBlock);
                 break;
             }
         }

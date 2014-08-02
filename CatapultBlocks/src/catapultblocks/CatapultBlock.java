@@ -2,56 +2,50 @@ package catapultblocks;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.util.Vector;
 
 public class CatapultBlock {
     private Block block;
+    private Block activeBlock;
     private Direction direction;
-    private double forwardVelocity;
-    private double upwardVelocity;
+    private Vector velocity;
     
-    public CatapultBlock(Block block, Direction direction, double forwardVelocity, double upwardVelocity) {
+    public CatapultBlock(Block block, Direction direction, Vector velocity) {
         this.block = block;
-        this.direction = direction;
-        this.forwardVelocity = forwardVelocity;
-        this.upwardVelocity = upwardVelocity;
+        this.velocity = velocity;
+        
+        setDirection(direction);
     }
     
     public Block getBlock() {
         return block;
     }
     
+    public Block getActiveBlock() {
+        return activeBlock;
+    }
+    
     public Direction getDirection() {
         return direction;
     }
     
-    public Block getActiveBlock() {
-        switch(direction) {
-            case NORTH: return block.getRelative(BlockFace.NORTH);
-            case EAST:  return block.getRelative(BlockFace.EAST);   
-            case SOUTH: return block.getRelative(BlockFace.SOUTH);
-            case WEST:  return block.getRelative(BlockFace.WEST);
-        }
-        
-        return null;
+    public Vector getVelocity() {
+        return velocity;
     }
     
-    public double getForwardVelocity() {
-        return forwardVelocity;
-    }
-    
-    public double getUpwardVelocity() {
-        return upwardVelocity;
-    }
-    
-    public void setDirection(Direction direction) {
+    public final void setDirection(Direction direction) {
         this.direction = direction;
+        
+        switch(direction) {
+            case NORTH: activeBlock = block.getRelative(BlockFace.NORTH); break;
+            case EAST:  activeBlock = block.getRelative(BlockFace.EAST);  break;
+            case SOUTH: activeBlock = block.getRelative(BlockFace.SOUTH); break;
+            case WEST:  activeBlock = block.getRelative(BlockFace.WEST);  break;
+            case UP:    activeBlock = block.getRelative(BlockFace.UP);    break;
+        }
     }
     
-    public void setForwardVelocity(double forwardVelocity) {
-        this.forwardVelocity = forwardVelocity;
-    }
-    
-    public void setUpwardVelocity(double upwardVelocity) {
-        this.upwardVelocity = upwardVelocity;
+    public void setVelocity(Vector velocity) {
+        this.velocity = velocity;
     }
 }

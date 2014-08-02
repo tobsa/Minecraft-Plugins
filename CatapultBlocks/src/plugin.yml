@@ -3,9 +3,9 @@ main: catapultblocks.CatapultBlocks
 version: 1.0
 commands:
     catapultblock:
-        aliases: [cata, cblock, cb]
-        usage: /catapultblock <north|east|south|west> <forwardVelocity> <upwardVelocity>
+        aliases: [cblock, cb]
+        usage: /cb <north|east|south|west|up> <velX> <velY> <velZ>
         
     catapultblockhelp:
-        aliases: [catahelp, cblockhelp, cbhelp]
-        usage: /catapultblockhelp 
+        aliases: [cblockhelp, cbhelp]
+        usage: /cbhelp 
