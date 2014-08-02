@@ -51,4 +51,8 @@ public class PlayerMessage {
     public static String getCombinerRenamed(String originalName, String newName) {
         return NORMAL + "Redstone combiner '" + HIGHLIGHT + originalName + NORMAL + "' was renamed to '" + HIGHLIGHT + newName + NORMAL + "'!"; 
     }
+    
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
 }

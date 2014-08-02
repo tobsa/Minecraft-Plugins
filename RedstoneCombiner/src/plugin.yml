@@ -26,3 +26,7 @@ commands:
     redcombinerrename:
         aliases: [rcrename]
         usage: /redcombinerrename <originalName> <newName>
+        
+    redcombinerhelp:
+        aliases: [rchelp]
+        usage: /redcombinerhelp
