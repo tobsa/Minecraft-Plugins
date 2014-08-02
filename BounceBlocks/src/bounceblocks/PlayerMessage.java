@@ -30,4 +30,8 @@ public class PlayerMessage {
     public static String getBounceBlockDestroyed() {
         return NORMAL + "A bounce block was destroyed!";
     }
+    
+    public static String help() {
+        return HIGHLIGHT + "========== Help ==========";
+    }
 }

@@ -5,3 +5,7 @@ commands:
     bounceblock:
         aliases: [bblock, bb]
         usage: /bounceblock <jumpStrength>
+    
+    bounceblockhelp:
+        aliases: [bblockhelp, bbhelp]
+        usage: /bounceblockhelp
