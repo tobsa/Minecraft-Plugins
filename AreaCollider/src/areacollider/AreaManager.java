@@ -1,20 +1,15 @@
-package area;
+package areacollider;
 
-import areacollider.FileManager;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class AreaManager {
-    private Map<String, Area> areas;
-    
-    public AreaManager() {
-        areas = FileManager.loadAreas();
-    }
-    
+    private Map<String, Area> areas = new LinkedHashMap();
+        
     public void addArea(Area area) {
         areas.put(area.getName(), area);
-        FileManager.addArea(area);
     }
     
     public Area getArea(String playerName, String name) {
@@ -40,6 +35,5 @@ public class AreaManager {
     
     public void removeArea(String name) {
         areas.remove(name);
-        FileManager.removeArea(name);
     }
 }

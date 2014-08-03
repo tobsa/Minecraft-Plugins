@@ -1,15 +1,14 @@
-package area;
+package areacollider;
 
-import areacollider.PlayerMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaDeleteExecutor implements CommandExecutor {
+public class RenameExecutor implements CommandExecutor {
     private AreaManager areaManager;
     
-    public AreaDeleteExecutor(AreaManager areaManager) {
+    public RenameExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
     }
 
@@ -20,7 +19,7 @@ public class AreaDeleteExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 1) {
+        if(args.length != 2) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -31,9 +30,14 @@ public class AreaDeleteExecutor implements CommandExecutor {
             return true;
         }
         
-        areaManager.removeArea(area.getName());
-        player.sendMessage(PlayerMessage.areaDeleted(args[0]));
-       
+        if(areaManager.getArea(player.getName(), args[1]) != null) {
+            player.sendMessage(PlayerMessage.areaExists(args[1]));
+            return true;
+        }
+        
+        areaManager.renameArea(area, args[1]);
+        player.sendMessage(PlayerMessage.areaRenamed(area.getName(), args[1]));
+        
         return true;
     }
 }

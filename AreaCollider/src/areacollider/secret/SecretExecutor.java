@@ -1,8 +1,8 @@
-package areateleport;
+package areacollider.secret;
 
-import area.Area;
-import area.AreaManager;
-import areacollider.AreaCollider;
+import areacollider.Area;
+import areacollider.AreaManager;
+import areacollider.FileManager;
 import areacollider.PlayerMessage;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
@@ -12,11 +12,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaTeleportExecutor implements CommandExecutor {
+public class SecretExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private WorldEditPlugin worldEdit;
     
-    public AreaTeleportExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public SecretExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
         this.worldEdit = worldEdit;
     }
@@ -29,13 +29,12 @@ public class AreaTeleportExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         Selection selection = worldEdit.getSelection(player);
-
         if (selection == null) {
             player.sendMessage(PlayerMessage.missingRegionSelection());
             return true;
         }
         
-        if(args.length < 1) {
+        if(args.length != 1) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -48,12 +47,10 @@ public class AreaTeleportExecutor implements CommandExecutor {
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
                 
-        if(args.length == 1)
-            areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new AreaTeleportResponse(player.getLocation(), "")));
-        else
-            areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new AreaTeleportResponse(player.getLocation(), AreaCollider.combineArguments(args, 1))));
+        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new SecretResponse()));
+        player.sendMessage(PlayerMessage.areaCreated(args[0]));
+        FileManager.save(areaManager);
         
-        player.sendMessage(PlayerMessage.areaCreated(args[0]));  
         return true;
     }
 }

@@ -1,16 +1,20 @@
-package area;
+package areacollider;
 
-import areacollider.PlayerMessage;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaRenameExecutor implements CommandExecutor {
+public class SelectExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private WorldEditPlugin worldEdit;
     
-    public AreaRenameExecutor(AreaManager areaManager) {
+    public SelectExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
+        this.worldEdit = worldEdit;
     }
 
     @Override
@@ -20,7 +24,7 @@ public class AreaRenameExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 2) {
+        if(args.length != 1) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -31,14 +35,7 @@ public class AreaRenameExecutor implements CommandExecutor {
             return true;
         }
         
-        if(areaManager.getArea(player.getName(), args[1]) != null) {
-            player.sendMessage(PlayerMessage.areaExists(args[1]));
-            return true;
-        }
-        
-        areaManager.renameArea(area, args[1]);
-        player.sendMessage(PlayerMessage.getAreaRenamed(area.getName(), args[1]));
-        
+        worldEdit.setSelection(player, new CuboidSelection(Bukkit.getWorld("world"), area.getMinimumBlock().getLocation(), area.getMaximumBlock().getLocation()));        
         return true;
     }
 }

@@ -1,21 +1,15 @@
-package area;
+package areacollider;
 
-import areacollider.PlayerMessage;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaSelectExecutor implements CommandExecutor {
+public class DeleteExecutor implements CommandExecutor {
     private AreaManager areaManager;
-    private WorldEditPlugin worldEdit;
     
-    public AreaSelectExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public DeleteExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
-        this.worldEdit = worldEdit;
     }
 
     @Override
@@ -36,7 +30,9 @@ public class AreaSelectExecutor implements CommandExecutor {
             return true;
         }
         
-        worldEdit.setSelection(player, new CuboidSelection(Bukkit.getWorld("world"), area.getMinimumBlock().getLocation(), area.getMaximumBlock().getLocation()));        
+        areaManager.removeArea(area.getName());
+        player.sendMessage(PlayerMessage.areaDeleted(args[0]));
+       
         return true;
     }
 }

@@ -1,15 +1,14 @@
-package area;
+package areacollider;
 
-import areacollider.PlayerMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaListExecutor implements CommandExecutor {
+public class ListExecutor implements CommandExecutor {
     private AreaManager areaManager;
     
-    public AreaListExecutor(AreaManager areaManager) {
+    public ListExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
     }
 

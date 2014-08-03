@@ -20,11 +20,11 @@ public class PlayerMessage extends BaseMessage {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' was created!";
     }
     
-    public static String getInvalidSound(String name) {
+    public static String invalidSound(String name) {
         return ERROR + "Sound '" + HIGHLIGHT + name + ERROR + "' doesn't exist!";
     }
     
-    public static String getSecretAreaMessage() {
+    public static String secretAreaMessage() {
         return "Secret area found!";
     }
 
@@ -36,11 +36,11 @@ public class PlayerMessage extends BaseMessage {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' was deleted!";
     }
     
-    public static String getInventoryCleared() {
+    public static String inventoryCleared() {
         return NORMAL + "Your inventory has been cleared!";
     }
 
-    public static String getAreaRenamed(String originalName, String newName) {
+    public static String areaRenamed(String originalName, String newName) {
         return NORMAL + "Area '" + HIGHLIGHT + originalName + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "' ";
     }
 }

@@ -1,7 +1,5 @@
 package areacollider;
 
-import area.AreaManager;
-import area.Area;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;

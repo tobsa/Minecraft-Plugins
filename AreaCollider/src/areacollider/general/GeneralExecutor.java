@@ -1,21 +1,25 @@
-package areasecret;
+package areacollider.general;
 
-import area.Area;
-import area.AreaManager;
+import areacollider.Area;
+import areacollider.AreaCollider;
+import areacollider.AreaManager;
+import areacollider.FileManager;
 import areacollider.PlayerMessage;
+import areacollider.general.GeneralResponse;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AreaSecretExecutor implements CommandExecutor {
+public class GeneralExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private WorldEditPlugin worldEdit;
     
-    public AreaSecretExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public GeneralExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
         this.worldEdit = worldEdit;
     }
@@ -33,7 +37,7 @@ public class AreaSecretExecutor implements CommandExecutor {
             return true;
         }
         
-        if(args.length != 1) {
+        if(args.length < 2) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -42,13 +46,19 @@ public class AreaSecretExecutor implements CommandExecutor {
             player.sendMessage(PlayerMessage.areaExists(args[0]));
             return true;
         }
+        
+        Sound sound = AreaCollider.getSound(args[1]);
+        if(sound == null) {
+            player.sendMessage(PlayerMessage.invalidSound(args[1]));
+            return true;
+        }
 
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
-                
-        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new AreaSecretResponse()));
-        player.sendMessage(PlayerMessage.areaCreated(args[0]));
         
+        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new GeneralResponse(AreaCollider.combineArguments(args, 2), sound)));
+        FileManager.save(areaManager);
+        player.sendMessage(PlayerMessage.areaCreated(args[0]));
         return true;
     }
 }

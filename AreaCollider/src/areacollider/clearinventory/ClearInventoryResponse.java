@@ -1,10 +1,11 @@
-package clearinventory;
+package areacollider.clearinventory;
 
 import areacollider.CollisionResponse;
 import areacollider.PlayerMessage;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
+import areacollider.SerializedCollisionResponse;
 
 public class ClearInventoryResponse implements CollisionResponse {
 
@@ -39,6 +40,11 @@ public class ClearInventoryResponse implements CollisionResponse {
             }
         }
         
-        player.sendMessage(PlayerMessage.getInventoryCleared());
+        player.sendMessage(PlayerMessage.inventoryCleared());
+    }
+
+    @Override
+    public SerializedCollisionResponse getSerializedResponse() {
+        return new SerializedClearInventoryResponse();
     }
 }

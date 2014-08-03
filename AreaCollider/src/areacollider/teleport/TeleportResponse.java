@@ -1,17 +1,18 @@
-package areateleport;
+package areacollider.teleport;
 
 import areacollider.CollisionResponse;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import areacollider.SerializedCollisionResponse;
 
-public class AreaTeleportResponse implements CollisionResponse {
+public class TeleportResponse implements CollisionResponse {
     private Location location;
     private float yaw;
     private float pitch;
     private String message;
     
-    public AreaTeleportResponse(Location location, String message) {
+    public TeleportResponse(Location location, String message) {
         this.location = location;
         this.yaw = location.getYaw();
         this.pitch = location.getPitch();
@@ -41,5 +42,10 @@ public class AreaTeleportResponse implements CollisionResponse {
         
         player.teleport(new Location(location.getWorld(), location.getX(), location.getY(), location.getZ(), yaw, pitch));
         player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
+    }
+
+    @Override
+    public SerializedCollisionResponse getSerializedResponse() {
+        return new SerializedTeleportResponse(this);
     }
 }
