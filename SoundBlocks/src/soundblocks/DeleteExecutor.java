@@ -25,8 +25,10 @@ public class DeleteExecutor implements CommandExecutor {
         }
         
         SoundBlock soundBlock = soundBlockManager.getSoundBlock(player.getTargetBlock(null, 6));
-        if(soundBlockManager.removeSoundBlock(soundBlock)) 
+        if(soundBlockManager.removeSoundBlock(soundBlock)) {
             player.sendMessage(PlayerMessage.soundBlockRemoved(soundBlock));
+            FileManager.save(soundBlockManager);
+        }
         else
             player.sendMessage(PlayerMessage.missingSoundBlock());
         

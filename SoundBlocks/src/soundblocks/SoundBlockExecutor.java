@@ -33,6 +33,7 @@ public class SoundBlockExecutor implements CommandExecutor {
             try {
                 soundBlock = new SoundBlock(block, Sound.valueOf(args[0]));
                 soundBlockManager.addSoundBlock(soundBlock);
+                FileManager.save(soundBlockManager);
                 player.sendMessage(PlayerMessage.soundBlockCreated(soundBlock));
             } catch(IllegalArgumentException ex) {
                 player.sendMessage(PlayerMessage.invalidSound(args[0]));
