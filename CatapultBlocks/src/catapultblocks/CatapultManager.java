@@ -1,15 +1,12 @@
 package catapultblocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.block.Block;
 
 public class CatapultManager {
-    private List<CatapultBlock> catapultBlocks;
-    
-    public CatapultManager(List<CatapultBlock> catapultBlocks) {
-        this.catapultBlocks = catapultBlocks;
-    }
-    
+    private List<CatapultBlock> catapultBlocks = new ArrayList();
+        
     public void addCatapultBlock(CatapultBlock catapultBlock) {
         catapultBlocks.add(catapultBlock);
     }

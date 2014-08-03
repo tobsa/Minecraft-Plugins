@@ -57,12 +57,12 @@ public class CatapultBlockExecutor implements CommandExecutor {
         if(catapultBlock == null) {
             CatapultBlock newCatapultBlock = new CatapultBlock(block, direction, velocity);
             catapultManager.addCatapultBlock(newCatapultBlock);
-            FileManager.saveCatapultBlock(newCatapultBlock);
+            FileManager.save(catapultManager);
             player.sendMessage(PlayerMessage.catapultBlockCreated(direction, velocity));
         } else {
             catapultBlock.setDirection(direction);
             catapultBlock.setVelocity(velocity);
-            FileManager.saveCatapultBlock(catapultBlock);
+            FileManager.save(catapultManager);
             player.sendMessage(PlayerMessage.catapultBlockUpdated(direction, velocity));
         }
                 

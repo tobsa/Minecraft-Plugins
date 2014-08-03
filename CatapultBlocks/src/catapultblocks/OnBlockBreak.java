@@ -22,7 +22,7 @@ public class OnBlockBreak implements Listener {
             if(catapultBlock.getBlock().equals(block)) {
                 catapultManager.removeCatapultBlock(catapultBlock);
                 player.sendMessage(PlayerMessage.blockRemoved(catapultBlock.getDirection(), catapultBlock.getVelocity()));
-                FileManager.removeCatapultBlock(catapultBlock);
+                FileManager.save(catapultManager);
                 break;
             }
         }
