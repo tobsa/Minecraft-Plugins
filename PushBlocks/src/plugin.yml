@@ -1,3 +1,20 @@
 name: PushBlocks
 main: pushblocks.PushBlocks
 version: 1.0
+depend: [PuzzlePack, WorldEdit]
+commands:
+    pushblockspath:
+        aliases: [pbpath]
+        usage: /pbpath
+        
+    pushblocksdelete:
+        aliases: [pbdelete, pbdel]
+        usage: /pbdelete
+        
+    pushblocksselect:
+        aliases: [pbselect, pbsel]
+        usage: /pbselect
+        
+    pushblockshelp:
+        aliases: [pbhelp]
+        usage: /pbhelp
