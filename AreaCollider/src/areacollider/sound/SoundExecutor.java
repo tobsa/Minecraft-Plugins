@@ -1,4 +1,4 @@
-package areacollider.general;
+package areacollider.sound;
 
 import areacollider.Area;
 import areacollider.AreaCollider;
@@ -14,11 +14,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class GeneralExecutor implements CommandExecutor {
+public class SoundExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private WorldEditPlugin worldEdit;
     
-    public GeneralExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public SoundExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
         this.worldEdit = worldEdit;
     }
@@ -36,7 +36,7 @@ public class GeneralExecutor implements CommandExecutor {
             return true;
         }
         
-        if(args.length < 3) {
+        if(args.length != 2) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -55,7 +55,7 @@ public class GeneralExecutor implements CommandExecutor {
         Block block1 = selection.getMinimumPoint().getBlock();
         Block block2 = selection.getMaximumPoint().getBlock();
         
-        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new GeneralResponse(AreaCollider.combineArguments(args, 2), sound)));
+        areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new SoundResponse(sound)));
         FileManager.save(areaManager);
         player.sendMessage(PlayerMessage.areaCreated(args[0]));
         return true;

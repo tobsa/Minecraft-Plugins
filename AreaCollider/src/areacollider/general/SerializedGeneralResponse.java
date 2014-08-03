@@ -1,7 +1,6 @@
 package areacollider.general;
 
 import areacollider.SerializedCollisionResponse;
-import areacollider.general.GeneralResponse;
 import areacollider.CollisionResponse;
 import org.bukkit.Sound;
 
