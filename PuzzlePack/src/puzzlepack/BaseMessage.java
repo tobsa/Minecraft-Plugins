@@ -15,4 +15,8 @@ public class BaseMessage {
     public static String invalidArguments(String usage) {
         return ERROR + "Invalid arguments. Usage: " + usage;
     }
+    
+    public static String missingSelection() {
+        return ERROR + "Make a region selection first!";
+    }
 }
