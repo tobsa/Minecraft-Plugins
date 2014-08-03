@@ -21,23 +21,23 @@ public class RedstoneCombinerDelinkExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
-            player.sendMessage(PlayerMessage.getMissingCombiner(args[0]));
+            player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
                 
         Block link = player.getTargetBlock(null, 6);
         if(combiner.removeLink(link)) {
             FileManager.removeLink(combiner.getName(), link);
-            player.sendMessage(PlayerMessage.getLinkRemoved(args[0]));    
+            player.sendMessage(PlayerMessage.linkRemoved(args[0]));    
         }
         else
-            player.sendMessage(PlayerMessage.getMissingLink(args[0]));
+            player.sendMessage(PlayerMessage.missingLink(args[0]));
         
         return true;
     }

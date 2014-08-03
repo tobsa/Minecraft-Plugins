@@ -1,8 +1,8 @@
 package toggleblocks;
 
-import puzzlepack.CommandColor;
+import puzzlepack.BaseMessage;
 
-public class PlayerMessage extends CommandColor {
+public class PlayerMessage extends BaseMessage {
         
     public static String invalidArguments(String usage) {
         return ERROR + "Invalid arguments. Usage: " + usage;

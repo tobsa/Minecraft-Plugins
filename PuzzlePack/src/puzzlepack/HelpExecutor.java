@@ -1,4 +1,4 @@
-package areacollider;
+package puzzlepack;
 
 import java.util.List;
 import org.bukkit.command.Command;
@@ -21,7 +21,7 @@ public class HelpExecutor implements CommandExecutor {
 
         Player player = (Player)sender;
                 
-        player.sendMessage(PlayerMessage.help());
+        player.sendMessage(BaseMessage.help());
         
         for(PluginCommand pluginCommand : commands)
             player.sendMessage(" " + pluginCommand.getUsage());

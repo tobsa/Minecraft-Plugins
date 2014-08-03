@@ -1,19 +1,10 @@
 package minepillars;
 
 import java.util.List;
-import org.bukkit.ChatColor;
-import puzzlepack.CommandColor;
+import puzzlepack.BaseMessage;
 
-public class PlayerMessage {
-    private static final ChatColor HEADER    = CommandColor.HEADER;
-    private static final ChatColor NORMAL    = CommandColor.NORMAL;
-    private static final ChatColor ERROR     = CommandColor.ERROR;
-    private static final ChatColor HIGHLIGHT = CommandColor.HIGHLIGHT;
+public class PlayerMessage extends BaseMessage {
     
-    public static String invalidArguments(String usage) {
-        return ERROR + "Invalid arguments. Usage: " + usage;
-    }
-
     public static String invalidNumber(String number) {
         return ERROR + "'" + HIGHLIGHT + number + ERROR + "' must be a number!";
     }
@@ -26,9 +17,5 @@ public class PlayerMessage {
         values = values + HIGHLIGHT + numbers.get(numbers.size() - 1) + NORMAL + "]";
         
         return values;
-    }
-
-    public static String help() {
-        return HIGHLIGHT + "========== Help ==========";
     }
 }

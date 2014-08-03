@@ -20,23 +20,23 @@ public class RedstoneCombinerRenameExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         if(args.length != 2) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
-            player.sendMessage(PlayerMessage.getMissingCombiner(args[0]));
+            player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
         
         if(combinerManager.getCombiner(player.getName(), args[1]) != null) {
-            player.sendMessage(PlayerMessage.getCombinerExists(args[1]));
+            player.sendMessage(PlayerMessage.combinerExists(args[1]));
             return true;
         }
         
         combinerManager.renameCombiner(combiner, args[1]);
-        player.sendMessage(PlayerMessage.getCombinerRenamed(args[0], args[1]));
+        player.sendMessage(PlayerMessage.combinerRenamed(args[0], args[1]));
         
         return true;
     }

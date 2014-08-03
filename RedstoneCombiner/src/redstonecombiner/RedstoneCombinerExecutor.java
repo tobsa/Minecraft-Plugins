@@ -22,24 +22,24 @@ public class RedstoneCombinerExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         if(combinerManager.getCombiner(player.getName(), args[0]) != null) {
-            player.sendMessage(PlayerMessage.getCombinerExists(args[0]));
+            player.sendMessage(PlayerMessage.combinerExists(args[0]));
             return true;
         }
                 
         Block block = player.getTargetBlock(null, 6);
         if(!(block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)) {
-            player.sendMessage(PlayerMessage.getInvalidBlock());
+            player.sendMessage(PlayerMessage.invalidBlock());
             return true;
         }
         
         Combiner combiner = new Combiner(player.getName(), args[0], block);
         combinerManager.addCombiner(combiner);
-        player.sendMessage(PlayerMessage.getCombinerCreated(args[0]));
+        player.sendMessage(PlayerMessage.combinerCreated(args[0]));
         
         return true;
     }

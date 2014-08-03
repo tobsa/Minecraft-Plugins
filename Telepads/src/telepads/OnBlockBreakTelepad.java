@@ -25,12 +25,12 @@ public class OnBlockBreakTelepad implements Listener {
             
             if(block.equals(telepad.getFrom().getBlock().getRelative(BlockFace.DOWN))) {
                 telepadManager.removeFrom(telepad);
-                player.sendMessage(PlayerMessage.getFromBlockDestroyed(telepad.getName()));
+                player.sendMessage(PlayerMessage.fromBlockDestroyed(telepad.getName()));
             }
                 
             if(block.equals(telepad.getTo().getBlock().getRelative(BlockFace.DOWN))) {
                 telepadManager.removeTo(telepad);
-                player.sendMessage(PlayerMessage.getToBlockDestroyed(telepad.getName()));
+                player.sendMessage(PlayerMessage.toBlockDestroyed(telepad.getName()));
             }
         }
     }

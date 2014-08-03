@@ -1,31 +1,22 @@
 package areacollider;
 
-import org.bukkit.ChatColor;
-import puzzlepack.CommandColor;
+import puzzlepack.BaseMessage;
 
-public class PlayerMessage {    
-    private static final ChatColor HEADER    = CommandColor.HEADER;
-    private static final ChatColor NORMAL    = CommandColor.NORMAL;
-    private static final ChatColor ERROR     = CommandColor.ERROR;
-    private static final ChatColor HIGHLIGHT = CommandColor.HIGHLIGHT;
+public class PlayerMessage extends BaseMessage {    
     
-    public static String getMissingRegionSelection() {
+    public static String missingRegionSelection() {
         return ERROR + "Make a region selection first!";
     }
-    
-    public static String getInvalidArguments(String usage) {
-        return ERROR + "Invalid arguments. Usage: " + usage;
-    }
-    
-    public static String getAreaExists(String name) {
+        
+    public static String areaExists(String name) {
         return ERROR + "Area '" + HIGHLIGHT + name + ERROR + "' already exists!";
     }
     
-    public static String getMissingArea(String name) {
+    public static String missingArea(String name) {
         return ERROR + "Area '" + HIGHLIGHT + name + ERROR + "' doesn't exist!";
     }
     
-    public static String getAreaCreated(String name) {
+    public static String areaCreated(String name) {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' was created!";
     }
     
@@ -37,11 +28,11 @@ public class PlayerMessage {
         return "Secret area found!";
     }
 
-    public static String getListHeader() {
+    public static String listHeader() {
         return HEADER + "========== Area List ==========";
     }
     
-    public static String getAreaDeleted(String name) {
+    public static String areaDeleted(String name) {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' was deleted!";
     }
     
@@ -51,9 +42,5 @@ public class PlayerMessage {
 
     public static String getAreaRenamed(String originalName, String newName) {
         return NORMAL + "Area '" + HIGHLIGHT + originalName + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "' ";
-    }
-
-    public static String help() {
-        return HIGHLIGHT + "========== Help ==========";
     }
 }

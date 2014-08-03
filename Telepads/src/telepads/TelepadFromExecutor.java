@@ -27,7 +27,7 @@ public class TelepadFromExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
@@ -39,7 +39,7 @@ public class TelepadFromExecutor implements CommandExecutor {
                 
         telepad.setFrom(player.getTargetBlock(null, 6).getRelative(BlockFace.UP).getLocation());
         telepadManager.saveFrom(telepad);
-        player.sendMessage(PlayerMessage.getTelepadFromUpdated(args[0]));
+        player.sendMessage(PlayerMessage.telepadFromUpdated(args[0]));
 
         return true;
     }

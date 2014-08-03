@@ -21,18 +21,18 @@ public class AreaRenameExecutor implements CommandExecutor {
         Player player = (Player)sender;
                 
         if(args.length != 2) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Area area = areaManager.getArea(player.getName(), args[0]);
         if(area == null) {
-            player.sendMessage(PlayerMessage.getMissingArea(args[0]));
+            player.sendMessage(PlayerMessage.missingArea(args[0]));
             return true;
         }
         
         if(areaManager.getArea(player.getName(), args[1]) != null) {
-            player.sendMessage(PlayerMessage.getAreaExists(args[1]));
+            player.sendMessage(PlayerMessage.areaExists(args[1]));
             return true;
         }
         

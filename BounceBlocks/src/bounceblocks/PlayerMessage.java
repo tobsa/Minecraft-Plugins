@@ -1,35 +1,27 @@
 package bounceblocks;
 
-import org.bukkit.ChatColor;
-import puzzlepack.CommandColor;
+import puzzlepack.BaseMessage;
 
-public class PlayerMessage {
-    private static final ChatColor HEADER    = CommandColor.HEADER;
-    private static final ChatColor NORMAL    = CommandColor.NORMAL;
-    private static final ChatColor ERROR     = CommandColor.ERROR;
-    private static final ChatColor HIGHLIGHT = CommandColor.HIGHLIGHT;
+
+public class PlayerMessage extends BaseMessage {
         
-    public static String getInvalidArguments(String usage) {
-        return ERROR + "Invalid arguments. Usage: " + usage;
-    }
-
-    public static String getWoolCheck() {
+    public static String woolCheck() {
         return ERROR + "You must look at a white wool block!";
     }
     
-    public static String getBounceBlockCreated(double jumpStrength) {
+    public static String bounceBlockCreated(double jumpStrength) {
         return NORMAL + "A bounce block with jump strength '" + HIGHLIGHT + jumpStrength + NORMAL + "' was created";
     }
     
-    public static String getBounceBlockUpdated(double jumpStrength) {
+    public static String bounceBlockUpdated(double jumpStrength) {
         return NORMAL + "A bounce block was updated with jump strength '" + HIGHLIGHT + jumpStrength + NORMAL + "'";
     }
     
-    public static String getNumberCheck(String arg) {
+    public static String numberCheck(String arg) {
         return ERROR + "Argument '" + HIGHLIGHT + arg + ERROR + "' must be a number!";
     }
     
-    public static String getBounceBlockDestroyed() {
+    public static String bounceBlockDestroyed() {
         return NORMAL + "A bounce block was destroyed!";
     }
     

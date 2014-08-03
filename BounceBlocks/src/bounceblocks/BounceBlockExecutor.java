@@ -24,7 +24,7 @@ public class BounceBlockExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
@@ -36,18 +36,18 @@ public class BounceBlockExecutor implements CommandExecutor {
             if(bounceBlock == null) {
 
                 if(block.getType() != Material.WOOL || new Wool(block.getType(), block.getData()).getColor() != DyeColor.WHITE) {
-                    player.sendMessage(PlayerMessage.getWoolCheck());
+                    player.sendMessage(PlayerMessage.woolCheck());
                     return true;
                 }
 
                 bounceBlockManager.addBounceBlock(block, jumpStrength);
-                player.sendMessage(PlayerMessage.getBounceBlockCreated(jumpStrength));
+                player.sendMessage(PlayerMessage.bounceBlockCreated(jumpStrength));
             } else {
                 bounceBlockManager.setJumpStrength(bounceBlock, jumpStrength);
-                player.sendMessage(PlayerMessage.getBounceBlockUpdated(jumpStrength));
+                player.sendMessage(PlayerMessage.bounceBlockUpdated(jumpStrength));
             }
         } catch(NumberFormatException ex) {
-            player.sendMessage(PlayerMessage.getNumberCheck(args[0]));
+            player.sendMessage(PlayerMessage.numberCheck(args[0]));
             return true;
         }
         

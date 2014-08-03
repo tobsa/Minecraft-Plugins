@@ -1,0 +1,21 @@
+name: SoundBlocks
+main: soundblocks.SoundBlocks
+version: 1.0
+depend: [PuzzlePack]
+commands:
+    
+    soundblock:
+        aliases: [sblock, sb]
+        usage: /sb <sound>
+        
+    soundblockdelete:
+        aliases: [sblockdelete, sblockdel, sbdelete, sbdel]
+        usage: /sbdelete 
+    
+    soundblocklist:
+        aliases: [sblocklist, sblist]
+        usage: /sblist <1|2>
+        
+    soundblockhelp:
+        aliases: [sblockhelp, sbhelp]
+        usage: /sbhelp

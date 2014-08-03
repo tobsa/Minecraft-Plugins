@@ -1,14 +1,10 @@
 package catapultblocks;
 
 import org.bukkit.util.Vector;
-import puzzlepack.CommandColor;
+import puzzlepack.BaseMessage;
 
-public class PlayerMessage extends CommandColor {
+public class PlayerMessage extends BaseMessage {
     
-    public static String invalidArguments(String usage) {
-        return ERROR + "Invalid arguments. Usage: " + usage;
-    }
-
     public static String invalidDirection(String direction) {
         return ERROR + "Direction '" + HIGHLIGHT + direction + ERROR + "' is invalid! <north|east|south|west>";
     }
@@ -37,9 +33,4 @@ public class PlayerMessage extends CommandColor {
                                              + HIGHLIGHT + velocity.getBlockY() + NORMAL + ", " 
                                              + HIGHLIGHT + velocity.getBlockZ() + NORMAL + ") has been removed!";
     }
-    
-    public static String help() {
-        return HIGHLIGHT + "========== Help ==========";
-    }
-    
 }

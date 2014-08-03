@@ -22,17 +22,17 @@ public class TelepadExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         if(!telepadManager.isAvailable(args[0])) {
-            player.sendMessage(PlayerMessage.getTelepadExist(args[0]));
+            player.sendMessage(PlayerMessage.telepadExist(args[0]));
             return true;
         }
         
         telepadManager.createTelepad(args[0], player.getPlayerListName());
-        player.sendMessage(PlayerMessage.getTelepadCreated(args[0]));
+        player.sendMessage(PlayerMessage.telepadCreated(args[0]));
 
         return true;
     }

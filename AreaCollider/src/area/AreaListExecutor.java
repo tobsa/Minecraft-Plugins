@@ -21,11 +21,11 @@ public class AreaListExecutor implements CommandExecutor {
         Player player = (Player)sender;
                 
         if(args.length != 0) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
-        player.sendMessage(PlayerMessage.getListHeader());
+        player.sendMessage(PlayerMessage.listHeader());
         
         int number = 1;
         for(Area area : areaManager.getAreas())

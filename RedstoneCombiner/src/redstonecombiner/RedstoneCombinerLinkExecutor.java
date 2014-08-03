@@ -22,25 +22,25 @@ public class RedstoneCombinerLinkExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
-            player.sendMessage(PlayerMessage.getMissingCombiner(args[0]));
+            player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
         
         Block block = player.getTargetBlock(null, 6);
         if(!(block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)) {
-            player.sendMessage(PlayerMessage.getInvalidBlock());
+            player.sendMessage(PlayerMessage.invalidBlock());
             return true;
         }
                 
         combiner.addLink(block);
         FileManager.saveLink(combiner.getName(), block);
-        player.sendMessage(PlayerMessage.getCombinerAddLink(args[0]));
+        player.sendMessage(PlayerMessage.combinerAddLink(args[0]));
         
         return true;
     }

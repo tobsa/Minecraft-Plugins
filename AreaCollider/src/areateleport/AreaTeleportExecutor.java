@@ -31,17 +31,17 @@ public class AreaTeleportExecutor implements CommandExecutor {
         Selection selection = worldEdit.getSelection(player);
 
         if (selection == null) {
-            player.sendMessage(PlayerMessage.getMissingRegionSelection());
+            player.sendMessage(PlayerMessage.missingRegionSelection());
             return true;
         }
         
         if(args.length < 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         if(areaManager.getArea(player.getName(), args[0]) != null) {
-            player.sendMessage(PlayerMessage.getAreaExists(args[0]));
+            player.sendMessage(PlayerMessage.areaExists(args[0]));
             return true;
         }
 
@@ -53,7 +53,7 @@ public class AreaTeleportExecutor implements CommandExecutor {
         else
             areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new AreaTeleportResponse(player.getLocation(), AreaCollider.combineArguments(args, 1))));
         
-        player.sendMessage(PlayerMessage.getAreaCreated(args[0]));  
+        player.sendMessage(PlayerMessage.areaCreated(args[0]));  
         return true;
     }
 }

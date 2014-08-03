@@ -1,17 +1,17 @@
-package redstonecombiner;
+package soundblocks;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RedstoneCombinerListExecutor implements CommandExecutor {
-    private CombinerManager combinerManager;
+public class DeleteExecutor implements CommandExecutor {
+    private SoundBlockManager soundBlockManager;
     
-    public RedstoneCombinerListExecutor(CombinerManager combinerManager) {
-        this.combinerManager = combinerManager;
+    public DeleteExecutor(SoundBlockManager soundBlockManager) {
+        this.soundBlockManager = soundBlockManager;
     }
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player))
@@ -24,14 +24,12 @@ public class RedstoneCombinerListExecutor implements CommandExecutor {
             return true;
         }
         
-        player.sendMessage(PlayerMessage.headerList());
-        int number = 1;
-        for(Combiner combiner : combinerManager.getCombiners()) {
-            if(combiner.getPlayerName().equalsIgnoreCase(player.getName()))
-                player.sendMessage(number++ + ". " + combiner.getName());
-        }
-                
+        SoundBlock soundBlock = soundBlockManager.getSoundBlock(player.getTargetBlock(null, 6));
+        if(soundBlockManager.removeSoundBlock(soundBlock)) 
+            player.sendMessage(PlayerMessage.soundBlockRemoved(soundBlock));
+        else
+            player.sendMessage(PlayerMessage.missingSoundBlock());
+        
         return true;
     }
-    
 }

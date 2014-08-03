@@ -28,14 +28,14 @@ public class OnBlockBreakEvent implements Listener {
             
             if(toggleBlock.equals(block) || toggleBlock.getRelative(BlockFace.DOWN).equals(block)) {
                 combinerManager.removeCombiner(combiner);
-                player.sendMessage(PlayerMessage.getCombinerRemoved(combiner.getName()));
+                player.sendMessage(PlayerMessage.combinerRemoved(combiner.getName()));
             }
             
             for(Block link : combiner.getLinks()) {
                 if(block.equals(link)) {
                     combiner.removeLink(link);
                     FileManager.removeLink(combiner.getName(), link);
-                    player.sendMessage(PlayerMessage.getLinkRemoved(combiner.getName()));
+                    player.sendMessage(PlayerMessage.linkRemoved(combiner.getName()));
                     break;
                 }
             }

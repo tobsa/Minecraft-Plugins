@@ -21,7 +21,7 @@ public class TelepadDeleteExecutor implements CommandExecutor {
         Player player = (Player) sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
@@ -32,7 +32,7 @@ public class TelepadDeleteExecutor implements CommandExecutor {
         }     
         
         telepadManager.removeTelepad(telepad);
-        player.sendMessage(PlayerMessage.getTelepadDestroyed(args[0]));
+        player.sendMessage(PlayerMessage.telepadDestroyed(args[0]));
         
         return true;
     }

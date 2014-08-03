@@ -14,6 +14,6 @@ public class OnPlayerBounceBlockBreak implements Listener {
     @EventHandler
     public void onBlockBreakEvent(BlockBreakEvent event) {
         if(bounceBlockManager.removeBlock(event.getBlock()))
-            event.getPlayer().sendMessage(PlayerMessage.getBounceBlockDestroyed());
+            event.getPlayer().sendMessage(PlayerMessage.bounceBlockDestroyed());
     }
 }

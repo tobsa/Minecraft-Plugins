@@ -13,6 +13,7 @@ import areateleport.AreaTeleportExecutor;
 import clearinventory.AreaClearInventoryExecutor;
 import org.bukkit.Sound;
 import puzzlepack.CommandRegister;
+import puzzlepack.HelpExecutor;
 
 public class AreaCollider extends JavaPlugin { 
     

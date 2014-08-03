@@ -21,7 +21,7 @@ public class TelepadListExecutor implements CommandExecutor {
 
         Player player = (Player) sender;
                         
-        player.sendMessage(PlayerMessage.getListHeader());
+        player.sendMessage(PlayerMessage.listHeader());
         
         int number = 1;
         for(Telepad telepad : telepadManager.getTelepads())

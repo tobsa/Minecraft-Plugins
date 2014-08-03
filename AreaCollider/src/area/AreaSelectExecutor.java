@@ -26,13 +26,13 @@ public class AreaSelectExecutor implements CommandExecutor {
         Player player = (Player)sender;
                 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
         
         Area area = areaManager.getArea(player.getName(), args[0]);
         if(area == null) {
-            player.sendMessage(PlayerMessage.getMissingArea(args[0]));
+            player.sendMessage(PlayerMessage.missingArea(args[0]));
             return true;
         }
         

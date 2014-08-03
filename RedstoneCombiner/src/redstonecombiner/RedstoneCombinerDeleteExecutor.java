@@ -22,18 +22,18 @@ public class RedstoneCombinerDeleteExecutor implements CommandExecutor {
         Player player = (Player)sender;
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.getInvalidArguments(command.getUsage()));
+            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
                 
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
-            player.sendMessage(PlayerMessage.getMissingCombiner(args[0]));
+            player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
                 
         combinerManager.removeCombiner(combiner);
-        player.sendMessage(PlayerMessage.getCombinerRemoved(args[0]));
+        player.sendMessage(PlayerMessage.combinerRemoved(args[0]));
         
         return true;
     }
