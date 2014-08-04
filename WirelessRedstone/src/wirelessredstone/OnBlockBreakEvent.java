@@ -29,7 +29,7 @@ public class OnBlockBreakEvent implements Listener {
 
                 // Erase the transmitter from the list
                 plugin.channel.getTransmitters().remove(transmitter);
-                event.getPlayer().sendMessage(ChatColor.AQUA + "Transmitter (" + transmitter.getChannel() + ") was destroyed!");
+                event.getPlayer().sendMessage(ChatColor.WHITE + "Transmitter (" + ChatColor.GREEN + transmitter.getChannel() + ChatColor.WHITE + ") was destroyed!");
                 break;
             }
 
@@ -41,7 +41,7 @@ public class OnBlockBreakEvent implements Listener {
                     plugin.saveConfig();
 
                     transmitter.getReceivers().remove(receiver);
-                    event.getPlayer().sendMessage(ChatColor.AQUA + "Receiver (" + receiver.getChannel() + ") was destroyed!");
+                    event.getPlayer().sendMessage(ChatColor.WHITE + "Receiver (" + ChatColor.GREEN + receiver.getChannel() + ChatColor.WHITE + ") was destroyed!");
                     break;
                 }
             }

@@ -20,7 +20,7 @@ public class OnSignChangeEvent implements Listener {
                 onSignEmpty(event);
                 event.getPlayer().sendMessage(ChatColor.RED + "Channel must have a name!");
             } else if (plugin.channel.createTransmitter(event.getBlock().getLocation(), event.getLine(1))) {
-                event.getPlayer().sendMessage(ChatColor.AQUA + "Transmitter (" + event.getLine(1) + ") created!");
+                event.getPlayer().sendMessage(ChatColor.WHITE + "Transmitter (" + ChatColor.GREEN + event.getLine(1) + ChatColor.WHITE  + ") created!");
             } else {
                 onSignEmpty(event);
                 event.getPlayer().sendMessage(ChatColor.RED + "A transmitter with that channel already exist!");
@@ -32,7 +32,7 @@ public class OnSignChangeEvent implements Listener {
                 event.getPlayer().sendMessage(ChatColor.RED + "Channel must have a name!");
             } else {
                 plugin.channel.createReceiver(event.getBlock().getLocation(), event.getLine(1));
-                event.getPlayer().sendMessage(ChatColor.AQUA + "Receiver (" + event.getLine(1) + ") created!");
+                event.getPlayer().sendMessage(ChatColor.WHITE + "Receiver (" + ChatColor.GREEN + event.getLine(1) + ChatColor.WHITE + ") created!");
             }
         }
     }
