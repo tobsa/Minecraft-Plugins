@@ -36,6 +36,7 @@ public class RedstoneCombinerRenameExecutor implements CommandExecutor {
         }
         
         combinerManager.renameCombiner(combiner, args[1]);
+        FileManager.save(combinerManager);
         player.sendMessage(PlayerMessage.combinerRenamed(args[0], args[1]));
         
         return true;

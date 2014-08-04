@@ -33,6 +33,7 @@ public class RedstoneCombinerDeleteExecutor implements CommandExecutor {
         }
                 
         combinerManager.removeCombiner(combiner);
+        FileManager.save(combinerManager);
         player.sendMessage(PlayerMessage.combinerRemoved(args[0]));
         
         return true;

@@ -7,8 +7,7 @@ public class RedstoneCombiner extends JavaPlugin {
     
     @Override
     public void onEnable() {
-        FileManager.setPlugin(this);
-        CombinerManager combinerManager = new CombinerManager();
+        CombinerManager combinerManager = FileManager.load();
 
         getServer().getPluginManager().registerEvents(new OnBlockRedstoneEvent(combinerManager), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreakEvent(combinerManager), this);

@@ -33,7 +33,7 @@ public class RedstoneCombinerDelinkExecutor implements CommandExecutor {
                 
         Block link = player.getTargetBlock(null, 6);
         if(combiner.removeLink(link)) {
-            FileManager.removeLink(combiner.getName(), link);
+            FileManager.save(combinerManager);
             player.sendMessage(PlayerMessage.linkRemoved(args[0]));    
         }
         else

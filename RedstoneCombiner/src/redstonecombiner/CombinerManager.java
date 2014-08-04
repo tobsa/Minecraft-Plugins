@@ -8,14 +8,9 @@ import org.bukkit.block.Block;
 
 public class CombinerManager {
     private Map<String, Combiner> combiners = new LinkedHashMap();
-    
-    public CombinerManager() {
-        combiners = FileManager.load();
-    }
-    
+        
     public void addCombiner(Combiner combiner) {
-        combiners.put(combiner.getName(), combiner);
-        FileManager.saveCombiner(combiner);        
+        combiners.put(combiner.getName(), combiner);      
     }
     
     public Combiner getCombiner(String playerName, String name) {
@@ -33,7 +28,6 @@ public class CombinerManager {
         Combiner newCombiner = new Combiner(combiner.getPlayerName(), newName, combiner.getToggleBlock());
         for(Block link : combiner.getLinks()) {
             newCombiner.addLink(link);
-            FileManager.saveLink(newName, link);
         }
         
         removeCombiner(combiner);
@@ -46,6 +40,5 @@ public class CombinerManager {
 
     public void removeCombiner(Combiner combiner) {
         combiners.remove(combiner.getName());
-        FileManager.removeCombiner(combiner);
     }
 }

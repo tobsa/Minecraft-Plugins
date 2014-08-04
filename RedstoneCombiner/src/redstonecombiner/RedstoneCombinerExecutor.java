@@ -39,6 +39,7 @@ public class RedstoneCombinerExecutor implements CommandExecutor {
         
         Combiner combiner = new Combiner(player.getName(), args[0], block);
         combinerManager.addCombiner(combiner);
+        FileManager.save(combinerManager);
         player.sendMessage(PlayerMessage.combinerCreated(args[0]));
         
         return true;
