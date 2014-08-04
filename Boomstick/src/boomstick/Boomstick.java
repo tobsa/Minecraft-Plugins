@@ -9,6 +9,5 @@ public class Boomstick extends JavaPlugin {
         
         getServer().getPluginManager().registerEvents(new OnPlayerInteractEvent(), this);
         
-    }
-    
+    }   
 }
