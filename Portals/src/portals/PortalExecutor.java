@@ -48,7 +48,7 @@ public class PortalExecutor implements CommandExecutor {
         
         Portal portal = new Portal(args[0], player.getName(), minimumBlock, maximumBlock, teleportLocation);
         portalManager.addPortal(portal);
-        FileManager.savePortal(portal);        
+        FileManager.save(portalManager);
         
         player.sendMessage(PlayerMessage.portalCreated(args[0]));
         

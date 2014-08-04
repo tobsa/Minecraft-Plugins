@@ -6,10 +6,8 @@ import puzzlepack.CommandRegister;
 public class Telepads extends JavaPlugin {
     
     @Override
-    public void onEnable() {
-        FileManager.setPlugin(this);
-        
-        TelepadManager telepadManager = new TelepadManager();
+    public void onEnable() {        
+        TelepadManager telepadManager = FileManager.load();
         
         getServer().getPluginManager().registerEvents(new OnPlayerMoveTelepad(telepadManager), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreakTelepad(telepadManager), this);

@@ -40,11 +40,13 @@ public class BounceBlockExecutor implements CommandExecutor {
                     return true;
                 }
 
-                bounceBlockManager.addBounceBlock(block, jumpStrength);
+                bounceBlockManager.addBounceBlock(new BounceBlock(block, jumpStrength));
                 player.sendMessage(PlayerMessage.bounceBlockCreated(jumpStrength));
+                FileManager.save(bounceBlockManager);
             } else {
                 bounceBlockManager.setJumpStrength(bounceBlock, jumpStrength);
                 player.sendMessage(PlayerMessage.bounceBlockUpdated(jumpStrength));
+                FileManager.save(bounceBlockManager);
             }
         } catch(NumberFormatException ex) {
             player.sendMessage(PlayerMessage.numberCheck(args[0]));

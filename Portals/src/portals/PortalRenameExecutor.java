@@ -36,11 +36,9 @@ public class PortalRenameExecutor implements CommandExecutor {
         }
                
         portalManager.removePortal(portal);
-        FileManager.removePortal(portal);
-        
         portal.setName(args[1]);
         portalManager.addPortal(portal);
-        FileManager.savePortal(portal);
+        FileManager.save(portalManager);
         
         player.sendMessage(PlayerMessage.portalRenamed(args[0], args[1]));
         

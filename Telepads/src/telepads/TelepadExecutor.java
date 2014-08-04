@@ -1,6 +1,5 @@
 package telepads;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +30,8 @@ public class TelepadExecutor implements CommandExecutor {
             return true;
         }
         
-        telepadManager.createTelepad(args[0], player.getPlayerListName());
+        
+        telepadManager.addTelepad(new Telepad(args[0], player.getPlayerListName()));
         player.sendMessage(PlayerMessage.telepadCreated(args[0]));
 
         return true;

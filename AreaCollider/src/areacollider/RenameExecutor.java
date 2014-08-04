@@ -36,6 +36,7 @@ public class RenameExecutor implements CommandExecutor {
         }
         
         areaManager.renameArea(area, args[1]);
+        FileManager.save(areaManager);
         player.sendMessage(PlayerMessage.areaRenamed(area.getName(), args[1]));
         
         return true;

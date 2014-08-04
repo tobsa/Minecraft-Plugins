@@ -2,41 +2,12 @@ package bounceblocks;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 
 public class BounceBlockManager {
-    private BounceBlocks plugin;
     private List<BounceBlock> bounceBlocks = new ArrayList();
-    
-    public BounceBlockManager(BounceBlocks plugin) {
-        this.plugin = plugin;
         
-        if(plugin.getConfig().contains("bounceblocks")) {
-            for(String name : plugin.getConfig().getConfigurationSection("bounceblocks").getKeys(false)) {
-                int x = plugin.getConfig().getInt("bounceblocks." + name + ".x");
-                int y = plugin.getConfig().getInt("bounceblocks." + name + ".y");
-                int z = plugin.getConfig().getInt("bounceblocks." + name + ".z");
-                double jumpStrength = plugin.getConfig().getDouble("bounceblocks." + name + ".jumpStrength");
-                
-                bounceBlocks.add(new BounceBlock(new Location(plugin.getServer().getWorld("world"), x, y, z).getBlock(), jumpStrength));
-            }
-        }
-    }
-    
-    public void addBounceBlock(Block block, double jumpStrength) {
-        BounceBlock bounceBlock = new BounceBlock(block, jumpStrength);
-        
-        int x = bounceBlock.getBlock().getX();
-        int y = bounceBlock.getBlock().getY();
-        int z = bounceBlock.getBlock().getZ();
-                
-        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".x", bounceBlock.getBlock().getX());
-        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".y", bounceBlock.getBlock().getY());
-        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".z", bounceBlock.getBlock().getZ());
-        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".jumpStrength", bounceBlock.getJumpStrength());
-        plugin.saveConfig();
-        
+    public void addBounceBlock(BounceBlock bounceBlock) {     
         bounceBlocks.add(bounceBlock);
     }
     
@@ -54,30 +25,13 @@ public class BounceBlockManager {
     }
     
     public void setJumpStrength(BounceBlock block, double jumpStrength) {
-        block.setJumpStrength(jumpStrength);
-        
-        int x = block.getBlock().getX();
-        int y = block.getBlock().getY();
-        int z = block.getBlock().getZ();
-        
-        plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z + ".jumpStrength", block.getJumpStrength());
-        plugin.saveConfig();        
+        block.setJumpStrength(jumpStrength);     
     }
     
     public boolean removeBlock(Block block) {
         for(BounceBlock bounceBlock : bounceBlocks)
-            if(block.equals(bounceBlock.getBlock())) {
-                bounceBlocks.remove(bounceBlock);
-                
-                int x = bounceBlock.getBlock().getX();
-                int y = bounceBlock.getBlock().getY();
-                int z = bounceBlock.getBlock().getZ();
-                
-                plugin.getConfig().set("bounceblocks." + x + "," + y + "," + z, null);
-                plugin.saveConfig();
-                
-                return true;
-            }
+            if(block.equals(bounceBlock.getBlock()))
+                return bounceBlocks.remove(bounceBlock);                
         
         return false;
     }

@@ -30,7 +30,7 @@ public class AreaManager {
     public void renameArea(Area area, String newName) {
         Area newArea = new Area(area.getPlayerName(), newName, area.getMinimumBlock(), area.getMaximumBlock(), area.getResponse());
         removeArea(area.getName());
-        addArea(newArea);      
+        addArea(newArea);
     }
     
     public void removeArea(String name) {

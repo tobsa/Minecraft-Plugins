@@ -31,7 +31,7 @@ public class PortalDeleteExecutor implements CommandExecutor {
         }
                
         portalManager.removePortal(portal);
-        FileManager.removePortal(portal);
+        FileManager.save(portalManager);
         player.sendMessage(PlayerMessage.portalRemoved(args[0]));
         
         return true;

@@ -9,8 +9,8 @@ public class Portals extends JavaPlugin {
     @Override
     public void onEnable() {
         WorldEditPlugin worldEdit = (WorldEditPlugin)getServer().getPluginManager().getPlugin("WorldEdit");
-        FileManager.setPlugin(this);
-        PortalManager portalManager = new PortalManager(FileManager.load());
+        PortalManager portalManager = FileManager.load();
+        
         getServer().getPluginManager().registerEvents(new OnPlayerPortalEvent(portalManager), this);
         
         CommandRegister commandRegister = new CommandRegister();

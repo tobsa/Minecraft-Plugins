@@ -52,4 +52,8 @@ public class Telepad {
     public float getPitch() {
         return pitch;
     }
+
+    public boolean isValid() {
+        return from != null && to != null;
+    }
 }

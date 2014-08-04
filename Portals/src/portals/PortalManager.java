@@ -1,16 +1,13 @@
 package portals;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PortalManager {
-    private Map<String, Portal> portals;
-    
-    public PortalManager(Map<String, Portal> portals) {
-        this.portals = portals;
-    }
-    
+    private Map<String, Portal> portals = new LinkedHashMap();
+        
     public void addPortal(Portal portal) {
         portals.put(portal.getName(), portal);
     }

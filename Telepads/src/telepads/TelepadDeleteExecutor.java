@@ -1,6 +1,5 @@
 package telepads;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,6 +31,7 @@ public class TelepadDeleteExecutor implements CommandExecutor {
         }     
         
         telepadManager.removeTelepad(telepad);
+        FileManager.save(telepadManager);
         player.sendMessage(PlayerMessage.telepadDestroyed(args[0]));
         
         return true;

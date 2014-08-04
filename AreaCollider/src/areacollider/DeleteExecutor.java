@@ -31,6 +31,7 @@ public class DeleteExecutor implements CommandExecutor {
         }
         
         areaManager.removeArea(area.getName());
+        FileManager.save(areaManager);
         player.sendMessage(PlayerMessage.areaDeleted(args[0]));
        
         return true;

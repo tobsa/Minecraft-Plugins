@@ -16,7 +16,7 @@ commands:
         usage: /acteleport <name> [message]
         
     areaclearinventory:
-        aliases: [acclearinventory]
+        aliases: [acclearinventory, accinv]
         usage: /acclearinventory <name>
         
     areamessage:
@@ -32,11 +32,11 @@ commands:
         usage: /aclist
         
     areaselect:
-        aliases: [acselect]
+        aliases: [acselect, acsel]
         usage: /acselect <name>
         
     areadelete:
-        aliases: [acdelete]
+        aliases: [acdelete, acdel]
         usage: /acdelete <name>
         
     arearename:

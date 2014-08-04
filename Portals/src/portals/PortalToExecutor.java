@@ -31,7 +31,7 @@ public class PortalToExecutor implements CommandExecutor {
         }
         
         portal.setTeleportLocation(player.getLocation());
-        FileManager.saveTeleportLocation(args[0], player.getLocation());
+        FileManager.save(portalManager);
         player.sendMessage(PlayerMessage.teleportLocationUpdated(args[0]));
         
         return true;

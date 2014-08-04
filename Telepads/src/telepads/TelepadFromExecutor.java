@@ -1,15 +1,10 @@
 package telepads;
 
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.material.Wool;
 
 public class TelepadFromExecutor implements CommandExecutor {
     private TelepadManager telepadManager;
@@ -38,7 +33,10 @@ public class TelepadFromExecutor implements CommandExecutor {
         }
                 
         telepad.setFrom(player.getTargetBlock(null, 6).getRelative(BlockFace.UP).getLocation());
-        telepadManager.saveFrom(telepad);
+        
+        if(telepad.isValid())
+            FileManager.save(telepadManager);
+        
         player.sendMessage(PlayerMessage.telepadFromUpdated(args[0]));
 
         return true;
