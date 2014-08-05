@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 public class BaseFileManager {
     
@@ -16,7 +17,7 @@ public class BaseFileManager {
             oos.writeObject(object);
             oos.close();            
         } catch (IOException ex) {
-            Bukkit.getConsoleSender().sendMessage(ex.toString());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
         }
     }
     
@@ -27,7 +28,7 @@ public class BaseFileManager {
             ois.close();
             return object;
         } catch (IOException | ClassNotFoundException ex) {
-            Bukkit.getConsoleSender().sendMessage(ex.toString());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
             return null;
         }
     }

@@ -20,6 +20,10 @@ public class BounceBlockManager {
         return null;
     }
     
+    public boolean removeBounceBlock(BounceBlock bounceBlock) {
+        return bounceBlocks.remove(bounceBlock);
+    }
+    
     public List<BounceBlock> getBounceBlocks() {
         return bounceBlocks;
     }

@@ -21,8 +21,8 @@ public class PlayerMessage extends BaseMessage {
         return ERROR + "Argument '" + HIGHLIGHT + arg + ERROR + "' must be a number!";
     }
     
-    public static String bounceBlockDestroyed() {
-        return NORMAL + "A bounce block was destroyed!";
+    public static String bounceBlockDestroyed(BounceBlock bounceBlock) {
+        return NORMAL + "A bounce block with jump strength '" + HIGHLIGHT + bounceBlock.getJumpStrength() + NORMAL + "' was destroyed!";
     }
     
     public static String help() {

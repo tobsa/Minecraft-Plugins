@@ -41,5 +41,7 @@ public class OnBlockPlaceItemRestrict implements Listener {
             if (block2.getType() != Material.GOLD_BLOCK)
                 event.setCancelled(true);
         }
+        
+        player.updateInventory();
     }
 }

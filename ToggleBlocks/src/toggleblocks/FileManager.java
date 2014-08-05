@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedHashMap;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 public class FileManager {
     
@@ -33,7 +34,7 @@ public class FileManager {
             oos.writeObject(regionManager);
             oos.close();            
         } catch (IOException ex) {
-            Bukkit.getConsoleSender().sendMessage(ex.toString());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
         }
     }
     
@@ -44,7 +45,7 @@ public class FileManager {
             ois.close();
             return regionManager;
         } catch (IOException | ClassNotFoundException ex) {
-            Bukkit.getConsoleSender().sendMessage(ex.toString());
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
             return null;
         }
     }

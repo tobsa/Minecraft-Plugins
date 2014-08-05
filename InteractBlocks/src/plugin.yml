@@ -1,0 +1,26 @@
+name: InteractBlocks
+main: interactblocks.InteractBlocks
+version: 1.0
+depend: [PuzzlePack]
+commands:
+    
+    ibsound:
+        usage: /ibsound <sound>
+        
+    ibsoundlist:
+        usage: /ibsoundlist <page>
+        
+    ibmessage:
+        usage: /ibmessage <message>
+        
+    ibgiveitem:
+        usage: /ibgiveitem <item> <amount>
+        
+    ibitemlist:
+        usage: /ibitemlist <page>
+        
+    ibdelete:
+        usage: /ibdelete
+                
+    ibhelp:
+        usage: /ibhelp
