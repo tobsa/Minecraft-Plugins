@@ -14,11 +14,12 @@ public class RedstoneCombiner extends JavaPlugin {
         
         CommandRegister commandRegister = new CommandRegister();
         commandRegister.register(getCommand("redcombiner"),       new RedstoneCombinerExecutor(combinerManager));
-        commandRegister.register(getCommand("redcombinerlink"),   new RedstoneCombinerLinkExecutor(combinerManager));
-        commandRegister.register(getCommand("redcombinerdelink"), new RedstoneCombinerDelinkExecutor(combinerManager));
-        commandRegister.register(getCommand("redcombinerlist"),   new RedstoneCombinerListExecutor(combinerManager));
-        commandRegister.register(getCommand("redcombinerdelete"), new RedstoneCombinerDeleteExecutor(combinerManager));
-        commandRegister.register(getCommand("redcombinerrename"), new RedstoneCombinerRenameExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerlink"),   new LinkExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerdelink"), new DelinkExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerlist"),   new ListExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerdelete"), new DeleteExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerrename"), new RenameExecutor(combinerManager));
+        commandRegister.register(getCommand("redcombinerinfo"),   new InfoExecutor(combinerManager));
         commandRegister.register(getCommand("redcombinerhelp"),   new HelpExecutor(commandRegister.getCommands()));
     }
 }

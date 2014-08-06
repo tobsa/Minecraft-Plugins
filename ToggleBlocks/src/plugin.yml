@@ -35,6 +35,26 @@ commands:
         aliases: [tbdelete, tbdel]
         usage: /tbdelete <name>
         
+    toggleblocksinfo:
+        aliases: [tbinfo]
+        usage: /tbinfo
+        
+    toggleblocksselect:
+        aliases: [tbselect, tbsel]
+        usage: /tbselect <name>
+        
+    toggleblocksrename:
+        aliases: [tbrename]
+        usage: /tbrename <originalName> <newName>
+        
+    toggleblocksinclude:
+        aliases: [tbinclude, tbinc]
+        usage: /tbinclude <name>
+        
+    toggleblocksexclude:
+        aliases: [tbexclude, tbexl]
+        usage: /tbexclude <name>
+        
     toggleblockshelp:
         aliases: [tbhelp]
         usage: /tbhelp

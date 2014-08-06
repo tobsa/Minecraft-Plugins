@@ -28,6 +28,10 @@ commands:
         aliases: [rcrename]
         usage: /rcrename <originalName> <newName>
         
+    redcombinerinfo:
+        aliases: [rcinfo]
+        usage: /rcinfo
+        
     redcombinerhelp:
         aliases: [rchelp]
         usage: /rchelp

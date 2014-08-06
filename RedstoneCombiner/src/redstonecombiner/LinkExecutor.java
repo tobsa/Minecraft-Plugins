@@ -7,10 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RedstoneCombinerDeleteExecutor implements CommandExecutor {
+public class LinkExecutor implements CommandExecutor {
     private CombinerManager combinerManager;
     
-    public RedstoneCombinerDeleteExecutor(CombinerManager combinerManager) {
+    public LinkExecutor(CombinerManager combinerManager) {
         this.combinerManager = combinerManager;
     }
     
@@ -25,16 +25,22 @@ public class RedstoneCombinerDeleteExecutor implements CommandExecutor {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
-                
+        
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
             player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
+        
+        Block block = player.getTargetBlock(null, 6);
+        if(!(block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)) {
+            player.sendMessage(PlayerMessage.invalidBlock());
+            return true;
+        }
                 
-        combinerManager.removeCombiner(combiner);
+        combiner.addLink(block);
         FileManager.save(combinerManager);
-        player.sendMessage(PlayerMessage.combinerRemoved(args[0]));
+        player.sendMessage(PlayerMessage.combinerAddLink(args[0]));
         
         return true;
     }

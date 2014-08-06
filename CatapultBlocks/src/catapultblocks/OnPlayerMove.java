@@ -1,5 +1,6 @@
 package catapultblocks;
 
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,6 +22,7 @@ public class OnPlayerMove implements Listener {
         for(CatapultBlock catapultBlock : catapultManager.getCapultBlocks()) {
             if(catapultBlock.getActiveBlock().equals(block)) {
                 player.setVelocity(catapultBlock.getVelocity());
+                player.playSound(player.getLocation(), Sound.ARROW_HIT, 1, 1);
             }
         }
     }

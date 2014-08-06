@@ -1,9 +1,10 @@
 package redstonecombiner;
 
+import org.bukkit.block.Block;
 import puzzlepack.BaseMessage;
 
-public class PlayerMessage extends BaseMessage {
-        
+public class PlayerMessage extends BaseMessage {    
+    
     public static String combinerExists(String name) {
         return ERROR + "Redstone combiner '" + HIGHLIGHT + name + ERROR + "' already exists!";
     }
@@ -42,5 +43,25 @@ public class PlayerMessage extends BaseMessage {
 
     public static String combinerRenamed(String originalName, String newName) {
         return NORMAL + "Redstone combiner '" + HIGHLIGHT + originalName + NORMAL + "' was renamed to '" + HIGHLIGHT + newName + NORMAL + "'!"; 
+    }
+    
+     public static String infoHeader() {
+        return HIGHLIGHT + "========== Combiner information ==========";
+    }
+    
+    public static String missingInfo(Block block) {
+        return "No combiner information at this location (" + HIGHLIGHT + block.getX() + ERROR + ", "
+                                                            + HIGHLIGHT + block.getY() + ERROR + ", "
+                                                            + HIGHLIGHT + block.getZ() + ERROR + ")!";
+    }
+
+    public static String info(String name) {
+        return NORMAL + " Name: " + HIGHLIGHT + name; 
+    }
+    
+    public static String blockInfo(Block block) {
+        return " Block: (" + HIGHLIGHT + block.getX() + NORMAL + ", "
+                           + HIGHLIGHT + block.getY() + NORMAL + ", "
+                           + HIGHLIGHT + block.getZ() + NORMAL + ")!";
     }
 }

@@ -10,9 +10,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PuzzlePack extends JavaPlugin {
     
     @Override
-    public void onEnable() {                
+    public void onEnable() {             
         getServer().getPluginManager().registerEvents(new OnBlockPlaceItemRestrict(), this);
         getServer().getPluginManager().registerEvents(new OnFallDamageEvent(), this);
+        getServer().getPluginManager().registerEvents(new OnFoodLevelChangeEvent(), this);
+        
     }
 
     public static boolean isToClose(Player player, Block block, double minDistance) {
@@ -31,4 +33,5 @@ public class PuzzlePack extends JavaPlugin {
 
         return distance < minDistance;
     }
+
 }

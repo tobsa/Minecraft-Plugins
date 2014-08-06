@@ -1,16 +1,14 @@
 package redstonecombiner;
 
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RedstoneCombinerLinkExecutor implements CommandExecutor {
+public class RenameExecutor implements CommandExecutor {
     private CombinerManager combinerManager;
     
-    public RedstoneCombinerLinkExecutor(CombinerManager combinerManager) {
+    public RenameExecutor(CombinerManager combinerManager) {
         this.combinerManager = combinerManager;
     }
     
@@ -21,7 +19,7 @@ public class RedstoneCombinerLinkExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
         
-        if(args.length != 1) {
+        if(args.length != 2) {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
@@ -32,15 +30,14 @@ public class RedstoneCombinerLinkExecutor implements CommandExecutor {
             return true;
         }
         
-        Block block = player.getTargetBlock(null, 6);
-        if(!(block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN)) {
-            player.sendMessage(PlayerMessage.invalidBlock());
+        if(combinerManager.getCombiner(player.getName(), args[1]) != null) {
+            player.sendMessage(PlayerMessage.combinerExists(args[1]));
             return true;
         }
-                
-        combiner.addLink(block);
+        
+        combinerManager.renameCombiner(combiner, args[1]);
         FileManager.save(combinerManager);
-        player.sendMessage(PlayerMessage.combinerAddLink(args[0]));
+        player.sendMessage(PlayerMessage.combinerRenamed(args[0], args[1]));
         
         return true;
     }

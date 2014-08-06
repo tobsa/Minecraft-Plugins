@@ -1,15 +1,16 @@
 package redstonecombiner;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RedstoneCombinerDelinkExecutor implements CommandExecutor {
+public class DeleteExecutor implements CommandExecutor {
     private CombinerManager combinerManager;
     
-    public RedstoneCombinerDelinkExecutor(CombinerManager combinerManager) {
+    public DeleteExecutor(CombinerManager combinerManager) {
         this.combinerManager = combinerManager;
     }
     
@@ -24,20 +25,16 @@ public class RedstoneCombinerDelinkExecutor implements CommandExecutor {
             player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
             return true;
         }
-        
+                
         Combiner combiner = combinerManager.getCombiner(player.getName(), args[0]);
         if(combiner == null) {
             player.sendMessage(PlayerMessage.missingCombiner(args[0]));
             return true;
         }
                 
-        Block link = player.getTargetBlock(null, 6);
-        if(combiner.removeLink(link)) {
-            FileManager.save(combinerManager);
-            player.sendMessage(PlayerMessage.linkRemoved(args[0]));    
-        }
-        else
-            player.sendMessage(PlayerMessage.missingLink(args[0]));
+        combinerManager.removeCombiner(combiner);
+        FileManager.save(combinerManager);
+        player.sendMessage(PlayerMessage.combinerRemoved(args[0]));
         
         return true;
     }

@@ -5,10 +5,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RedstoneCombinerListExecutor implements CommandExecutor {
+public class ListExecutor implements CommandExecutor {
     private CombinerManager combinerManager;
     
-    public RedstoneCombinerListExecutor(CombinerManager combinerManager) {
+    public ListExecutor(CombinerManager combinerManager) {
         this.combinerManager = combinerManager;
     }
     

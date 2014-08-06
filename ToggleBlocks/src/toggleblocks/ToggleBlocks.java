@@ -1,5 +1,6 @@
 package toggleblocks;
 
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import puzzlepack.CommandRegister;
 
@@ -7,6 +8,8 @@ public class ToggleBlocks extends JavaPlugin {
         
     @Override
     public void onEnable() {
+        WorldEditPlugin worldEdit = (WorldEditPlugin)getServer().getPluginManager().getPlugin("WorldEdit");
+        
         RegionManager regionManager = FileManager.load();
         
         getServer().getPluginManager().registerEvents(new OnBlockPlacedEvent(regionManager), this);
@@ -23,6 +26,12 @@ public class ToggleBlocks extends JavaPlugin {
         commandRegister.register(getCommand("toggleblocksdelink"), new DelinkExecutor(regionManager));
         commandRegister.register(getCommand("toggleblockslist"),   new ListExecutor(regionManager));
         commandRegister.register(getCommand("toggleblocksdelete"), new DeleteExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksinfo"),   new InfoExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksrename"), new RenameExecutor(regionManager));
+        commandRegister.register(getCommand("toggleblocksselect"), new SelectExecutor(regionManager, worldEdit));
+        commandRegister.register(getCommand("toggleblocksinclude"), new IncludeExecutor(regionManager, worldEdit));
+        commandRegister.register(getCommand("toggleblocksexclude"), new ExcludeExecutor(regionManager, worldEdit));
         commandRegister.register(getCommand("toggleblockshelp"),   new HelpExecutor(commandRegister.getCommands()));
     }
 }
+

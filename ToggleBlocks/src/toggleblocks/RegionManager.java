@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import org.bukkit.block.Block;
 
 public class RegionManager {
     private Map<String, Region> regions;
@@ -52,5 +53,24 @@ public class RegionManager {
     
     public void setEditRegion(String playerName, Region region) {
         editRegions.put(playerName, region);
+    }
+    
+    public Region getRegionByLinkBlock(String playerName, Block block) {
+        for(Region region : regions.values())
+            if(playerName.equalsIgnoreCase(region.getPlayerName()) && region.isLinkBlock(block))
+                return region;
+        
+        return null;
+    }
+    
+    public void renameRegion(Region region, String newName) {
+        region.setName(newName);
+        
+        Map<String, Region> renamedRegions = new LinkedHashMap();
+        
+        for(Region oldRegion : regions.values())
+            renamedRegions.put(oldRegion.getName(), oldRegion);
+        
+        regions = renamedRegions;        
     }
 }

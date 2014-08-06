@@ -40,6 +40,10 @@ public class Region {
     public void setLinkBlock(LinkBlock linkBlock) {
         this.linkBlock = linkBlock;
     }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
         
     public LinkBlock getLinkBlock() {
         return linkBlock;
@@ -54,6 +58,14 @@ public class Region {
     
     public List<ToggleBlock> getToggleBlocks() {
         return toggleBlocks;
+    }
+    
+    public boolean hasBlock(Block block) {
+        for(ToggleBlock toggleBlock : toggleBlocks)
+            if(toggleBlock.getBlock().equals(block))
+                return true;
+        
+        return false;
     }
             
     public void toggle() {

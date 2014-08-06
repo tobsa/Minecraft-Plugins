@@ -41,4 +41,21 @@ public class CombinerManager {
     public void removeCombiner(Combiner combiner) {
         combiners.remove(combiner.getName());
     }
+    
+    public Combiner getCombinerByLink(String playerName, Block block) {
+        for(Combiner combiner : combiners.values())
+            for(Block link : combiner.getLinks())
+                if(link.equals(block))
+                    return combiner;
+        
+        return null;
+    }
+    
+    public Combiner getCombinerByToggleBlock(String playerName, Block block) {
+        for(Combiner combiner : combiners.values())
+            if(combiner.getToggleBlock().equals(block))
+                return combiner;
+        
+        return null;
+    }
 }
