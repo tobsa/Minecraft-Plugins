@@ -33,4 +33,8 @@ public class PlayerMessage extends BaseMessage {
                                              + HIGHLIGHT + velocity.getY() + NORMAL + ", " 
                                              + HIGHLIGHT + velocity.getZ() + NORMAL + ") has been removed!";
     }
+
+    public static String invalidMaterial() {
+        return ERROR + "You must look at a sponge block when creating a catapult block!";
+    }
 }

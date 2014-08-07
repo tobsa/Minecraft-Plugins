@@ -1,0 +1,9 @@
+name: RestricedArea
+main: restrictedarea.RestrictedArea
+version: 1.0
+commands: 
+    ra:
+        usage: /ra <name>
+    
+    rahelp:
+        usage: /rahelp

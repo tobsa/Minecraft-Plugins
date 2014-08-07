@@ -1,5 +1,9 @@
 name: PuzzlePack
 main: puzzlepack.PuzzlePack
 version: 1.0
-    
+commands:
+    tdist:
+        usage: /tdist <percent>
+    tsize:
+        usage: /tsize <size>
             

@@ -1,5 +1,6 @@
 package catapultblocks;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -51,6 +52,11 @@ public class CatapultBlockExecutor implements CommandExecutor {
         }
         
         Block block = player.getTargetBlock(null, 6);
+        if(block.getType() != Material.SPONGE) {
+            player.sendMessage(PlayerMessage.invalidMaterial());
+            return true;
+        }
+        
         CatapultBlock catapultBlock = catapultManager.getCatapultBlock(block);
         
         Vector velocity = new Vector(velocityX, velocityY, velocityZ);

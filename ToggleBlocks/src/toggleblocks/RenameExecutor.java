@@ -37,7 +37,7 @@ public class RenameExecutor implements CommandExecutor {
         
         regionManager.renameRegion(region, args[1]);
         FileManager.save(regionManager);
-        player.sendMessage(PlayerMessage.regionRenamed(region.getName(), args[1]));
+        player.sendMessage(PlayerMessage.regionRenamed(args[0], args[1]));
 
         return true;
     }
