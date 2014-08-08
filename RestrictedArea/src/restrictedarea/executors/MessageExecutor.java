@@ -1,5 +1,6 @@
-package restrictedarea.group;
+package restrictedarea.executors;
 
+import basepack.BasePack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,13 +10,11 @@ import restrictedarea.AreaManager;
 import restrictedarea.FileManager;
 import restrictedarea.Message;
 
-public class GroupExcludeExecutor implements CommandExecutor {
+public class MessageExecutor implements CommandExecutor {
     private AreaManager areaManager;
-    private GroupManager groupManager;
     
-    public GroupExcludeExecutor(AreaManager areaManager, GroupManager groupManager) {
+    public MessageExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
-        this.groupManager = groupManager;
     }
 
     @Override
@@ -25,7 +24,7 @@ public class GroupExcludeExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 2) {
+        if(args.length <= 1) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
@@ -35,22 +34,13 @@ public class GroupExcludeExecutor implements CommandExecutor {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
+              
+        String message = BasePack.combineArguments(args, 1);
         
-        Group group = groupManager.getGroup(args[1], player.getName());
-        if(group == null) {
-            player.sendMessage(Message.missingGroup(args[1]));
-            return true;
-        }
-               
-        if(!group.contains(area)) {
-            player.sendMessage(Message.areaMissingInGroup(area.getName(), group.getName()));
-            return true;
-        }
-        
-        group.remove(area);
-        FileManager.save(groupManager);
-        player.sendMessage(Message.areaRemovedFromGroup(area.getName(), group.getName()));
-        
+        area.setMessage(message);
+        FileManager.save(areaManager);        
+        player.sendMessage(Message.areaMessageSet(area.getName()));
+
         return true;
     }
 }

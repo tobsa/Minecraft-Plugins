@@ -1,4 +1,4 @@
-package restrictedarea;
+package restrictedarea.executors;
 
 import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.IncompleteRegionException;
@@ -10,6 +10,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
+import restrictedarea.SubArea;
 
 public class RestrictedAreaExecutor implements CommandExecutor {
     private AreaManager areaManager;

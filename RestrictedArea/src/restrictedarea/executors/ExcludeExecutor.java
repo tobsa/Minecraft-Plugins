@@ -1,18 +1,20 @@
-package restrictedarea;
+package restrictedarea.executors;
 
+import basepack.BasePack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import restrictedarea.group.GroupManager;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
 
-public class RenameExecutor implements CommandExecutor {
+public class ExcludeExecutor implements CommandExecutor {
     private AreaManager areaManager;
-    private GroupManager groupManager;
     
-    public RenameExecutor(AreaManager areaManager, GroupManager groupManager) {
+    public ExcludeExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
-        this.groupManager = groupManager;
     }
 
     @Override
@@ -32,19 +34,21 @@ public class RenameExecutor implements CommandExecutor {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
-        
-        if(areaManager.get(args[1]) != null) {
-            player.sendMessage(Message.areaExists(args[1]));
+              
+        Integer index = BasePack.getInteger(args[1]);
+        if(index == null) {
+            player.sendMessage(Message.invalidNumber(args[1]));
             return true;
         }
         
-        areaManager.renameItem(area, args[1]);
-        groupManager.renameAreaInGroups(player.getName(), args[0], args[1]);
+        if(index < 0 || index >= area.getSubAreas().size()) {
+            player.sendMessage(Message.invalidIndex(args[1], area.getSubAreas().size()));
+            return true;
+        }
         
-        FileManager.save(areaManager);
-        FileManager.save(groupManager);
-        
-        player.sendMessage(Message.areaRenamed(args[0], args[1]));
+        area.removeSubArea(index);
+        FileManager.save(areaManager);        
+        player.sendMessage(Message.subareaRemoved(index, args[0]));
 
         return true;
     }

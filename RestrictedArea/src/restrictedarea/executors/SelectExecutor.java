@@ -1,4 +1,4 @@
-package restrictedarea;
+package restrictedarea.executors;
 
 import basepack.BasePack;
 import com.sk89q.worldedit.BlockVector2D;
@@ -13,6 +13,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.Message;
+import restrictedarea.SubArea;
 
 public class SelectExecutor implements CommandExecutor {
     private AreaManager areaManager;

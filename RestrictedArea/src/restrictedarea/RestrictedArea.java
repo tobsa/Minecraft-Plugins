@@ -1,17 +1,26 @@
-
 package restrictedarea;
 
+import restrictedarea.executors.RenameExecutor;
+import restrictedarea.executors.SelectExecutor;
+import restrictedarea.executors.IndexExecutor;
+import restrictedarea.executors.IncludeExecutor;
+import restrictedarea.executors.MessageExecutor;
+import restrictedarea.executors.RestrictedAreaExecutor;
+import restrictedarea.executors.DeleteExecutor;
+import restrictedarea.executors.ExcludeExecutor;
+import restrictedarea.executors.LocationExecutor;
+import restrictedarea.executors.ListExecutor;
 import restrictedarea.group.GroupManager;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import puzzlepack.CommandRegister;
 import puzzlepack.HelpExecutor;
-import restrictedarea.group.GroupDeleteExecutor;
-import restrictedarea.group.GroupExcludeExecutor;
-import restrictedarea.group.GroupExecutor;
-import restrictedarea.group.GroupIncludeExecutor;
-import restrictedarea.group.GroupListExecutor;
-import restrictedarea.group.GroupRenameExecutor;
+import restrictedarea.group.executors.GroupDeleteExecutor;
+import restrictedarea.group.executors.GroupExcludeExecutor;
+import restrictedarea.group.executors.GroupExecutor;
+import restrictedarea.group.executors.GroupIncludeExecutor;
+import restrictedarea.group.executors.GroupListExecutor;
+import restrictedarea.group.executors.GroupRenameExecutor;
 
 public class RestrictedArea extends JavaPlugin {
         

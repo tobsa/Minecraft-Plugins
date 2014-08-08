@@ -1,21 +1,20 @@
-package restrictedarea.group;
+package restrictedarea.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import puzzlepack.PuzzlePack;
 import restrictedarea.Area;
 import restrictedarea.AreaManager;
 import restrictedarea.FileManager;
 import restrictedarea.Message;
 
-public class GroupIncludeExecutor implements CommandExecutor {
+public class IndexExecutor implements CommandExecutor {
     private AreaManager areaManager;
-    private GroupManager groupManager;
     
-    public GroupIncludeExecutor(AreaManager areaManager, GroupManager groupManager) {
+    public IndexExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
-        this.groupManager = groupManager;
     }
 
     @Override
@@ -36,21 +35,22 @@ public class GroupIncludeExecutor implements CommandExecutor {
             return true;
         }
         
-        Group group = groupManager.getGroup(args[1], player.getName());
-        if(group == null) {
-            player.sendMessage(Message.missingGroup(args[1]));
-            return true;
-        }
-               
-        if(group.contains(area)) {
-            player.sendMessage(Message.areaExistsInGroup(area.getName(), group.getName()));
+        Integer index = PuzzlePack.getInteger(args[1]);
+        if(index == null) {
+            player.sendMessage(Message.invalidNumber(args[1]));
             return true;
         }
         
-        group.add(area);
-        FileManager.save(groupManager);
-        player.sendMessage(Message.areaPlacedInGroup(area.getName(), group.getName()));
+        int size = areaManager.get().size();
+        if(index < 1 || index > size) {
+            player.sendMessage(Message.invalidIndex(args[1], size));
+            return true;
+        }
         
+        areaManager.setIndex(area, index - 1);
+        FileManager.save(areaManager);
+        player.sendMessage(Message.indexUpdated(area.getName(), index));
+
         return true;
     }
 }

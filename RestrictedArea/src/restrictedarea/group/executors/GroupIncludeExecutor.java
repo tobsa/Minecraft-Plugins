@@ -1,16 +1,23 @@
-package restrictedarea;
+package restrictedarea.group.executors;
 
-import basepack.BasePack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
+import restrictedarea.group.Group;
+import restrictedarea.group.GroupManager;
 
-public class ExcludeExecutor implements CommandExecutor {
+public class GroupIncludeExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private GroupManager groupManager;
     
-    public ExcludeExecutor(AreaManager areaManager) {
+    public GroupIncludeExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
+        this.groupManager = groupManager;
     }
 
     @Override
@@ -30,22 +37,22 @@ public class ExcludeExecutor implements CommandExecutor {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
-              
-        Integer index = BasePack.getInteger(args[1]);
-        if(index == null) {
-            player.sendMessage(Message.invalidNumber(args[1]));
+        
+        Group group = groupManager.getGroup(args[1], player.getName());
+        if(group == null) {
+            player.sendMessage(Message.missingGroup(args[1]));
+            return true;
+        }
+               
+        if(group.contains(area)) {
+            player.sendMessage(Message.areaExistsInGroup(area.getName(), group.getName()));
             return true;
         }
         
-        if(index < 0 || index >= area.getSubAreas().size()) {
-            player.sendMessage(Message.invalidIndex(args[1], area.getSubAreas().size()));
-            return true;
-        }
+        group.add(area);
+        FileManager.save(groupManager);
+        player.sendMessage(Message.areaPlacedInGroup(area.getName(), group.getName()));
         
-        area.removeSubArea(index);
-        FileManager.save(areaManager);        
-        player.sendMessage(Message.subareaRemoved(index, args[0]));
-
         return true;
     }
 }

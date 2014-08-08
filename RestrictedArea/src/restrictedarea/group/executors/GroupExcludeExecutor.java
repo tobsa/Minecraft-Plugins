@@ -1,16 +1,23 @@
-package restrictedarea;
+package restrictedarea.group.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.PuzzlePack;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
+import restrictedarea.group.Group;
+import restrictedarea.group.GroupManager;
 
-public class IndexExecutor implements CommandExecutor {
+public class GroupExcludeExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private GroupManager groupManager;
     
-    public IndexExecutor(AreaManager areaManager) {
+    public GroupExcludeExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
+        this.groupManager = groupManager;
     }
 
     @Override
@@ -31,22 +38,21 @@ public class IndexExecutor implements CommandExecutor {
             return true;
         }
         
-        Integer index = PuzzlePack.getInteger(args[1]);
-        if(index == null) {
-            player.sendMessage(Message.invalidNumber(args[1]));
+        Group group = groupManager.getGroup(args[1], player.getName());
+        if(group == null) {
+            player.sendMessage(Message.missingGroup(args[1]));
+            return true;
+        }
+               
+        if(!group.contains(area)) {
+            player.sendMessage(Message.areaMissingInGroup(area.getName(), group.getName()));
             return true;
         }
         
-        int size = areaManager.get().size();
-        if(index < 1 || index > size) {
-            player.sendMessage(Message.invalidIndex(args[1], size));
-            return true;
-        }
+        group.remove(area);
+        FileManager.save(groupManager);
+        player.sendMessage(Message.areaRemovedFromGroup(area.getName(), group.getName()));
         
-        areaManager.setIndex(area, index - 1);
-        FileManager.save(areaManager);
-        player.sendMessage(Message.indexUpdated(area.getName(), index));
-
         return true;
     }
 }

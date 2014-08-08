@@ -1,16 +1,22 @@
-package restrictedarea;
+package restrictedarea.executors;
 
-import basepack.BasePack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
+import restrictedarea.group.GroupManager;
 
-public class MessageExecutor implements CommandExecutor {
+public class DeleteExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private GroupManager groupManager;
     
-    public MessageExecutor(AreaManager areaManager) {
+    public DeleteExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
+        this.groupManager = groupManager;
     }
 
     @Override
@@ -20,7 +26,7 @@ public class MessageExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length <= 1) {
+        if(args.length != 1) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
@@ -30,12 +36,13 @@ public class MessageExecutor implements CommandExecutor {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
-              
-        String message = BasePack.combineArguments(args, 1);
         
-        area.setMessage(message);
-        FileManager.save(areaManager);        
-        player.sendMessage(Message.areaMessageSet(area.getName()));
+        groupManager.removeItemFromGroups(area, player.getName());  
+        areaManager.remove(area.getName());
+        
+        FileManager.save(areaManager);
+        FileManager.save(groupManager);
+        player.sendMessage(Message.areaRemoved(args[0]));
 
         return true;
     }

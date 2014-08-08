@@ -1,4 +1,4 @@
-package restrictedarea.group;
+package restrictedarea.group.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import restrictedarea.FileManager;
 import restrictedarea.Message;
+import restrictedarea.group.Group;
+import restrictedarea.group.GroupManager;
 
 public class GroupExecutor implements CommandExecutor {
     private GroupManager groupManager;

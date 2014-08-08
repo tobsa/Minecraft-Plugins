@@ -1,15 +1,22 @@
-package restrictedarea;
+package restrictedarea.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
+import restrictedarea.group.GroupManager;
 
-public class LocationExecutor implements CommandExecutor {
+public class RenameExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private GroupManager groupManager;
     
-    public LocationExecutor(AreaManager areaManager) {
+    public RenameExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
+        this.groupManager = groupManager;
     }
 
     @Override
@@ -19,7 +26,7 @@ public class LocationExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 1) {
+        if(args.length != 2) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
@@ -30,9 +37,18 @@ public class LocationExecutor implements CommandExecutor {
             return true;
         }
         
-        area.setLocation(player.getLocation());
+        if(areaManager.get(args[1]) != null) {
+            player.sendMessage(Message.areaExists(args[1]));
+            return true;
+        }
+        
+        areaManager.renameItem(area, args[1]);
+        groupManager.renameAreaInGroups(player.getName(), args[0], args[1]);
+        
         FileManager.save(areaManager);
-        player.sendMessage(Message.areaLocationUpdated(args[0]));
+        FileManager.save(groupManager);
+        
+        player.sendMessage(Message.areaRenamed(args[0], args[1]));
 
         return true;
     }
