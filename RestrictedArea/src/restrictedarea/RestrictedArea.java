@@ -12,6 +12,7 @@ public class RestrictedArea extends JavaPlugin {
     public void onEnable() {
         WorldEditPlugin worldEdit = (WorldEditPlugin)getServer().getPluginManager().getPlugin("WorldEdit");
         AreaManager areaManager = FileManager.load();
+        GroupManager groupManager = new GroupManager();
         
         getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(areaManager), this);
         
@@ -25,6 +26,12 @@ public class RestrictedArea extends JavaPlugin {
         commandRegister.register(getCommand("ralocation"),  new LocationExecutor(areaManager));
         commandRegister.register(getCommand("ralist"),      new ListExecutor(areaManager));
         commandRegister.register(getCommand("raselect"),    new SelectExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("raindex"),     new IndexExecutor(areaManager));
+        
+        commandRegister.register(getCommand("ragroup"),     new GroupExecutor(groupManager));
+        commandRegister.register(getCommand("ragrouplist"), new GroupListExecutor(groupManager));        
+        commandRegister.register(getCommand("ragroupadd"),  new GroupAddExecutor(areaManager, groupManager));   
+        
         commandRegister.register(getCommand("rahelp"),      new HelpExecutor(commandRegister.getCommands()));
     }
     

@@ -37,10 +37,15 @@ public class IndexExecutor implements CommandExecutor {
             return true;
         }
         
-        if(index < 0 || index >= area.getAreas().size()) {
-            player.sendMessage(Message.invalidIndex(args[1], area.getAreas().size()));
+        int size = areaManager.getAreas().size();
+        if(index < 1 || index > size) {
+            player.sendMessage(Message.invalidIndex(args[1], size));
             return true;
         }
+        
+        areaManager.setIndex(area, index - 1);
+        FileManager.save(areaManager);
+        player.sendMessage(Message.indexUpdated(area.getName(), index));
 
         return true;
     }

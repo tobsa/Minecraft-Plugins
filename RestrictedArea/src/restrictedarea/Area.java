@@ -11,6 +11,7 @@ public class Area {
     private String playerName;
     private Location location;
     private List<SubArea> areas = new ArrayList();
+    private List<Group> includedGroups = new ArrayList();
     
     public Area(String name, String playerName) {
         this.name = name;
@@ -54,6 +55,19 @@ public class Area {
                 return true;
         
         return false;
+    }
+    
+    public void addGroup(Group group) {
+        includedGroups.add(group);
+    }
+    
+    public void removeGroup(Group group) {
+        includedGroups.remove(group);
+    }
+    
+    public void removeGroups() {
+        for(Group group : includedGroups)
+            group.removeArea(this);
     }
     
     public List<SubArea> getAreas(Location location) {

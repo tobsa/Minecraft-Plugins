@@ -28,6 +28,31 @@ commands:
         aliases: [rasel]
         usage: /raselect <name> [index]
     
+    raindex:
+        usage: /raindex <name> <index>
+    
+    
+    
+    ragroup:
+        aliases: [rag]
+        usage: /ragroup <name>
+        
+    ragrouplist:
+        aliases: [raglist]
+        usage: /raglist
+    
+    ragroupadd:
+        aliases: [ragadd]
+        usage: /ragadd <area> <group>
+        
+    ragroupremove:
+        aliases: [ragremove]
+        usage: /ragremove <area> <group>
+        
+    ragroupdelete:
+        aliases: [ragdelete]
+        usage: /ragdelete <group>
+    
     rahelp:
         usage: /rahelp
         

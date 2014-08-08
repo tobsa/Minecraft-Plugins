@@ -36,8 +36,8 @@ public class Message extends BaseMessage {
         return NORMAL + "Area '" + HIGHLIGHT + originalName + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "'!"; 
     }
 
-    public static String displayArea(String name, int size) {
-        return NORMAL + name + " (" + HIGHLIGHT + size + NORMAL + (size == 1 ? " area)" : " areas)");
+    public static String displayArea(int count, String name, int size) {
+        return NORMAL + "" + count + ". " + name + " (" + HIGHLIGHT + size + NORMAL + (size == 1 ? " area)" : " areas)");
     }
 
     public static String invalidNumber(String number) {
@@ -45,11 +45,43 @@ public class Message extends BaseMessage {
     }
 
     public static String invalidIndex(String number, int size) {
-        return HIGHLIGHT + number + ERROR + " is an invalid index! Must be between " + HIGHLIGHT + "0" + ERROR + " and " + HIGHLIGHT + size + ERROR + "!"; 
+        return ERROR + "Index " + HIGHLIGHT + number + ERROR + " is invalid! Must be between " + HIGHLIGHT + "1" + ERROR + " and " + HIGHLIGHT + size + ERROR + "!"; 
     }
 
     public static String subareaRemoved(Integer index, String name) {
         return NORMAL + "Subarea " + index + NORMAL + " in area '" + HIGHLIGHT + name + NORMAL + "' has been removed!";
+    }
+
+    public static String indexUpdated(String name, Integer index) {
+        return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' has been updated with a new index " + HIGHLIGHT + index + NORMAL + "!"; 
+    }
+
+    public static String missingGroup(String name) {
+        return ERROR + "Group '" + HIGHLIGHT + name + ERROR + "' doesn't exist!";
+    }
+
+    public static String groupCreated(String name) {
+        return NORMAL + "Group '" + HIGHLIGHT + name + NORMAL + "' has been created!";
+    }
+
+    public static String grouplistHeader() {
+        return HIGHLIGHT + "========== Groups ==========";
+    }
+
+    public static String groupExists(String name) {
+        return ERROR + "Group '" + HIGHLIGHT + name + ERROR + "' already exists!";
+    }
+
+    public static String areaExistsInGroup(String area, String group) {
+        return ERROR + "Area '" + HIGHLIGHT + area + ERROR + "' already exists in group '" + HIGHLIGHT + group + ERROR + "'!";
+    }
+
+    public static String areaPlacedInGroup(String area, String group) {
+        return NORMAL + "Area '" + HIGHLIGHT + area + NORMAL + "' was added to group '" + HIGHLIGHT + group + NORMAL + "'!";
+    }
+
+    public static String groupnameHeader(String name) {
+        return HIGHLIGHT + "========== " + name + " ==========";
     }
     
 }

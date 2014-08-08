@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import org.bukkit.Location;
 
 public class AreaManager {
     private Map<String, Area> areas = new LinkedHashMap();
@@ -24,11 +23,11 @@ public class AreaManager {
         return null;        
     }
     
-    public List<Area> getAreas(String playerName, Location location) {
+    public List<Area> getAreas(String playerName) {
         List<Area> values = new ArrayList();
         
         for(Area area : areas.values())
-            if(area.getPlayerName().equalsIgnoreCase(playerName) && area.contains(location))
+            if(area.getPlayerName().equalsIgnoreCase(playerName))
                 values.add(area);
         
         return values;                
@@ -42,8 +41,20 @@ public class AreaManager {
         areas.remove(area.getName());
     }
     
+    public void setIndex(Area area, int index) {
+        List<Area> list = getAreas();
+        
+        list.remove(area);
+        list.add(index, area);
+        
+        areas.clear();
+        
+        for(Area listarea : list)
+            areas.put(listarea.getName(), listarea);
+    }
+    
     public void renameArea(Area area, String newName) {
-        area.setName(newName);
+        area.setName(newName); 
         
         Map<String, Area> renamedAreas = new LinkedHashMap();
         

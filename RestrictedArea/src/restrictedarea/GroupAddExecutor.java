@@ -5,11 +5,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class DeleteExecutor implements CommandExecutor {
+public class GroupAddExecutor implements CommandExecutor {
     private AreaManager areaManager;
+    private GroupManager groupManager;
     
-    public DeleteExecutor(AreaManager areaManager) {
+    public GroupAddExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
+        this.groupManager = groupManager;
     }
 
     @Override
@@ -19,7 +21,7 @@ public class DeleteExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 1) {
+        if(args.length != 2) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
@@ -30,11 +32,22 @@ public class DeleteExecutor implements CommandExecutor {
             return true;
         }
         
-        area.removeGroups();
-        areaManager.removeArea(area);
+        Group group = groupManager.getGroup(player.getName(), args[1]);
+        if(group == null) {
+            player.sendMessage(Message.missingGroup(args[1]));
+            return true;
+        }
+               
+        if(group.contains(area)) {
+            player.sendMessage(Message.areaExistsInGroup(area.getName(), group.getName()));
+            return true;
+        }
         
-        FileManager.save(areaManager);
-        player.sendMessage(Message.areaRemoved(args[0]));
+        group.addArea(area);
+        
+        player.sendMessage(Message.areaPlacedInGroup(area.getName(), group.getName()));
+        
+        
 
         return true;
     }

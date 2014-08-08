@@ -27,15 +27,19 @@ public class Group {
     
     public void addArea(Area area) {
         areas.add(area);
+        area.addGroup(this);
     }
     
     public void removeArea(Area area) {
         areas.remove(area);
+        area.removeGroup(this);
     }
     
     public List<Area> getAreas() {
         return areas;
     }
     
-    
+    public boolean contains(Area area) {
+        return areas.contains(area);
+    }
 }
