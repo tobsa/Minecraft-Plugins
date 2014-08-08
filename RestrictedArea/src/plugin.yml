@@ -5,5 +5,29 @@ commands:
     ra:
         usage: /ra <name>
     
+    rainclude:
+        usage: /rainclude <name>
+    
+    raexclude:
+        usage: /raexclude <name> [index]
+    
+    radelete:
+        aliases: [radel]
+        usage: /radelete <name>
+        
+    ralocation:
+        usage: /ralocation <name>
+        
+    rarename:
+        usage: /rarename <originalName> <newName>
+        
+    ralist:
+        usage: /ralist
+        
+    raselect:
+        aliases: [rasel]
+        usage: /raselect <name> [index]
+    
     rahelp:
         usage: /rahelp
+        

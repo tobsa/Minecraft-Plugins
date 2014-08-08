@@ -11,11 +11,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class RestrictedAreaExecutor implements CommandExecutor {
+public class IncludeExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private WorldEditPlugin worldEdit;
     
-    public RestrictedAreaExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
+    public IncludeExecutor(AreaManager areaManager, WorldEditPlugin worldEdit) {
         this.areaManager = areaManager;
         this.worldEdit = worldEdit;
     }
@@ -39,8 +39,8 @@ public class RestrictedAreaExecutor implements CommandExecutor {
         }
                         
         Area area = areaManager.getArea(player.getName(), args[0]);
-        if(area != null) {
-            player.sendMessage(Message.areaExists(args[0]));
+        if(area == null) {
+            player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
         
@@ -48,11 +48,11 @@ public class RestrictedAreaExecutor implements CommandExecutor {
             List<BlockVector2D> points = selection.getRegionSelector().getRegion().polygonize(-1);
             int minimumY = selection.getMinimumPoint().getBlockY();
             int maximumY = selection.getMaximumPoint().getBlockY();
+            int numBlocks = selection.getRegionSelector().getRegion().getArea();
             
-            area = new Area(args[0], player.getName(), new SubArea(points, minimumY, maximumY), player.getLocation());
-            areaManager.addArea(area);
+            area.addArea(new SubArea(points, minimumY, maximumY));            
             FileManager.save(areaManager);
-            player.sendMessage(Message.areaCreated(args[0]));
+            player.sendMessage(Message.subareaCreated(args[0], numBlocks));
         } catch (IncompleteRegionException ex) {
             player.sendMessage(ex.toString());
             Bukkit.getConsoleSender().sendMessage(ex.toString());

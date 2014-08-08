@@ -40,5 +40,13 @@ public class PuzzlePack extends JavaPlugin {
 
         return distance < minDistance;
     }
+    
+    public static Integer getInteger(String number) {
+        try {
+            return Integer.valueOf(number);
+        } catch(NumberFormatException ex) {
+            return null;
+        }
+    }
 
 }

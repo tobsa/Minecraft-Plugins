@@ -1,7 +1,10 @@
 package restrictedarea;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import org.bukkit.Location;
 
 public class AreaManager {
     private Map<String, Area> areas = new LinkedHashMap();
@@ -19,6 +22,20 @@ public class AreaManager {
             return area;
         
         return null;        
+    }
+    
+    public List<Area> getAreas(String playerName, Location location) {
+        List<Area> values = new ArrayList();
+        
+        for(Area area : areas.values())
+            if(area.getPlayerName().equalsIgnoreCase(playerName) && area.contains(location))
+                values.add(area);
+        
+        return values;                
+    }
+        
+    public List<Area> getAreas() {
+        return new ArrayList(areas.values());
     }
     
     public void removeArea(Area area) {

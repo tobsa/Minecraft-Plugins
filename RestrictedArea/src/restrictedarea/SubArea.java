@@ -76,4 +76,45 @@ public class SubArea {
 
         return inside;
     }
+
+    public List<BlockVector2D> getPoints() {
+        return points;
+    }
+        
+    private int getExtremum(boolean min, boolean x) {
+        int extremum = min ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        
+        for(BlockVector2D point : points) {
+            if(min)
+                extremum = Math.min(extremum, x ? point.getBlockX() : point.getBlockZ());
+            else
+                extremum = Math.max(extremum, x ? point.getBlockX() : point.getBlockZ());
+        }
+        
+        return extremum;
+    }
+    
+    public int getMinimumX() {
+        return getExtremum(true, true);
+    }
+    
+    public int getMinimumY() {
+        return minimumY;
+    }
+    
+    public int getMinimumZ() {
+        return getExtremum(true, false);
+    }
+    
+    public int getMaximumX() {
+        return getExtremum(false, true);
+    }
+    
+    public int getMaximumY() {
+        return maximumY;
+    }
+
+    public int getMaximumZ() {
+        return getExtremum(false, false);
+    }
 }

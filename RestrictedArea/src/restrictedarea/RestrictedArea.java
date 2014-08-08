@@ -7,19 +7,25 @@ import puzzlepack.CommandRegister;
 import puzzlepack.HelpExecutor;
 
 public class RestrictedArea extends JavaPlugin {
-    
-    public static SubArea area;
-    
+        
     @Override
     public void onEnable() {
-        WorldEditPlugin plugin = (WorldEditPlugin)getServer().getPluginManager().getPlugin("WorldEdit");
+        WorldEditPlugin worldEdit = (WorldEditPlugin)getServer().getPluginManager().getPlugin("WorldEdit");
+        AreaManager areaManager = FileManager.load();
         
-        getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerMoveEvent(areaManager), this);
         
         CommandRegister commandRegister = new CommandRegister();
         
-        commandRegister.register(getCommand("ra"),     new RestrictedAreaExecutor(plugin));
-        commandRegister.register(getCommand("rahelp"), new HelpExecutor(commandRegister.getCommands()));
+        commandRegister.register(getCommand("ra"),          new RestrictedAreaExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("rainclude"),   new IncludeExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("raexclude"),   new ExcludeExecutor(areaManager));
+        commandRegister.register(getCommand("radelete"),    new DeleteExecutor(areaManager));
+        commandRegister.register(getCommand("rarename"),    new RenameExecutor(areaManager));
+        commandRegister.register(getCommand("ralocation"),  new LocationExecutor(areaManager));
+        commandRegister.register(getCommand("ralist"),      new ListExecutor(areaManager));
+        commandRegister.register(getCommand("raselect"),    new SelectExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("rahelp"),      new HelpExecutor(commandRegister.getCommands()));
     }
     
 }
