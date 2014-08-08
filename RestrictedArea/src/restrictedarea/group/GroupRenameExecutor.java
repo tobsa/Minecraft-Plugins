@@ -1,14 +1,16 @@
-package restrictedarea;
+package restrictedarea.group;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
 
-public class GroupListExecutor implements CommandExecutor {
+public class GroupRenameExecutor implements CommandExecutor {
     private GroupManager groupManager;
     
-    public GroupListExecutor(GroupManager groupManager) {
+    public GroupRenameExecutor(GroupManager groupManager) {
         this.groupManager = groupManager;
     }
 
@@ -19,33 +21,25 @@ public class GroupListExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length > 1) {
+        if(args.length != 2) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
-        
-        if(args.length == 0) {
-            player.sendMessage(Message.grouplistHeader());
-
-            int count = 1;
-            for(Group group : groupManager.getGroups())
-                if(group.getPlayerName().equalsIgnoreCase(player.getName()))
-                    player.sendMessage(count++ + ". " + group.getName());
-
-            return true;
-        } 
-        
+                                
         Group group = groupManager.getGroup(player.getName(), args[0]);
         if(group == null) {
             player.sendMessage(Message.missingGroup(args[0]));
             return true;
         }
         
-        player.sendMessage(Message.groupnameHeader(group.getName()));
-        
-        int count = 1;
-        for(Area area : group.getAreas())
-            player.sendMessage(count++ + ". " + area.getName());
+        if(groupManager.getGroup(player.getName(), args[1]) != null) {
+            player.sendMessage(Message.groupExists(args[1]));
+            return true;
+        }
+               
+        groupManager.renameGroup(group, args[1]);
+        FileManager.save(groupManager);
+        player.sendMessage(Message.groupRenamed(args[0], args[1]));
         
         return true;
     }

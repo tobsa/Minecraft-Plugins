@@ -1,10 +1,12 @@
-package restrictedarea;
+package restrictedarea.serialized;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import restrictedarea.Area;
+import restrictedarea.SubArea;
 
 public class SerializedArea implements Serializable {
     private static final long serialVersionUID = 1L;

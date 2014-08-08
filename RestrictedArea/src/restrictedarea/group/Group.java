@@ -1,7 +1,8 @@
-package restrictedarea;
+package restrictedarea.group;
 
 import java.util.ArrayList;
 import java.util.List;
+import restrictedarea.Area;
 
 public class Group {
     private String name;
@@ -27,12 +28,10 @@ public class Group {
     
     public void addArea(Area area) {
         areas.add(area);
-        area.addGroup(this);
     }
     
     public void removeArea(Area area) {
         areas.remove(area);
-        area.removeGroup(this);
     }
     
     public List<Area> getAreas() {
@@ -41,5 +40,11 @@ public class Group {
     
     public boolean contains(Area area) {
         return areas.contains(area);
+    }
+    
+    public void renameArea(String originalName, String newName) {
+        for(Area area : areas)
+            if(area.getName().equals(originalName))
+                area.setName(newName);
     }
 }

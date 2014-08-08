@@ -2,6 +2,7 @@ package restrictedarea;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -11,7 +12,6 @@ public class Area {
     private String playerName;
     private Location location;
     private List<SubArea> areas = new ArrayList();
-    private List<Group> includedGroups = new ArrayList();
     
     public Area(String name, String playerName) {
         this.name = name;
@@ -56,20 +56,7 @@ public class Area {
         
         return false;
     }
-    
-    public void addGroup(Group group) {
-        includedGroups.add(group);
-    }
-    
-    public void removeGroup(Group group) {
-        includedGroups.remove(group);
-    }
-    
-    public void removeGroups() {
-        for(Group group : includedGroups)
-            group.removeArea(this);
-    }
-    
+        
     public List<SubArea> getAreas(Location location) {
         List<SubArea> collidedAreas = new ArrayList();
         
@@ -118,5 +105,29 @@ public class Area {
     
     public SubArea getArea(int index) {
         return areas.get(index);
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if(object == null)
+            return false;
+        if(object == this)
+            return true;
+        if(!(object instanceof Area))
+            return false;
+        
+        
+        Area area = (Area)object;
+        return area.getName().equals(name);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 37 * hash + Objects.hashCode(this.playerName);
+        hash = 37 * hash + Objects.hashCode(this.location);
+        hash = 37 * hash + Objects.hashCode(this.areas);
+        return hash;
     }
 }

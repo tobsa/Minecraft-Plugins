@@ -1,16 +1,19 @@
-package restrictedarea;
+package restrictedarea.group;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import restrictedarea.group.GroupManager;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
 
-public class RenameExecutor implements CommandExecutor {
+public class GroupIncludeExecutor implements CommandExecutor {
     private AreaManager areaManager;
     private GroupManager groupManager;
     
-    public RenameExecutor(AreaManager areaManager, GroupManager groupManager) {
+    public GroupIncludeExecutor(AreaManager areaManager, GroupManager groupManager) {
         this.areaManager = areaManager;
         this.groupManager = groupManager;
     }
@@ -33,19 +36,21 @@ public class RenameExecutor implements CommandExecutor {
             return true;
         }
         
-        if(areaManager.getArea(player.getName(), args[1]) != null) {
-            player.sendMessage(Message.areaExists(args[1]));
+        Group group = groupManager.getGroup(player.getName(), args[1]);
+        if(group == null) {
+            player.sendMessage(Message.missingGroup(args[1]));
+            return true;
+        }
+               
+        if(group.contains(area)) {
+            player.sendMessage(Message.areaExistsInGroup(area.getName(), group.getName()));
             return true;
         }
         
-        areaManager.renameArea(area, args[1]);
-        groupManager.renameAreaInGroups(player.getName(), args[0], args[1]);
-        
-        FileManager.save(areaManager);
+        group.addArea(area);
         FileManager.save(groupManager);
+        player.sendMessage(Message.areaPlacedInGroup(area.getName(), group.getName()));
         
-        player.sendMessage(Message.areaRenamed(args[0], args[1]));
-
         return true;
     }
 }

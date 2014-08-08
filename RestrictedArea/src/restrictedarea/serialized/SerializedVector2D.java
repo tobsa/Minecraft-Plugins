@@ -1,4 +1,4 @@
-package restrictedarea;
+package restrictedarea.serialized;
 
 import com.sk89q.worldedit.BlockVector2D;
 import java.io.Serializable;

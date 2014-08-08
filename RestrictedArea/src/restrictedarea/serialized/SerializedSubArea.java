@@ -1,9 +1,10 @@
-package restrictedarea;
+package restrictedarea.serialized;
 
 import com.sk89q.worldedit.BlockVector2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import restrictedarea.SubArea;
 
 public class SerializedSubArea implements Serializable {
     private static final long serialVersionUID = 1L;

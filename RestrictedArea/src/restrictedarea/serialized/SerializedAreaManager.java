@@ -1,8 +1,10 @@
-package restrictedarea;
+package restrictedarea.serialized;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import restrictedarea.Area;
+import restrictedarea.AreaManager;
 
 public class SerializedAreaManager implements Serializable {
     private static final long serialVersionUID = 1L;

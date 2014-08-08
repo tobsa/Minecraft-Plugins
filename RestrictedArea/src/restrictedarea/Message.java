@@ -81,7 +81,27 @@ public class Message extends BaseMessage {
     }
 
     public static String groupnameHeader(String name) {
-        return HIGHLIGHT + "========== " + name + " ==========";
+        return HIGHLIGHT + "========== " + NORMAL + name + HIGHLIGHT + " ==========";
+    }
+
+    public static String groupitemList(int count, String name, int size) {
+        return NORMAL + "" + count + ". " + name + " (" + HIGHLIGHT + size + NORMAL + (size == 1 ? " area)" : " areas)");
+    }
+
+    public static String groupRemoved(String name) {
+        return NORMAL + "Group '" + HIGHLIGHT + name + NORMAL + "' was removed!";
+    }
+
+    public static String groupRenamed(String group, String newName) {
+        return NORMAL + "Group '" + HIGHLIGHT + group + NORMAL + "' has been renamed to '" + HIGHLIGHT + newName + NORMAL + "'!";
+    }
+
+    public static String areaMissingInGroup(String area, String group) {
+        return ERROR + "Area '" + HIGHLIGHT + area + ERROR + "' doesn't  exist in group '" + HIGHLIGHT + group + ERROR + "'!";
+    }
+
+    public static String areaRemovedFromGroup(String area, String group) {
+        return NORMAL + "Area '" + HIGHLIGHT + area + NORMAL + "' was removed from group '" + HIGHLIGHT + group + NORMAL + "'!";
     }
     
 }

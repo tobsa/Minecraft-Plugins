@@ -1,17 +1,16 @@
-package restrictedarea;
+package restrictedarea.group;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import restrictedarea.group.GroupManager;
+import restrictedarea.FileManager;
+import restrictedarea.Message;
 
-public class DeleteExecutor implements CommandExecutor {
-    private AreaManager areaManager;
+public class GroupExecutor implements CommandExecutor {
     private GroupManager groupManager;
     
-    public DeleteExecutor(AreaManager areaManager, GroupManager groupManager) {
-        this.areaManager = areaManager;
+    public GroupExecutor(GroupManager groupManager) {
         this.groupManager = groupManager;
     }
 
@@ -27,18 +26,15 @@ public class DeleteExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
-        if(area == null) {
-            player.sendMessage(Message.missingArea(args[0]));
+        Group group = groupManager.getGroup(player.getName(), args[0]);
+        if(group != null) {
+            player.sendMessage(Message.groupExists(args[0]));
             return true;
         }
         
-        groupManager.removeAreaFromGroups(player.getName(), area);        
-        areaManager.removeArea(area);
-        
-        FileManager.save(areaManager);
+        groupManager.addGroup(new Group(args[0], player.getName()));
         FileManager.save(groupManager);
-        player.sendMessage(Message.areaRemoved(args[0]));
+        player.sendMessage(Message.groupCreated(args[0]));
 
         return true;
     }
