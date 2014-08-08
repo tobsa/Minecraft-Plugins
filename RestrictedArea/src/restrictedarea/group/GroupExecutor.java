@@ -26,7 +26,7 @@ public class GroupExecutor implements CommandExecutor {
             return true;
         }
                         
-        Group group = groupManager.getGroup(player.getName(), args[0]);
+        Group group = groupManager.getGroup(args[0], player.getName());
         if(group != null) {
             player.sendMessage(Message.groupExists(args[0]));
             return true;

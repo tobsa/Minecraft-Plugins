@@ -38,7 +38,7 @@ public class IncludeExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
@@ -50,7 +50,7 @@ public class IncludeExecutor implements CommandExecutor {
             int maximumY = selection.getMaximumPoint().getBlockY();
             int numBlocks = selection.getRegionSelector().getRegion().getArea();
             
-            area.addArea(new SubArea(points, minimumY, maximumY));            
+            area.addSubArea(new SubArea(points, minimumY, maximumY));            
             FileManager.save(areaManager);
             player.sendMessage(Message.subareaCreated(args[0], numBlocks));
         } catch (IncompleteRegionException ex) {

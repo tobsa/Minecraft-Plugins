@@ -103,5 +103,9 @@ public class Message extends BaseMessage {
     public static String areaRemovedFromGroup(String area, String group) {
         return NORMAL + "Area '" + HIGHLIGHT + area + NORMAL + "' was removed from group '" + HIGHLIGHT + group + NORMAL + "'!";
     }
+
+    public static String areaMessageSet(String name) {
+        return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' message has been updated!";
+    }
     
 }

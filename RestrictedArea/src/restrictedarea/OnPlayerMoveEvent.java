@@ -17,10 +17,12 @@ public class OnPlayerMoveEvent implements Listener {
     public void onPlayerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         
-        for(Area area : areaManager.getAreas())
+        for(Area area : areaManager.get())
             if(area.contains(player.getLocation())) {
                 player.teleport(area.getLocation());
                 player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
+                if(area.getMessage() != null && !area.getMessage().isEmpty())
+                    player.sendMessage(area.getMessage());
             }
                     
         

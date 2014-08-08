@@ -27,18 +27,18 @@ public class RenameExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
         
-        if(areaManager.getArea(player.getName(), args[1]) != null) {
+        if(areaManager.get(args[1]) != null) {
             player.sendMessage(Message.areaExists(args[1]));
             return true;
         }
         
-        areaManager.renameArea(area, args[1]);
+        areaManager.renameItem(area, args[1]);
         groupManager.renameAreaInGroups(player.getName(), args[0], args[1]);
         
         FileManager.save(areaManager);

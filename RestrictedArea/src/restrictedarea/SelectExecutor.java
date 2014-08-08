@@ -1,5 +1,6 @@
 package restrictedarea;
 
+import basepack.BasePack;
 import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
@@ -12,7 +13,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import puzzlepack.PuzzlePack;
 
 public class SelectExecutor implements CommandExecutor {
     private AreaManager areaManager;
@@ -35,7 +35,7 @@ public class SelectExecutor implements CommandExecutor {
             return true;
         }
         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
@@ -49,18 +49,18 @@ public class SelectExecutor implements CommandExecutor {
             return true;
         }
         
-        Integer index = PuzzlePack.getInteger(args[1]);
+        Integer index = BasePack.getInteger(args[1]);
         if(index == null) {
             player.sendMessage(Message.invalidNumber(args[1]));
             return true;
         }
         
-        if(index < 0 || index >= area.getAreas().size()) {
-            player.sendMessage(Message.invalidIndex(args[1], area.getAreas().size()));
+        if(index < 0 || index >= area.getSubAreas().size()) {
+            player.sendMessage(Message.invalidIndex(args[1], area.getSubAreas().size()));
             return true;
         }
         
-        SubArea subarea = area.getArea(index);        
+        SubArea subarea = area.getSubAreas().get(index);        
         worldEdit.setSelection(player, new Polygonal2DSelection(player.getWorld(), subarea.getPoints(), subarea.getMinimumY(), subarea.getMaximumY()));
 
         return true;

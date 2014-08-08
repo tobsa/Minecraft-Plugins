@@ -26,7 +26,7 @@ public class RestrictedAreaExecutor implements CommandExecutor {
             return true;
         
         Player player = (Player)sender;
-        
+                
         Selection selection = worldEdit.getSelection(player);
         if (selection == null) {
             player.sendMessage(Message.missingSelection());
@@ -38,7 +38,7 @@ public class RestrictedAreaExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0]);
         if(area != null) {
             player.sendMessage(Message.areaExists(args[0]));
             return true;
@@ -49,8 +49,8 @@ public class RestrictedAreaExecutor implements CommandExecutor {
             int minimumY = selection.getMinimumPoint().getBlockY();
             int maximumY = selection.getMaximumPoint().getBlockY();
             
-            area = new Area(args[0], player.getName(), new SubArea(points, minimumY, maximumY), player.getLocation());
-            areaManager.addArea(area);
+            areaManager.add(new Area(args[0], player.getName(), new SubArea(points, minimumY, maximumY), player.getLocation()));            
+            
             FileManager.save(areaManager);
             player.sendMessage(Message.areaCreated(args[0]));
         } catch (IncompleteRegionException ex) {

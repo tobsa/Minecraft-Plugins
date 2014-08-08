@@ -26,13 +26,13 @@ public class GroupRenameExecutor implements CommandExecutor {
             return true;
         }
                                 
-        Group group = groupManager.getGroup(player.getName(), args[0]);
+        Group group = groupManager.getGroup(args[0], player.getName());
         if(group == null) {
             player.sendMessage(Message.missingGroup(args[0]));
             return true;
         }
         
-        if(groupManager.getGroup(player.getName(), args[1]) != null) {
+        if(groupManager.getGroup(args[1], player.getName()) != null) {
             player.sendMessage(Message.groupExists(args[1]));
             return true;
         }

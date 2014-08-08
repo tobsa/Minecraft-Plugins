@@ -30,13 +30,13 @@ public class GroupIncludeExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
         
-        Group group = groupManager.getGroup(player.getName(), args[1]);
+        Group group = groupManager.getGroup(args[1], player.getName());
         if(group == null) {
             player.sendMessage(Message.missingGroup(args[1]));
             return true;
@@ -47,7 +47,7 @@ public class GroupIncludeExecutor implements CommandExecutor {
             return true;
         }
         
-        group.addArea(area);
+        group.add(area);
         FileManager.save(groupManager);
         player.sendMessage(Message.areaPlacedInGroup(area.getName(), group.getName()));
         

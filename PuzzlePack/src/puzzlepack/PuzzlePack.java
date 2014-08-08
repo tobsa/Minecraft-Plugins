@@ -2,6 +2,7 @@ package puzzlepack;
 
 import itemrestrict.OnBlockPlaceItemRestrict;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -41,12 +42,6 @@ public class PuzzlePack extends JavaPlugin {
         return distance < minDistance;
     }
     
-    public static Integer getInteger(String number) {
-        try {
-            return Integer.valueOf(number);
-        } catch(NumberFormatException ex) {
-            return null;
-        }
-    }
+    
 
 }

@@ -32,12 +32,12 @@ public class GroupListExecutor implements CommandExecutor {
             int count = 1;
             for(Group group : groupManager.getGroups())
                 if(group.getPlayerName().equalsIgnoreCase(player.getName()))
-                    player.sendMessage(Message.groupitemList(count++, group.getName(), group.getAreas().size()));
+                    player.sendMessage(Message.groupitemList(count++, group.getName(), group.get().size()));
 
             return true;
         } 
         
-        Group group = groupManager.getGroup(player.getName(), args[0]);
+        Group group = groupManager.getGroup(args[0], player.getName());
         if(group == null) {
             player.sendMessage(Message.missingGroup(args[0]));
             return true;
@@ -46,7 +46,7 @@ public class GroupListExecutor implements CommandExecutor {
         player.sendMessage(Message.groupnameHeader(group.getName()));
         
         int count = 1;
-        for(Area area : group.getAreas())
+        for(Area area : group.get())
             player.sendMessage(count++ + ". " + area.getName());
         
         return true;

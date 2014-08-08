@@ -15,7 +15,7 @@ public class SerializedGroup implements Serializable {
         this.name = group.getName();
         this.playerName = group.getPlayerName();
         
-        for(Area area : group.getAreas())
+        for(Area area : group.get())
             areas.add(new SerializedArea(area));
     }
     
@@ -23,7 +23,7 @@ public class SerializedGroup implements Serializable {
         Group group = new Group(name, playerName);
         
         for(SerializedArea area : areas)
-            group.addArea(area.getArea());
+            group.add(area.getArea());
             
         return group;
     }

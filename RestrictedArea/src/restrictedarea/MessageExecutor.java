@@ -1,14 +1,15 @@
 package restrictedarea;
 
+import basepack.BasePack;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class LocationExecutor implements CommandExecutor {
+public class MessageExecutor implements CommandExecutor {
     private AreaManager areaManager;
     
-    public LocationExecutor(AreaManager areaManager) {
+    public MessageExecutor(AreaManager areaManager) {
         this.areaManager = areaManager;
     }
 
@@ -19,7 +20,7 @@ public class LocationExecutor implements CommandExecutor {
         
         Player player = (Player)sender;
                 
-        if(args.length != 1) {
+        if(args.length <= 1) {
             player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
@@ -29,10 +30,12 @@ public class LocationExecutor implements CommandExecutor {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
+              
+        String message = BasePack.combineArguments(args, 1);
         
-        area.setLocation(player.getLocation());
-        FileManager.save(areaManager);
-        player.sendMessage(Message.areaLocationUpdated(args[0]));
+        area.setMessage(message);
+        FileManager.save(areaManager);        
+        player.sendMessage(Message.areaMessageSet(area.getName()));
 
         return true;
     }

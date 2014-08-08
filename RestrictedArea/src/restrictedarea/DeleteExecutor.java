@@ -27,14 +27,14 @@ public class DeleteExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
         
-        groupManager.removeAreaFromGroups(player.getName(), area);        
-        areaManager.removeArea(area);
+        groupManager.removeItemFromGroups(area, player.getName());  
+        areaManager.remove(area.getName());
         
         FileManager.save(areaManager);
         FileManager.save(groupManager);

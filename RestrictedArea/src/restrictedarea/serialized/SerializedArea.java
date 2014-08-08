@@ -18,13 +18,15 @@ public class SerializedArea implements Serializable {
     private double z;
     private float yaw;
     private float pitch;
+    private String message;
     private List<SerializedSubArea> areas = new ArrayList();
     
     public SerializedArea(Area area) {
         this.name = area.getName();
         this.playerName = area.getPlayerName();
+        this.message = area.getMessage();
         
-        for(SubArea subArea : area.getAreas())
+        for(SubArea subArea : area.getSubAreas())
             areas.add(new SerializedSubArea(subArea));
         
         this.x = area.getLocation().getX();
@@ -38,8 +40,9 @@ public class SerializedArea implements Serializable {
         Area area = new Area(name, playerName);
         
         for(SerializedSubArea subArea : areas)
-            area.addArea(subArea.getSubArea());
+            area.addSubArea(subArea.getSubArea());
         
+        area.setMessage(message);
         area.setLocation(new Location(Bukkit.getWorld("world"), x, y ,z, yaw, pitch));
         
         return area;

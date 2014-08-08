@@ -25,7 +25,7 @@ public class IndexExecutor implements CommandExecutor {
             return true;
         }
                         
-        Area area = areaManager.getArea(player.getName(), args[0]);
+        Area area = areaManager.get(args[0], player.getName());
         if(area == null) {
             player.sendMessage(Message.missingArea(args[0]));
             return true;
@@ -37,7 +37,7 @@ public class IndexExecutor implements CommandExecutor {
             return true;
         }
         
-        int size = areaManager.getAreas().size();
+        int size = areaManager.get().size();
         if(index < 1 || index > size) {
             player.sendMessage(Message.invalidIndex(args[1], size));
             return true;

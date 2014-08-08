@@ -18,6 +18,9 @@ commands:
     ralocation:
         usage: /ralocation <name>
         
+    ramessage:
+        usage: /ramessage <name> [message]
+        
     rarename:
         usage: /rarename <originalName> <newName>
         
@@ -51,7 +54,7 @@ commands:
         
     ragroupinclude:
         aliases: [raginclude, raginc]
-        usage: /ragadd <area> <group>
+        usage: /raginclude <area> <group>
         
     ragroupexclude:
         aliases: [ragexclude, ragexl, ragexc]

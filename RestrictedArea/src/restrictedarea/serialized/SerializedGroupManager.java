@@ -10,7 +10,7 @@ public class SerializedGroupManager implements Serializable {
     private Map<String, SerializedGroup> groups = new LinkedHashMap();
     
     public SerializedGroupManager(GroupManager groupManager) {
-        
+                
         for(Group group : groupManager.getGroups())
             groups.put(group.getName(), new SerializedGroup(group));
     }    

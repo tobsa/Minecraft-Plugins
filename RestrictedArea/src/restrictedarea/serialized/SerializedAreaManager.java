@@ -12,7 +12,7 @@ public class SerializedAreaManager implements Serializable {
     private Map<String, SerializedArea> areas = new LinkedHashMap();
     
     public SerializedAreaManager(AreaManager areaManager) {
-        for(Area area : areaManager.getAreas())
+        for(Area area : areaManager.get())
             areas.put(area.getName(), new SerializedArea(area));
     }
     
@@ -20,7 +20,7 @@ public class SerializedAreaManager implements Serializable {
         AreaManager areaManager = new AreaManager();
         
         for(SerializedArea area : areas.values())
-            areaManager.addArea(area.getArea());
+            areaManager.add(area.getArea());
         
         return areaManager;
     }
