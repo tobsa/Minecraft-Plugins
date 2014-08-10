@@ -1,9 +1,12 @@
-package toggleblocks;
+package toggleblocks.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.Message;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
 
 public class ListExecutor implements CommandExecutor {
     private RegionManager regionManager;
@@ -20,14 +23,15 @@ public class ListExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 0) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
-        player.sendMessage(PlayerMessage.listHeader());
+        player.sendMessage(Message.listHeader());
         
         int number = 1;
-        for(Region region : regionManager.getRegions(player.getName()))
+        for(Region region : regionManager.get())
+            if(region.getPlayerName().equals(player.getName()))
             player.sendMessage((number++) + ". " + region.getName());
         
         return true;

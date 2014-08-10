@@ -1,9 +1,13 @@
-package toggleblocks;
+package toggleblocks.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.FileManager;
+import toggleblocks.Message;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
 
 public class RenameExecutor implements CommandExecutor {
     private RegionManager regionManager;
@@ -20,24 +24,24 @@ public class RenameExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 2) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
-        Region region = regionManager.getRegion(player.getName(), args[0]);
+        Region region = regionManager.get(args[0], player.getName());
         if(region == null) {
-            player.sendMessage(PlayerMessage.missingRegion(args[0]));
+            player.sendMessage(Message.missingRegion(args[0]));
             return true;
         }
         
-        if(regionManager.getRegion(player.getName(), args[1]) != null) {
-            player.sendMessage(PlayerMessage.regionExists(args[1]));
+        if(regionManager.get(args[1], player.getName()) != null) {
+            player.sendMessage(Message.regionExists(args[1]));
             return true;
         }
         
-        regionManager.renameRegion(region, args[1]);
+        regionManager.renameItem(region, args[1]);
         FileManager.save(regionManager);
-        player.sendMessage(PlayerMessage.regionRenamed(args[0], args[1]));
+        player.sendMessage(Message.regionRenamed(args[0], args[1]));
 
         return true;
     }

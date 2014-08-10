@@ -24,7 +24,7 @@ public class OnBlockPlacedEvent implements Listener {
         Block block = event.getBlock();
         
         region.addBlock(new ToggleBlock(block));        
-        player.sendMessage(PlayerMessage.blockPlaced(region.getName()));
+        player.sendMessage(Message.blockPlaced(region.getName()));
     }
     
 }

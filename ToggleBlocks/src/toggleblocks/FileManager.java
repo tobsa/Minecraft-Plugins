@@ -1,60 +1,44 @@
 package toggleblocks;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.LinkedHashMap;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import puzzlepack.BaseFileManager;
+import static puzzlepack.BaseFileManager.isDirectory;
+import static puzzlepack.BaseFileManager.loadObject;
+import static puzzlepack.BaseFileManager.makeDirectory;
+import static puzzlepack.BaseFileManager.saveObject;
+import toggleblocks.group.GroupManager;
 
-public class FileManager {
+public class FileManager extends BaseFileManager {
+    private static final String PATH = "plugins/ToggleBlocks";
+    private static final String REGIONS  = "/regions";
+    private static final String GROUPS = "/groups.dat";
     
-    public static RegionManager load() {
-        SerializedRegionManager serializedRegionManager = load("plugins/ToggleBlocks/regions");
+    public static RegionManager loadRegionManager() {
+        SerializedRegionManager regionManager = (SerializedRegionManager)loadObject(PATH + REGIONS);
+        if(regionManager == null)        
+            return new RegionManager();
         
-        if(serializedRegionManager == null)
-            return new RegionManager(new LinkedHashMap());
-        
-        return serializedRegionManager.getRegionManager();
+        return regionManager.getRegionManager();
     }
     
     public static void save(RegionManager regionManager) {
-        if(!isDirectory("plugins/ToggleBlocks"))
-            makeDirectory("plugins/ToggleBlocks");
+        if(!isDirectory(PATH))
+            makeDirectory(PATH);
         
-        save(new SerializedRegionManager(regionManager), "plugins/ToggleBlocks/regions");
+        saveObject(new SerializedRegionManager(regionManager), PATH + REGIONS);
     }
+    
+    public static GroupManager loadGroupManager() {
+        SerializedGroupManager groupManager = (SerializedGroupManager)loadObject(PATH + GROUPS);
+        if(groupManager == null)
+            return new GroupManager();
         
-    private static void save(SerializedRegionManager regionManager, String name) {
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(name));
-            oos.writeObject(regionManager);
-            oos.close();            
-        } catch (IOException ex) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
-        }
+        return groupManager.getGroupManager();
     }
     
-    private static SerializedRegionManager load(String name) {
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(name));
-            SerializedRegionManager regionManager = (SerializedRegionManager)ois.readObject();
-            ois.close();
-            return regionManager;
-        } catch (IOException | ClassNotFoundException ex) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + ex.toString());
-            return null;
-        }
-    }
-    
-    private static boolean isDirectory(String directory) {
-        return new File(directory).isDirectory();
-    }
-    
-    private static boolean makeDirectory(String directory) {
-        return new File(directory).mkdir();
+    public static void save(GroupManager groupManager) {
+        if(!isDirectory(PATH))
+            makeDirectory(PATH);
+        
+        saveObject(new SerializedGroupManager(groupManager), PATH + GROUPS);
     }
 }

@@ -4,6 +4,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +16,8 @@ public class OnBlockPlaceItemRestrict implements Listener {
         Player player = event.getPlayer();
         Block block1 = event.getBlock();
         Block block2 = event.getBlockAgainst();
+        
+        
 
         // Ignore function if in creative mode
         if (player.getGameMode() == GameMode.CREATIVE)
@@ -28,6 +31,10 @@ public class OnBlockPlaceItemRestrict implements Listener {
         else if (block1.getType() == Material.REDSTONE_WIRE) {
             if (block2.getType() != Material.WOOL || (block2.getType() == Material.WOOL && DyeColor.getByData(block2.getData()) != DyeColor.RED))
                 event.setCancelled(true);
+            if(!block1.getRelative(BlockFace.DOWN).equals(block2))
+                event.setCancelled(true);                   
+            
+            
         } // Make sure levers can only be placed on gold blocks
         else if (block1.getType() == Material.LEVER) {
             if (block2.getType() != Material.GOLD_BLOCK)

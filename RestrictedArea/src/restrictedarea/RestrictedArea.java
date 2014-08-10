@@ -19,6 +19,7 @@ import restrictedarea.group.executors.GroupDeleteExecutor;
 import restrictedarea.group.executors.GroupExcludeExecutor;
 import restrictedarea.group.executors.GroupExecutor;
 import restrictedarea.group.executors.GroupIncludeExecutor;
+import restrictedarea.group.executors.GroupIndexExecutor;
 import restrictedarea.group.executors.GroupListExecutor;
 import restrictedarea.group.executors.GroupRenameExecutor;
 
@@ -51,6 +52,7 @@ public class RestrictedArea extends JavaPlugin {
         commandRegister.register(getCommand("ragrouprename"),  new GroupRenameExecutor(groupManager));
         commandRegister.register(getCommand("ragroupinclude"), new GroupIncludeExecutor(areaManager, groupManager));  
         commandRegister.register(getCommand("ragroupexclude"), new GroupExcludeExecutor(areaManager, groupManager));  
+        commandRegister.register(getCommand("ragroupindex"),   new GroupIndexExecutor(groupManager));
         
         commandRegister.register(getCommand("rahelp"),      new HelpExecutor(commandRegister.getCommands()));
     }

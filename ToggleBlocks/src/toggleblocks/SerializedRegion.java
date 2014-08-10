@@ -1,10 +1,15 @@
 package toggleblocks;
 
+import toggleblocks.SerializedBlock;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import toggleblocks.LinkBlock;
+import toggleblocks.LinkType;
+import toggleblocks.Region;
+import toggleblocks.ToggleBlock;
 
 public class SerializedRegion implements Serializable {
     private String name;

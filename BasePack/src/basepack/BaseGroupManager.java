@@ -57,4 +57,16 @@ public class BaseGroupManager<Item extends BaseItem, GroupItem extends BaseGroup
             if(group.getPlayerName().equals(playerName))
                 group.rename(originalName, newName);
     }
+    
+    public void setIndex(GroupItem group, int index) {        
+        List<GroupItem> list = getGroups();
+        
+        list.remove(group);
+        list.add(index, group);
+        
+        groups.clear();
+        
+        for(GroupItem listgroup: list)
+            groups.put(listgroup.getName(), listgroup);
+    }
 }

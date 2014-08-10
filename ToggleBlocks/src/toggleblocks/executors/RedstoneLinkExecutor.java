@@ -1,9 +1,15 @@
-package toggleblocks;
+package toggleblocks.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.FileManager;
+import toggleblocks.LinkBlock;
+import toggleblocks.LinkType;
+import toggleblocks.Message;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
 
 public class RedstoneLinkExecutor implements CommandExecutor {
     private RegionManager regionManager;
@@ -20,13 +26,13 @@ public class RedstoneLinkExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
-        Region region = regionManager.getRegion(player.getName(), args[0]);
+        Region region = regionManager.get(args[0], player.getName());
         if(region == null) {
-            player.sendMessage(PlayerMessage.missingRegion(args[0]));
+            player.sendMessage(Message.missingRegion(args[0]));
             return true;
         }
         
@@ -34,7 +40,7 @@ public class RedstoneLinkExecutor implements CommandExecutor {
         
         region.setLinkBlock(linkBlock);
         FileManager.save(regionManager);
-        player.sendMessage(PlayerMessage.redstoneLinkSet(region.getName()));
+        player.sendMessage(Message.redstoneLinkSet(region.getName()));
                 
         return true;
     }

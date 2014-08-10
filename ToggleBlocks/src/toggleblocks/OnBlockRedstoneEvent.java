@@ -15,7 +15,7 @@ public class OnBlockRedstoneEvent implements Listener {
     @EventHandler
     public void onBlockRedstoneEvent(BlockRedstoneEvent event) {
 
-        for(Region region : regionManager.getRegions()) {
+        for(Region region : regionManager.get()) {
             LinkBlock linkBlock = region.getLinkBlock();
             
             if(linkBlock != null && linkBlock.getLinkType() == LinkType.Redstone) {

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import org.bukkit.block.Block;
 
 public class SerializedBlock implements Serializable {
+    private static final long serialVersionUID = 2420914920403085039L;
+    
     private int x;
     private int y;
     private int z;

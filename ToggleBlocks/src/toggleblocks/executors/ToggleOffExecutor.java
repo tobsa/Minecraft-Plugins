@@ -1,9 +1,12 @@
-package toggleblocks;
+package toggleblocks.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.Message;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
 
 public class ToggleOffExecutor implements CommandExecutor {
     private RegionManager regionManager;
@@ -20,18 +23,18 @@ public class ToggleOffExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
-        Region region = regionManager.getRegion(player.getPlayerListName(), args[0]);
+        Region region = regionManager.get(args[0], player.getName());
         if(region == null) {
-            player.sendMessage(PlayerMessage.missingRegion(args[0]));
+            player.sendMessage(Message.missingRegion(args[0]));
             return true;
         }
         
         region.toggleOff();
-        player.sendMessage(PlayerMessage.toggledOff(args[0]));
+        player.sendMessage(Message.toggledOff(args[0]));
         
         return true;
     }

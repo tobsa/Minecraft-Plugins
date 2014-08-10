@@ -8,15 +8,15 @@ public class SerializedRegionManager implements Serializable {
     private Map<String, SerializedRegion> serializedRegions = new LinkedHashMap();
     
     public SerializedRegionManager(RegionManager regionManager) {
-        for(Region region : regionManager.getRegions())
+        for(Region region : regionManager.get())
             serializedRegions.put(region.getName(), new SerializedRegion(region));
     }
     
     public RegionManager getRegionManager() {
-        RegionManager regionManager = new RegionManager(new LinkedHashMap<String, Region>());
+        RegionManager regionManager = new RegionManager();
         
         for(SerializedRegion serializedRegion : serializedRegions.values())
-            regionManager.addRegion(serializedRegion.getRegion());
+            regionManager.add(serializedRegion.getRegion());
         
         return regionManager;
     }

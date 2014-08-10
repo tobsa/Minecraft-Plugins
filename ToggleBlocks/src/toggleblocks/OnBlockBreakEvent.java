@@ -20,8 +20,10 @@ public class OnBlockBreakEvent implements Listener {
         if(region == null)
             return;
         
+        player.sendMessage("Passed region check: " + region.getName());
+        
         if(region.removeBlock(event.getBlock()))
-            player.sendMessage(PlayerMessage.blockRemoved(region.getName()));
+            player.sendMessage(Message.blockRemoved(region.getName()));
     }
     
 }

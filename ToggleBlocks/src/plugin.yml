@@ -55,6 +55,36 @@ commands:
         aliases: [tbexclude, tbexl]
         usage: /tbexclude <name>
         
+    
+    tbgroup:
+        aliases: [tbg]
+        usage: /tbgroup <name>
+        
+    tbgrouplist:
+        aliases: [tbglist]
+        usage: /tbglist
+          
+    tbgroupdelete:
+        aliases: [tbgdelete, tbgdel]
+        usage: /tbgdelete <group>
+        
+    tbgrouprename:
+        aliases: [tbgrename]
+        usage: /tbgrename <originalName> <newName>
+        
+    tbgroupinclude:
+        aliases: [tbginclude, tbginc]
+        usage: /tbginclude <area> <group>
+        
+    tbgroupexclude:
+        aliases: [tbgexclude, tbgexl, tbgexc]
+        usage: /tbgexclude <area> <group>
+        
+    tbgroupindex:
+        aliases: [tbgindex]
+        usage: /tbgindex <group> <index>
+    
+        
     toggleblockshelp:
         aliases: [tbhelp]
         usage: /tbhelp

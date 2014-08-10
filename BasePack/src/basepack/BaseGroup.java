@@ -29,14 +29,7 @@ public class BaseGroup<Item extends BaseItem> {
         items.add(item);
     }
     
-    public void remove(Item item) {
-//        for(Item listitem : items) {
-//            if(listitem.getName().equalsIgnoreCase(item.getName())) {
-//                items.remove(listitem);
-//                break;
-//            }
-//        }
-        
+    public void remove(Item item) {        
         items.remove(item);
     }
     

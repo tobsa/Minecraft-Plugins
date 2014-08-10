@@ -55,6 +55,10 @@ public class Message extends BaseMessage {
     public static String indexUpdated(String name, Integer index) {
         return NORMAL + "Area '" + HIGHLIGHT + name + NORMAL + "' has been updated with a new index " + HIGHLIGHT + index + NORMAL + "!"; 
     }
+    
+    public static String groupIndexUpdated(String name, Integer index) {
+        return NORMAL + "Group '" + HIGHLIGHT + name + NORMAL + "' has been updated with a new index " + HIGHLIGHT + index + NORMAL + "!"; 
+    }
 
     public static String missingGroup(String name) {
         return ERROR + "Group '" + HIGHLIGHT + name + ERROR + "' doesn't exist!";

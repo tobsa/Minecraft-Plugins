@@ -2,7 +2,6 @@ package puzzlepack;
 
 import itemrestrict.OnBlockPlaceItemRestrict;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -20,6 +19,7 @@ public class PuzzlePack extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnFallDamageEvent(), this);
         getServer().getPluginManager().registerEvents(new OnFoodLevelChangeEvent(), this);
         getServer().getPluginManager().registerEvents(new OnBlockPlaceEvent(), this);
+        getServer().getPluginManager().registerEvents(new OnBlockBreak(), this);
         
         getCommand("tdist").setExecutor(new TDist());
         getCommand("tsize").setExecutor(new TSize());

@@ -59,6 +59,10 @@ commands:
     ragroupexclude:
         aliases: [ragexclude, ragexl, ragexc]
         usage: /ragexclude <area> <group>
+        
+    ragroupindex:
+        aliases: [ragindex]
+        usage: /ragindex <group> <index>
     
     rahelp:
         usage: /rahelp

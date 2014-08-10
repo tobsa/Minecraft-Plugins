@@ -1,29 +1,19 @@
 package toggleblocks;
 
+import basepack.BaseItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.block.Block;
 
-public class Region {
-    private String name;
-    private String playerName;
+public class Region extends BaseItem {
     private LinkBlock linkBlock;   
     private List<ToggleBlock> toggleBlocks = new ArrayList();
     
     
     public Region(String name, String playerName) {
-        this.playerName = playerName;
-        this.name = name;
+        super(name, playerName);
     }
-        
-    public String getName() {
-        return name;
-    }
-    
-    public String getPlayerName() {
-        return playerName;
-    }
-    
+            
     public void addBlock(ToggleBlock toggleBlock) {
         toggleBlocks.add(toggleBlock);
     }
@@ -40,11 +30,7 @@ public class Region {
     public void setLinkBlock(LinkBlock linkBlock) {
         this.linkBlock = linkBlock;
     }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-        
+            
     public LinkBlock getLinkBlock() {
         return linkBlock;
     }

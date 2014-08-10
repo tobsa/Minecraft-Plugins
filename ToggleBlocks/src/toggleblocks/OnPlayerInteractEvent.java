@@ -20,7 +20,7 @@ public class OnPlayerInteractEvent implements Listener {
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
             
-            List<Region> regions = regionManager.getRegions(event.getPlayer().getName());
+            List<Region> regions = regionManager.get();
             for(Region region : regions) {
                 if(region.isLinkBlock(block) && region.getLinkBlock().getLinkType() == LinkType.Interact ) {
                     region.toggle();

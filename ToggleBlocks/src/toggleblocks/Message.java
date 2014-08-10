@@ -1,14 +1,13 @@
 package toggleblocks;
 
+import basepack.BaseMessage;
 import org.bukkit.block.Block;
-import puzzlepack.BaseMessage;
+import static puzzlepack.BaseMessage.ERROR;
+import static puzzlepack.BaseMessage.HIGHLIGHT;
+import static puzzlepack.BaseMessage.NORMAL;
 
-public class PlayerMessage extends BaseMessage {
-        
-    public static String invalidArguments(String usage) {
-        return ERROR + "Invalid arguments. Usage: " + usage;
-    }
-        
+public class Message extends BaseMessage {
+                
     public static String blockPlaced(String name) {
         return NORMAL + "A block has been added to region '" + HIGHLIGHT + name + NORMAL + "'!";
     }
@@ -61,10 +60,6 @@ public class PlayerMessage extends BaseMessage {
         return NORMAL + "Region '" + HIGHLIGHT + name + NORMAL + "' has been toggled on!";
     }
     
-    public static String help() {
-        return HIGHLIGHT + "========== Help ==========";
-    }
-
     public static String missingLink(Block block) {
         return ERROR + "No region information at this location (" + HIGHLIGHT + block.getX() + ERROR + ", "
                                                                   + HIGHLIGHT + block.getY() + ERROR + ", "
@@ -111,5 +106,25 @@ public class PlayerMessage extends BaseMessage {
 
     public static String removedBlocks(int removedBlocks, String name) {
         return NORMAL + "An amount of " + HIGHLIGHT + removedBlocks + NORMAL + " blocks has been removed from region '" + HIGHLIGHT + name + NORMAL + "'!";
+    }
+
+    public static String regionExistsInGroup(String area, String group) {
+        return ERROR + "Region '" + HIGHLIGHT + area + ERROR + "' already exists in group '" + HIGHLIGHT + group + ERROR + "'!";
+    }
+
+    public static String regionPlacedInGroup(String area, String group) {
+        return NORMAL + "Region '" + HIGHLIGHT + area + NORMAL + "' was added to group '" + HIGHLIGHT + group + NORMAL + "'!";
+    }
+    
+    public static String regionMissingInGroup(String area, String group) {
+        return ERROR + "Region '" + HIGHLIGHT + area + ERROR + "' doesn't exist in group '" + HIGHLIGHT + group + ERROR + "'!";
+    }
+
+    public static String regionRemovedFromGroup(String area, String group) {
+        return NORMAL + "Region '" + HIGHLIGHT + area + NORMAL + "' was removed from group '" + HIGHLIGHT + group + NORMAL + "'!";
+    }
+
+    public static String regionMessageSet(String name) {
+        return NORMAL + "Region '" + HIGHLIGHT + name + NORMAL + "' message has been updated!";
     }
 }

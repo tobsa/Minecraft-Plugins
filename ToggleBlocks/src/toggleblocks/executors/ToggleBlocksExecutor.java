@@ -1,9 +1,13 @@
-package toggleblocks;
+package toggleblocks.executors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import toggleblocks.FileManager;
+import toggleblocks.Message;
+import toggleblocks.Region;
+import toggleblocks.RegionManager;
 
 public class ToggleBlocksExecutor implements CommandExecutor {
     private RegionManager regionManager;
@@ -20,27 +24,27 @@ public class ToggleBlocksExecutor implements CommandExecutor {
         Player player = (Player) sender;
 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
                    
-        Region region = regionManager.getRegion(player.getName(), args[0]);
+        Region region = regionManager.get(args[0], player.getName());
         if(region != null) {
             Region editRegion = regionManager.getEditRegion(player.getName());
             if(editRegion == null) {
                 regionManager.setEditRegion(player.getName(), region);
-                player.sendMessage(PlayerMessage.editmodeYes(region.getName()));
+                player.sendMessage(Message.editmodeYes(region.getName()));
             }
             else {
                 if(region == editRegion) {                  
                     regionManager.setEditRegion(player.getName(), null);
-                    player.sendMessage(PlayerMessage.editmodeNo(region.getName()));
+                    player.sendMessage(Message.editmodeNo(region.getName()));
                     FileManager.save(regionManager);
                 } 
                 else {
-                    player.sendMessage(PlayerMessage.editmodeNo(editRegion.getName()));
+                    player.sendMessage(Message.editmodeNo(editRegion.getName()));
                     regionManager.setEditRegion(player.getName(), region);
-                    player.sendMessage(PlayerMessage.editmodeYes(region.getName()));
+                    player.sendMessage(Message.editmodeYes(region.getName()));
                 }
             }
             
@@ -48,15 +52,15 @@ public class ToggleBlocksExecutor implements CommandExecutor {
         }
         
         region = new Region(args[0], player.getName());
-        regionManager.addRegion(region);
-        player.sendMessage(PlayerMessage.regionCreated(args[0]));
+        regionManager.add(region);
+        player.sendMessage(Message.regionCreated(args[0]));
         
         Region editRegion = regionManager.getEditRegion(player.getName());
         if(editRegion != null)
-            player.sendMessage(PlayerMessage.editmodeNo(editRegion.getName()));
+            player.sendMessage(Message.editmodeNo(editRegion.getName()));
         
         regionManager.setEditRegion(player.getName(), region);
-        player.sendMessage(PlayerMessage.editmodeYes(args[0]));
+        player.sendMessage(Message.editmodeYes(args[0]));
 
         return true;
     }
