@@ -2,7 +2,7 @@ package areacollider;
 
 import puzzlepack.BaseMessage;
 
-public class PlayerMessage extends BaseMessage {    
+public class Message extends BaseMessage {    
     
     public static String missingRegionSelection() {
         return ERROR + "Make a region selection first!";

@@ -20,19 +20,19 @@ public class DeleteExecutor implements CommandExecutor {
         Player player = (Player)sender;
                 
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
         Area area = areaManager.getArea(player.getName(), args[0]);
         if(area == null) {
-            player.sendMessage(PlayerMessage.missingArea(args[0]));
+            player.sendMessage(Message.missingArea(args[0]));
             return true;
         }
         
         areaManager.removeArea(area.getName());
         FileManager.save(areaManager);
-        player.sendMessage(PlayerMessage.areaDeleted(args[0]));
+        player.sendMessage(Message.areaDeleted(args[0]));
        
         return true;
     }

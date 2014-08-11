@@ -50,7 +50,7 @@ public class PlayerMessage extends BaseMessage {
     }
     
     public static String missingInfo(Block block) {
-        return "No combiner information at this location (" + HIGHLIGHT + block.getX() + ERROR + ", "
+        return ERROR + "No combiner information at this location (" + HIGHLIGHT + block.getX() + ERROR + ", "
                                                             + HIGHLIGHT + block.getY() + ERROR + ", "
                                                             + HIGHLIGHT + block.getZ() + ERROR + ")!";
     }

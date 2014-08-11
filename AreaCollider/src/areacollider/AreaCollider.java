@@ -1,5 +1,6 @@
 package areacollider;
 
+import areacollider.bigmessage.BigMessageExecutor;
 import areacollider.general.GeneralExecutor;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +29,7 @@ public class AreaCollider extends JavaPlugin {
         commandRegister.register(getCommand("areaclearinventory"),  new ClearInventoryExecutor(areaManager, worldEdit));
         commandRegister.register(getCommand("areamessage"),         new MessageExecutor(areaManager, worldEdit));
         commandRegister.register(getCommand("areasound"),           new SoundExecutor(areaManager, worldEdit));
+        commandRegister.register(getCommand("areabigmessage"),      new BigMessageExecutor(areaManager, worldEdit));
         
         commandRegister.register(getCommand("arealist"),            new ListExecutor(areaManager));
         commandRegister.register(getCommand("areaselect"),          new SelectExecutor(areaManager, worldEdit));

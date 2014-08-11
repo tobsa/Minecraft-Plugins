@@ -62,7 +62,7 @@ commands:
         
     tbgrouplist:
         aliases: [tbglist]
-        usage: /tbglist
+        usage: /tbglist [name]
           
     tbgroupdelete:
         aliases: [tbgdelete, tbgdel]

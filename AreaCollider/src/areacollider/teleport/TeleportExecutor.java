@@ -4,7 +4,7 @@ import areacollider.Area;
 import areacollider.AreaManager;
 import areacollider.AreaCollider;
 import areacollider.FileManager;
-import areacollider.PlayerMessage;
+import areacollider.Message;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import org.bukkit.block.Block;
@@ -32,17 +32,17 @@ public class TeleportExecutor implements CommandExecutor {
         Selection selection = worldEdit.getSelection(player);
 
         if (selection == null) {
-            player.sendMessage(PlayerMessage.missingRegionSelection());
+            player.sendMessage(Message.missingRegionSelection());
             return true;
         }
         
         if(args.length < 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
         if(areaManager.getArea(player.getName(), args[0]) != null) {
-            player.sendMessage(PlayerMessage.areaExists(args[0]));
+            player.sendMessage(Message.areaExists(args[0]));
             return true;
         }
 
@@ -54,7 +54,7 @@ public class TeleportExecutor implements CommandExecutor {
         else
             areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new TeleportResponse(player.getLocation(), AreaCollider.combineArguments(args, 1))));
         FileManager.save(areaManager);
-        player.sendMessage(PlayerMessage.areaCreated(args[0]));  
+        player.sendMessage(Message.areaCreated(args[0]));  
         return true;
     }
 }

@@ -20,11 +20,11 @@ public class ListExecutor implements CommandExecutor {
         Player player = (Player)sender;
                 
         if(args.length != 0) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
-        player.sendMessage(PlayerMessage.listHeader());
+        player.sendMessage(Message.listHeader());
         
         int number = 1;
         for(Area area : areaManager.getAreas())

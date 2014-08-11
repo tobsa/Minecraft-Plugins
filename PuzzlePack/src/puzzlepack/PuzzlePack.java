@@ -9,20 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PuzzlePack extends JavaPlugin {
     
-    public static int percent = 75;
-    public static int size = 0;
-    public static int air = 30;
-    
     @Override
     public void onEnable() {             
         getServer().getPluginManager().registerEvents(new OnBlockPlaceItemRestrict(), this);
         getServer().getPluginManager().registerEvents(new OnFallDamageEvent(), this);
         getServer().getPluginManager().registerEvents(new OnFoodLevelChangeEvent(), this);
-        getServer().getPluginManager().registerEvents(new OnBlockPlaceEvent(), this);
+        getServer().getPluginManager().registerEvents(new OnVehickleExitEvent(), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreak(), this);
-        
-        getCommand("tdist").setExecutor(new TDist());
-        getCommand("tsize").setExecutor(new TSize());
     }
 
     public static boolean isToClose(Player player, Block block, double minDistance) {

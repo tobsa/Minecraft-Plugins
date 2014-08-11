@@ -3,7 +3,7 @@ package areacollider.secret;
 import areacollider.Area;
 import areacollider.AreaManager;
 import areacollider.FileManager;
-import areacollider.PlayerMessage;
+import areacollider.Message;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import org.bukkit.block.Block;
@@ -30,17 +30,17 @@ public class SecretExecutor implements CommandExecutor {
         
         Selection selection = worldEdit.getSelection(player);
         if (selection == null) {
-            player.sendMessage(PlayerMessage.missingRegionSelection());
+            player.sendMessage(Message.missingRegionSelection());
             return true;
         }
         
         if(args.length != 1) {
-            player.sendMessage(PlayerMessage.invalidArguments(command.getUsage()));
+            player.sendMessage(Message.invalidArguments(command.getUsage()));
             return true;
         }
         
         if(areaManager.getArea(player.getName(), args[0]) != null) {
-            player.sendMessage(PlayerMessage.areaExists(args[0]));
+            player.sendMessage(Message.areaExists(args[0]));
             return true;
         }
 
@@ -48,7 +48,7 @@ public class SecretExecutor implements CommandExecutor {
         Block block2 = selection.getMaximumPoint().getBlock();
                 
         areaManager.addArea(new Area(player.getName(), args[0], block1, block2, new SecretResponse()));
-        player.sendMessage(PlayerMessage.areaCreated(args[0]));
+        player.sendMessage(Message.areaCreated(args[0]));
         FileManager.save(areaManager);
         
         return true;

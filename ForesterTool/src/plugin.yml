@@ -1,0 +1,31 @@
+name: ForesterTool
+main: forestertool.ForesterTool
+version: 1.0
+
+commands:
+    ftsize:
+        usage: /ftsize <size>
+        
+    ftair:
+        usage: /ftair <air>
+        
+    ftleaves:
+        usage: /ftleaves <leaves>
+        
+    ftreplon:
+        usage: /fton
+        
+    ftreploff:
+        usage: /ftoff
+        
+    ftdiston:
+        usage: /ftdiston
+        
+    ftdistoff:
+        usage: /ftdistoff
+        
+    ftinfo:
+        usage: /ftinfo
+        
+    fthelp:
+        usage: /fthelp

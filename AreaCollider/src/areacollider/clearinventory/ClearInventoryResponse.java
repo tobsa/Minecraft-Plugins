@@ -1,7 +1,7 @@
 package areacollider.clearinventory;
 
 import areacollider.CollisionResponse;
-import areacollider.PlayerMessage;
+import areacollider.Message;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
@@ -40,7 +40,7 @@ public class ClearInventoryResponse implements CollisionResponse {
             }
         }
         
-        player.sendMessage(PlayerMessage.inventoryCleared());
+        player.sendMessage(Message.inventoryCleared());
     }
 
     @Override
