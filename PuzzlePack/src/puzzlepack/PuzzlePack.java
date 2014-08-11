@@ -2,13 +2,14 @@ package puzzlepack;
 
 import itemrestrict.OnBlockPlaceItemRestrict;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PuzzlePack extends JavaPlugin {
-    
+       
     @Override
     public void onEnable() {             
         getServer().getPluginManager().registerEvents(new OnBlockPlaceItemRestrict(), this);
@@ -16,6 +17,7 @@ public class PuzzlePack extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnFoodLevelChangeEvent(), this);
         getServer().getPluginManager().registerEvents(new OnVehickleExitEvent(), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerInteractEvent(), this);
     }
 
     public static boolean isToClose(Player player, Block block, double minDistance) {
